@@ -4,7 +4,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./app/lovable/*"],
+      "@ui/*": ["./packages/ui/src/*"]
     },
     "noImplicitAny": false,
     "noUnusedParameters": false,
