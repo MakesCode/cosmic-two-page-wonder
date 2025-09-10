@@ -32,7 +32,7 @@ const Index = () => {
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/50 mb-6">
+            <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-xs border border-border/50 mb-6">
               <Sparkles className="w-4 h-4 text-accent animate-pulse" />
               <span className="text-sm text-muted-foreground">Explorez l'univers</span>
             </div>
@@ -49,7 +49,7 @@ const Index = () => {
             {features.map((feature, index) => (
               <Card 
                 key={feature.title}
-                className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-cosmic transition-all duration-300 hover:-translate-y-2"
+                className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-xs hover:shadow-cosmic transition-all duration-300 hover:-translate-y-2"
               >
                 <CardHeader className="text-center pb-4">
                   <div className="mx-auto mb-4 p-3 rounded-full bg-secondary/30 w-fit group-hover:animate-pulse-glow transition-all duration-300">
@@ -80,19 +80,19 @@ const Index = () => {
             </h3>
             
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="p-8 rounded-2xl bg-secondary/20 backdrop-blur-sm border border-border/30 hover:shadow-nebula transition-all duration-300">
+              <div className="p-8 rounded-2xl bg-secondary/20 backdrop-blur-xs border border-border/30 hover:shadow-nebula transition-all duration-300">
                 <div className="text-4xl font-bold text-primary mb-2">13,8</div>
                 <div className="text-lg text-accent mb-2">Milliards d'années</div>
                 <div className="text-sm text-muted-foreground">Âge de l'univers</div>
               </div>
               
-              <div className="p-8 rounded-2xl bg-secondary/20 backdrop-blur-sm border border-border/30 hover:shadow-nebula transition-all duration-300">
+              <div className="p-8 rounded-2xl bg-secondary/20 backdrop-blur-xs border border-border/30 hover:shadow-nebula transition-all duration-300">
                 <div className="text-4xl font-bold text-accent mb-2">2×10²³</div>
                 <div className="text-lg text-primary mb-2">Étoiles</div>
                 <div className="text-sm text-muted-foreground">Dans l'univers observable</div>
               </div>
               
-              <div className="p-8 rounded-2xl bg-secondary/20 backdrop-blur-sm border border-border/30 hover:shadow-nebula transition-all duration-300">
+              <div className="p-8 rounded-2xl bg-secondary/20 backdrop-blur-xs border border-border/30 hover:shadow-nebula transition-all duration-300">
                 <div className="text-4xl font-bold text-primary mb-2">93</div>
                 <div className="text-lg text-accent mb-2">Milliards d'années-lumière</div>
                 <div className="text-sm text-muted-foreground">Diamètre de l'univers observable</div>

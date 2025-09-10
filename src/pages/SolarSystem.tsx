@@ -79,7 +79,7 @@ const SolarSystem = () => {
                   alt="Système solaire" 
                   className="w-full max-w-3xl mx-auto rounded-2xl shadow-space"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent rounded-2xl" />
+                <div className="absolute inset-0 bg-linear-to-t from-background/60 to-transparent rounded-2xl" />
               </div>
             </div>
           </section>
@@ -94,11 +94,11 @@ const SolarSystem = () => {
               {planets.map((planet, index) => (
                 <Card 
                   key={planet.name} 
-                  className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-cosmic transition-all duration-300 hover:-translate-y-1"
+                  className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-xs hover:shadow-cosmic transition-all duration-300 hover:-translate-y-1"
                 >
                   <CardHeader className="pb-3">
                     <div className="flex items-center space-x-3">
-                      <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${planet.color} shadow-md animate-pulse-glow`} />
+                      <div className={`w-6 h-6 rounded-full bg-linear-to-br ${planet.color} shadow-md animate-pulse-glow`} />
                       <CardTitle className="text-lg">{planet.name}</CardTitle>
                     </div>
                     <CardDescription className="text-sm text-muted-foreground">
@@ -124,11 +124,11 @@ const SolarSystem = () => {
             <div className="max-w-3xl mx-auto">
               <h3 className="text-2xl font-bold mb-8 text-foreground">Le Saviez-vous ?</h3>
               <div className="grid md:grid-cols-2 gap-8">
-                <div className="p-6 rounded-xl bg-secondary/30 backdrop-blur-sm border border-border/30">
+                <div className="p-6 rounded-xl bg-secondary/30 backdrop-blur-xs border border-border/30">
                   <div className="text-3xl font-bold text-primary mb-2">4,6</div>
                   <div className="text-sm text-muted-foreground">Milliards d'années - l'âge de notre système solaire</div>
                 </div>
-                <div className="p-6 rounded-xl bg-secondary/30 backdrop-blur-sm border border-border/30">
+                <div className="p-6 rounded-xl bg-secondary/30 backdrop-blur-xs border border-border/30">
                   <div className="text-3xl font-bold text-accent mb-2">1,39M</div>
                   <div className="text-sm text-muted-foreground">Kilomètres - le diamètre du Soleil</div>
                 </div>

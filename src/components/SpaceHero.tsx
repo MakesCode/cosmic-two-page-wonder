@@ -15,12 +15,12 @@ const SpaceHero = () => {
       />
       
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/80" />
+      <div className="absolute inset-0 bg-linear-to-b from-background/60 via-background/40 to-background/80" />
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/50">
+          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-xs border border-border/50">
             <Sparkles className="w-4 h-4 text-accent animate-pulse" />
             <span className="text-sm text-muted-foreground">Explorez l'univers infini</span>
           </div>
