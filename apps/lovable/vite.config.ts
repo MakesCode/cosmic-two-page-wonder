@@ -8,9 +8,17 @@ import path from 'node:path'
 export default defineConfig(() => ({
   root: __dirname,
   server: { host: '::', port: 8080 },
+  build: {
+    // Emit the build to the repo root's dist folder for Lovable
+    outDir: path.resolve(__dirname, '../../dist'),
+    emptyOutDir: true,
+  },
   plugins: [
     react(),
-  tanstackRouter(),
+    tanstackRouter({
+      routesDirectory: path.resolve(__dirname, 'routes'),
+      generatedRouteTree: path.resolve(__dirname, 'routeTree.gen.ts'),
+    }),
   ],
   resolve: {
     alias: {
@@ -19,4 +27,3 @@ export default defineConfig(() => ({
     },
   },
 }))
-

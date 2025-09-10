@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "cd apps/lovable && vite -c vite.config.ts",
     "dev:lovable": "cd apps/lovable && vite -c vite.config.ts",
-    "build": "rm -rf dist && (cd apps/lovable && vite build -c vite.config.ts) && mkdir -p dist && cp -R apps/lovable/dist/* dist/",
-    "build:lovable": "rm -rf dist && (cd apps/lovable && vite build -c vite.config.ts) && mkdir -p dist && cp -R apps/lovable/dist/* dist/",
-    "build:dev": "rm -rf dist && (cd apps/lovable && vite build -c vite.config.ts --mode development) && mkdir -p dist && cp -R apps/lovable/dist/* dist/",
+    "build": "cd apps/lovable && vite build -c vite.config.ts",
+    "build:lovable": "cd apps/lovable && vite build -c vite.config.ts",
+    "build:dev": "cd apps/lovable && vite build -c vite.config.ts --mode development",
 
     
     "dev:admin": "cd apps/admin && vite -c vite.config.ts",
