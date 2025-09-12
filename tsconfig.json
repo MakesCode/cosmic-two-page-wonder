@@ -5,7 +5,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./app/lovable/*"],
-      "@ui/*": ["./packages/ui/src/*"]
+      "@ui/*": ["./packages/ui/src/*"],
+      "@pages/*": ["./packages/pages/*"],
+      "@sgComponent/*": ["./packages/ui/src/components/sgComponent/*"],
+      "@mock/*": ["./packages/mock/*"],
+      "@presenter/*": ["./packages/mock/presenter/*"]
     },
     "noImplicitAny": false,
     "noUnusedParameters": false,

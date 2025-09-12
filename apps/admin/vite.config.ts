@@ -36,6 +36,9 @@ export default defineConfig(({ mode }) => ({
       '@styles': path.resolve(__dirname, './src/styles'),
       '@ui': path.resolve(__dirname, '../../packages/ui/src'),
       '@pages': path.resolve(__dirname, '../../packages/pages'),
+      '@sgComponent': path.resolve(__dirname, '../../packages/ui/src/components/sgComponent'),
+      '@mock': path.resolve(__dirname, '../../packages/mock'),
+      '@presenter': path.resolve(__dirname, '../../packages/mock/presenter'),
     },
   },
 }))

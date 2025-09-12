@@ -12,7 +12,10 @@
       "@/*": ["./src/*"],
       "@ui/*": ["../../packages/ui/src/*"],
       "@styles/*": ["../../packages/styles/src/*"],
-      "@pages/*": ["../../packages/pages/*"]
+      "@pages/*": ["../../packages/pages/*"],
+      "@sgComponent/*": ["../../packages/ui/src/components/sgComponent/*"],
+      "@mock/*": ["../../packages/mock/*"],
+      "@presenter/*": ["../../packages/mock/presenter/*"]
     }
   },
   "include": ["src"]

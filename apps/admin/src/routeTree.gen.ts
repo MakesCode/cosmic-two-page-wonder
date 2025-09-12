@@ -9,24 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SystemeSolaireRouteImport } from './routes/systeme-solaire'
-import { Route as MarsRouteImport } from './routes/mars'
-import { Route as AliensMartiensRouteImport } from './routes/aliens-martiens'
+import { Route as GliRouteImport } from './routes/gli'
 import { Route as IndexRouteImport } from './routes/index'
 
-const SystemeSolaireRoute = SystemeSolaireRouteImport.update({
-  id: '/systeme-solaire',
-  path: '/systeme-solaire',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MarsRoute = MarsRouteImport.update({
-  id: '/mars',
-  path: '/mars',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AliensMartiensRoute = AliensMartiensRouteImport.update({
-  id: '/aliens-martiens',
-  path: '/aliens-martiens',
+const GliRoute = GliRouteImport.update({
+  id: '/gli',
+  path: '/gli',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,59 +25,37 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/aliens-martiens': typeof AliensMartiensRoute
-  '/mars': typeof MarsRoute
-  '/systeme-solaire': typeof SystemeSolaireRoute
+  '/gli': typeof GliRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/aliens-martiens': typeof AliensMartiensRoute
-  '/mars': typeof MarsRoute
-  '/systeme-solaire': typeof SystemeSolaireRoute
+  '/gli': typeof GliRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/aliens-martiens': typeof AliensMartiensRoute
-  '/mars': typeof MarsRoute
-  '/systeme-solaire': typeof SystemeSolaireRoute
+  '/gli': typeof GliRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/aliens-martiens' | '/mars' | '/systeme-solaire'
+  fullPaths: '/' | '/gli'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/aliens-martiens' | '/mars' | '/systeme-solaire'
-  id: '__root__' | '/' | '/aliens-martiens' | '/mars' | '/systeme-solaire'
+  to: '/' | '/gli'
+  id: '__root__' | '/' | '/gli'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AliensMartiensRoute: typeof AliensMartiensRoute
-  MarsRoute: typeof MarsRoute
-  SystemeSolaireRoute: typeof SystemeSolaireRoute
+  GliRoute: typeof GliRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/systeme-solaire': {
-      id: '/systeme-solaire'
-      path: '/systeme-solaire'
-      fullPath: '/systeme-solaire'
-      preLoaderRoute: typeof SystemeSolaireRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mars': {
-      id: '/mars'
-      path: '/mars'
-      fullPath: '/mars'
-      preLoaderRoute: typeof MarsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/aliens-martiens': {
-      id: '/aliens-martiens'
-      path: '/aliens-martiens'
-      fullPath: '/aliens-martiens'
-      preLoaderRoute: typeof AliensMartiensRouteImport
+    '/gli': {
+      id: '/gli'
+      path: '/gli'
+      fullPath: '/gli'
+      preLoaderRoute: typeof GliRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,9 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AliensMartiensRoute: AliensMartiensRoute,
-  MarsRoute: MarsRoute,
-  SystemeSolaireRoute: SystemeSolaireRoute,
+  GliRoute: GliRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
