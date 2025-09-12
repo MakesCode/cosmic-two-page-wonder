@@ -1,0 +1,10 @@
+- Tailwind v4 lovable / tanstack-start
+- Pages dans packages
+- Rules lovable - path dossier
+- test ui
+- Inversion dependance
+- Rules lovable logique
+- test logique
+- lovable multi project
+- pnpm workspace
+- prompt
