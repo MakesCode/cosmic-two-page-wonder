@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SystemeSolaireRouteImport } from './routes/systeme-solaire'
+import { Route as MarsRouteImport } from './routes/mars'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SystemeSolaireRoute = SystemeSolaireRouteImport.update({
   id: '/systeme-solaire',
   path: '/systeme-solaire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarsRoute = MarsRouteImport.update({
+  id: '/mars',
+  path: '/mars',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/mars': typeof MarsRoute
   '/systeme-solaire': typeof SystemeSolaireRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/mars': typeof MarsRoute
   '/systeme-solaire': typeof SystemeSolaireRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/mars': typeof MarsRoute
   '/systeme-solaire': typeof SystemeSolaireRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/systeme-solaire'
+  fullPaths: '/' | '/mars' | '/systeme-solaire'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/systeme-solaire'
-  id: '__root__' | '/' | '/systeme-solaire'
+  to: '/' | '/mars' | '/systeme-solaire'
+  id: '__root__' | '/' | '/mars' | '/systeme-solaire'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MarsRoute: typeof MarsRoute
   SystemeSolaireRoute: typeof SystemeSolaireRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/systeme-solaire'
       fullPath: '/systeme-solaire'
       preLoaderRoute: typeof SystemeSolaireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mars': {
+      id: '/mars'
+      path: '/mars'
+      fullPath: '/mars'
+      preLoaderRoute: typeof MarsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MarsRoute: MarsRoute,
   SystemeSolaireRoute: SystemeSolaireRoute,
 }
 export const routeTree = rootRouteImport

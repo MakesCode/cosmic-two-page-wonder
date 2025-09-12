@@ -1,8 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/components/ui/card";
 import Navigation from "@ui/components/Navigation";
-import { Button } from "@ui/components/ui/button";
 import elonMarsImg from "@ui/assets/elon-musk-mars.jpg";
 import { Rocket, Users, Calendar, Target, Globe, Zap } from "lucide-react";
+import { Button } from "@ui/button";
 
 const marsFeatures = [
   {

@@ -9,12 +9,12 @@ Ce projet utilise une architecture monorepo avec des packages partagés.
 - **Emplacement** : `packages/ui/src/components/`
 - **Règle** : Tous les composants React réutilisables doivent être placés dans ce dossier
 - **Exemples** : Navigation, SpaceHero, modals, cartes personnalisées, etc.
-- **Import** : Utiliser l'alias `@ui/components/NomDuComposant`
+- **Import** : Utiliser l'alias `@ui/NomDuComposant`
 
 ### Composants UI Shadcn/ui
 - **Emplacement** : `packages/ui/src/components/ui/`
 - **Règle** : Composants de base Shadcn/ui (button, card, input, etc.)
-- **Import** : Utiliser l'alias `@ui/components/ui/nom-du-composant`
+- **Import** : Utiliser l'alias `@ui/nom-du-composant`
 
 ### Pages
 - **Emplacement** : `packages/pages/`
