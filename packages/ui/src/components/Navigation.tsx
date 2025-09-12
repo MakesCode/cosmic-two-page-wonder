@@ -51,6 +51,18 @@ const Navigation = () => {
                 <span>Mars</span>
               </Link>
             </Button>
+            
+            <Button
+              variant={location.pathname === "/aliens-martiens" ? "default" : "ghost"}
+              asChild
+              className="relative overflow-hidden group"
+            >
+              <Link to="/aliens-martiens" className="flex items-center space-x-2">
+                <div className="absolute inset-0 bg-gradient-cosmic opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                <Globe className="w-4 h-4" />
+                <span>Aliens Martiens</span>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
