@@ -1,9 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/components/ui/card";
-import { Button } from "@ui/button";
 import { Badge } from "@ui/components/ui/badge";
 import Navigation from "@ui/components/Navigation";
-import { Alien, Zap, Sparkles, Globe } from "lucide-react";
+import { Zap, Sparkles, Globe } from "lucide-react";
 import martianAliensImage from "@ui/assets/martian-aliens.jpg";
+import { Button } from "@ui/components/button";
 
 const MartianAliens = () => {
   const aliens = [
@@ -63,11 +63,9 @@ const MartianAliens = () => {
         
         <div className="relative container mx-auto px-4 text-center">
           <div className="flex items-center justify-center space-x-3 mb-6">
-            <Alien className="w-12 h-12 text-primary animate-float" />
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-cosmic bg-clip-text text-transparent">
               Planète Martienne
             </h1>
-            <Alien className="w-12 h-12 text-accent animate-float" style={{ animationDelay: '0.5s' }} />
           </div>
           
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8">
@@ -109,7 +107,6 @@ const MartianAliens = () => {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center space-x-3">
-                      <Alien className="w-6 h-6 text-primary group-hover:animate-pulse-glow" />
                       <span className="text-xl">{alien.name}</span>
                     </CardTitle>
                     <Badge className={getLevelColor(alien.level)}>

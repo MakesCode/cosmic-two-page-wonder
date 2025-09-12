@@ -1,4 +1,4 @@
-import { Button } from "@ui/button";
+import { Button } from "@ui/components/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import heroSpace from "@ui/assets/hero-space.jpg";

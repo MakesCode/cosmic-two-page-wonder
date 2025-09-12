@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Button } from "@ui/button";
+import { Button } from "@ui/components/button";
 import { Rocket, Globe } from "lucide-react";
 
 const Navigation = () => {

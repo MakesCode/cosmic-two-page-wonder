@@ -54,7 +54,6 @@ import Navigation from "@ui/components/Navigation";
 import SpaceHero from "@ui/components/SpaceHero";
 
 // Composants UI Shadcn/ui
-import { Button } from "@ui/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/components/ui/card";
 
 // Pages

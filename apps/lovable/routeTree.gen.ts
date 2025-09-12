@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SystemeSolaireRouteImport } from './routes/systeme-solaire'
 import { Route as MarsRouteImport } from './routes/mars'
+import { Route as AliensMartiensRouteImport } from './routes/aliens-martiens'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SystemeSolaireRoute = SystemeSolaireRouteImport.update({
@@ -23,6 +24,11 @@ const MarsRoute = MarsRouteImport.update({
   path: '/mars',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AliensMartiensRoute = AliensMartiensRouteImport.update({
+  id: '/aliens-martiens',
+  path: '/aliens-martiens',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aliens-martiens': typeof AliensMartiensRoute
   '/mars': typeof MarsRoute
   '/systeme-solaire': typeof SystemeSolaireRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aliens-martiens': typeof AliensMartiensRoute
   '/mars': typeof MarsRoute
   '/systeme-solaire': typeof SystemeSolaireRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aliens-martiens': typeof AliensMartiensRoute
   '/mars': typeof MarsRoute
   '/systeme-solaire': typeof SystemeSolaireRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/mars' | '/systeme-solaire'
+  fullPaths: '/' | '/aliens-martiens' | '/mars' | '/systeme-solaire'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/mars' | '/systeme-solaire'
-  id: '__root__' | '/' | '/mars' | '/systeme-solaire'
+  to: '/' | '/aliens-martiens' | '/mars' | '/systeme-solaire'
+  id: '__root__' | '/' | '/aliens-martiens' | '/mars' | '/systeme-solaire'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AliensMartiensRoute: typeof AliensMartiensRoute
   MarsRoute: typeof MarsRoute
   SystemeSolaireRoute: typeof SystemeSolaireRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aliens-martiens': {
+      id: '/aliens-martiens'
+      path: '/aliens-martiens'
+      fullPath: '/aliens-martiens'
+      preLoaderRoute: typeof AliensMartiensRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AliensMartiensRoute: AliensMartiensRoute,
   MarsRoute: MarsRoute,
   SystemeSolaireRoute: SystemeSolaireRoute,
 }
