@@ -39,6 +39,18 @@ const Navigation = () => {
                 <span>Système Solaire</span>
               </Link>
             </Button>
+            
+            <Button
+              variant={location.pathname === "/mars" ? "default" : "ghost"}
+              asChild
+              className="relative overflow-hidden group"
+            >
+              <Link to="/mars" className="flex items-center space-x-2">
+                <div className="absolute inset-0 bg-gradient-cosmic opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                <Rocket className="w-4 h-4" />
+                <span>Mars</span>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
