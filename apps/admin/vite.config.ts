@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite'
 import viteReact from '@vitejs/plugin-react'
 import path from 'node:path'
+import tsConfigPaths from 'vite-tsconfig-paths'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig(({ mode }) => ({
   // Make sure Vite runs from the admin app directory
@@ -25,6 +27,8 @@ export default defineConfig(({ mode }) => ({
       },
     }),
     viteReact(),
+    tsConfigPaths(),
+    tailwindcss()
   ],
   resolve: {
     alias: {

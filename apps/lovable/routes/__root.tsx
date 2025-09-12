@@ -6,6 +6,7 @@ import { Toaster } from '@ui/components/ui/toaster'
 import { Toaster as Sonner } from '@ui/components/ui/sonner'
 import { TooltipProvider } from '@ui/components/ui/tooltip'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import appCssPath from '@/index.css?url'
 
 const queryClient = new QueryClient()
 
@@ -17,6 +18,7 @@ export const Route = createRootRoute({
       { title: 'cosmic-two-page-wonder' },
       { name: 'description', content: 'Lovable Generated Project' },
     ],
+    links: [{ rel: 'stylesheet', href: appCssPath }],
   }),
   component: RootComponent,
   notFoundComponent: () => (
