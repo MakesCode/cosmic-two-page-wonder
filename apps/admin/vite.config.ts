@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => ({
     port: 3001,
   },
   plugins: [
+    tailwindcss(),
     tanstackStart({
       root: __dirname,
       customViteReactPlugin: true,
@@ -27,13 +28,14 @@ export default defineConfig(({ mode }) => ({
       },
     }),
     viteReact(),
-    tsConfigPaths(),
-    tailwindcss()
+    tsConfigPaths()
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@styles': path.resolve(__dirname, './src/styles'),
       '@ui': path.resolve(__dirname, '../../packages/ui/src'),
+      '@pages': path.resolve(__dirname, '../../packages/pages'),
     },
   },
 }))

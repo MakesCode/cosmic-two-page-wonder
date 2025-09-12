@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 import type { ReactNode } from 'react'
 import { Outlet, createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
-import NotFound from '@/pages/NotFound'
+import NotFound from '@pages/NotFound'
 import { Toaster } from '@ui/components/ui/toaster'
 import { Toaster as Sonner } from '@ui/components/ui/sonner'
 import { TooltipProvider } from '@ui/components/ui/tooltip'
