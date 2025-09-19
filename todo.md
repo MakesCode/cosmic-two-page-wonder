@@ -3,6 +3,7 @@
 - Rules lovable - path dossier
 - test ui
 - Inversion dependance
+- faire le vrai dependencie avec admin axios, redux ect..
 - Rules lovable logique
 - test logique
 - lovable multi project

@@ -1,33 +1,15 @@
 import React from 'react';
 import { Users, CheckCircle, Home, AlertTriangle, Euro } from 'lucide-react';
-import { 
-  UseSubscriptionPresenter, 
-  UseKpiPresenter, 
-  UseRentalApprovalsPresenter 
-} from '@mock/interfaces';
+import { useDI } from '@dependencies/depencieProvider';
+import { Sidebar } from '@ui/components/sgComponent/sidebar/Sidebar';
+import { SiteHeader } from '@ui/components/sgComponent/sidebar/SiteHeader';
 
-interface Dependencies {
-  useSubscriptionPresenter: UseSubscriptionPresenter;
-  useKpiPresenter: UseKpiPresenter;
-  useRentalApprovalsPresenter: UseRentalApprovalsPresenter;
-  RentalGuaranteeManagement: React.ComponentType<{ presenter: any }>;
-  Sidebar: React.ComponentType<{ children: React.ReactNode }>;
-  SiteHeader: React.ComponentType;
-}
-
-interface GliPageProps {
-  dependencies: Dependencies;
-}
-
-export function GliPage({ dependencies }: GliPageProps) {
+export function GliPage() {
   const { 
     useSubscriptionPresenter, 
     useKpiPresenter, 
     useRentalApprovalsPresenter,
-    RentalGuaranteeManagement,
-    Sidebar,
-    SiteHeader
-  } = dependencies;
+  } = useDI<any>();
   
   const { subscription } = useSubscriptionPresenter();
   const { kpi } = useKpiPresenter({ subscriptionId: subscription?.id });
@@ -50,7 +32,7 @@ export function GliPage({ dependencies }: GliPageProps) {
             />
           </div>
           <div className="w-full">
-            <RentalGuaranteeManagement presenter={presenter} />
+            {/* <RentalGuaranteeManagement presenter={presenter} /> */}
           </div>
         </div>
       </div>

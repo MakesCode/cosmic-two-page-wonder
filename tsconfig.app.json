@@ -24,8 +24,20 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./app/lovable/*"],
-      "@ui/*": ["./packages/ui/src/*"]
+      "@ui/*": ["./packages/ui/src/*"],
+      "@pages/*": ["./packages/pages/*"],
+      "@sgComponent/*": ["./packages/ui/src/components/sgComponent/*"],
+      "@mock/*": ["./packages/mock/*"],
+      "@presenter/*": ["./packages/mock/presenter/*"],
+      "@dependencies/*": ["./packages/dependencie/*"]
     }
   },
-  "include": ["app/lovable", "packages/ui/src", "apps/admin/src"]
+  "include": [
+    "app/lovable",
+    "apps/admin/src",
+    "packages/ui/src",
+    "packages/pages",
+    "packages/mock",
+    "packages/dependencie"
+  ]
 }

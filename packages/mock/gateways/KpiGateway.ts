@@ -1,6 +1,10 @@
-import { KpiGateway, ApiResponse } from '../interfaces/gateways';
+import {  ApiResponse } from '../interfaces/gateways';
 import { KpiData } from '../types';
 import { getKpiForSubscription } from '../data/kpi';
+
+export interface KpiGateway {
+  getKpi(subscriptionId: string): Promise<ApiResponse<KpiData>>;
+}
 
 export class MockKpiGateway implements KpiGateway {
   async getKpi(subscriptionId: string): Promise<ApiResponse<KpiData>> {

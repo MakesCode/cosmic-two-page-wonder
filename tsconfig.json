@@ -9,7 +9,8 @@
       "@pages/*": ["./packages/pages/*"],
       "@sgComponent/*": ["./packages/ui/src/components/sgComponent/*"],
       "@mock/*": ["./packages/mock/*"],
-      "@presenter/*": ["./packages/mock/presenter/*"]
+      "@presenter/*": ["./packages/mock/presenter/*"],
+      "@dependencies/*": ["./packages/dependencie/*"]
     },
     "noImplicitAny": false,
     "noUnusedParameters": false,

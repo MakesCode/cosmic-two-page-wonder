@@ -1,6 +1,10 @@
-import { SubscriptionGateway, ApiResponse } from '../interfaces/gateways';
+import { ApiResponse } from '../interfaces/gateways';
 import { Subscription } from '../types';
 import { getDefaultSubscription } from '../data/subscriptions';
+
+export interface SubscriptionGateway {
+  getSubscription(params: any): Promise<ApiResponse<Subscription>>;
+}
 
 export class MockSubscriptionGateway implements SubscriptionGateway {
   async getSubscription(_params: any): Promise<ApiResponse<Subscription>> {

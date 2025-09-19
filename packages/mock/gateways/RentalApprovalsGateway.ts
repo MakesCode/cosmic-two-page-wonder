@@ -1,6 +1,18 @@
-import { RentalApprovalsGateway, ApiResponse, PaginatedResponse } from '../interfaces/gateways';
+import { ApiResponse, PaginatedResponse } from '../interfaces/gateways';
 import { RentalApproval } from '../types';
 import { getRentalApprovalsPage, mockRentalApprovals } from '../data/rentalApprovals';
+
+export interface RentalApprovalsGateway {
+  getRentalApprovals(params: {
+    subscriptionId?: string;
+    search?: string;
+    status?: number;
+    groupe?: number;
+    page?: number;
+    pageSize?: number;
+  }): Promise<ApiResponse<PaginatedResponse<RentalApproval>>>;
+  archiveRentalApproval(id: string): Promise<ApiResponse<void>>;
+}
 
 export class MockRentalApprovalsGateway implements RentalApprovalsGateway {
   async getRentalApprovals(params: {

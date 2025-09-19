@@ -1,15 +1,20 @@
 import { useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { UseRentalApprovalsPresenter } from '../interfaces/presenters';
 import { MockRentalApprovalsGateway } from '../gateways/RentalApprovalsGateway';
 import { STATUS_OPTIONS, getStatusInfo } from '../constants/status';
+import { MockSubscriptionGateway } from '../gateways/SubscriptionGateway';
 
-export function createUseRentalApprovalsPresenter(): UseRentalApprovalsPresenter {
-  return function useRentalApprovalsPresenter({ subscriptionId }: { subscriptionId?: string }) {
+
+export  function useRentalApprovalsPresenter() {
     const gateway = useMemo(() => new MockRentalApprovalsGateway(), []);
     const queryClient = useQueryClient();
-
-    // Filters state
+    const gatewaySub = new MockSubscriptionGateway()
+    const { data: dataSub } = useQuery({
+      queryKey: ['subscription'],
+      queryFn: () => gatewaySub.getSubscription({}),
+      select: (response) => response.payload,
+    });
+    const subscriptionId = dataSub?.id 
     const [search, setSearch] = useState('');
     const [status, setStatus] = useState<number | undefined>(undefined);
     const [groupe, setGroupe] = useState<number | undefined>(1);
@@ -105,4 +110,3 @@ export function createUseRentalApprovalsPresenter(): UseRentalApprovalsPresenter
       getStatusInfo,
     };
   };
-}

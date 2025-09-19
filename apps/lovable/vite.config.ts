@@ -28,6 +28,7 @@ export default defineConfig(() => ({
       "@sgComponent": path.resolve(__dirname, "../../packages/ui/src/components/sgComponent"),
       "@mock": path.resolve(__dirname, "../../packages/mock"),
       "@presenter": path.resolve(__dirname, "../../packages/mock/presenter"),
+      "@dependencies": path.resolve(__dirname, "../../packages/dependencie"),
     },
   },
 }));
