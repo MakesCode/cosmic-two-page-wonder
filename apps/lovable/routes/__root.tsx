@@ -13,7 +13,7 @@ import { TooltipProvider } from "@ui/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import appCssPath from "@/index.css?url";
 import milaThemePath from "@/mila-theme.css?url";
-import { DependenciesProvider } from "@/lib/depencyInversion/DependenciesProvider";
+import { DependenciesProvider } from "@/lib/DI/DependenciesProvider";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
 
 const queryClient = new QueryClient();

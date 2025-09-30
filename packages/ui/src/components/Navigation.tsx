@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Button } from "@ui/components/button";
 import { Rocket, Globe } from "lucide-react";
+import { Button } from "./ui/button";
 
 const Navigation = () => {
   const location = useLocation();

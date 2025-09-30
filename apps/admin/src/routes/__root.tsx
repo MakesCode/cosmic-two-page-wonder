@@ -13,7 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import appCssPath from "@styles/app.css?url";
 import milaThemePath from "@styles/mila-theme.css?url";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
-import { DependenciesProvider } from "../../../lovable/lib/depencyInversion/DependenciesProvider";
+import { DependenciesProvider } from "../../../lovable/lib/DI/DependenciesProvider";
 
 const queryClient = new QueryClient();
 
