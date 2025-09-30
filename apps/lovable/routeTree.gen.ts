@@ -9,55 +9,78 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as GliRouteImport } from './routes/gli'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProIndexRouteImport } from './routes/pro/index'
+import { Route as HousingIndexRouteImport } from './routes/housing/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as ProGliRouteImport } from './routes/pro/gli'
 
-const GliRoute = GliRouteImport.update({
-  id: '/gli',
-  path: '/gli',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProIndexRoute = ProIndexRouteImport.update({
+  id: '/pro/',
+  path: '/pro/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingIndexRoute = HousingIndexRouteImport.update({
+  id: '/housing/',
+  path: '/housing/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProGliRoute = ProGliRouteImport.update({
+  id: '/pro/gli',
+  path: '/pro/gli',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/gli': typeof GliRoute
+  '/pro/gli': typeof ProGliRoute
+  '/admin': typeof AdminIndexRoute
+  '/housing': typeof HousingIndexRoute
+  '/pro': typeof ProIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/gli': typeof GliRoute
+  '/pro/gli': typeof ProGliRoute
+  '/admin': typeof AdminIndexRoute
+  '/housing': typeof HousingIndexRoute
+  '/pro': typeof ProIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/gli': typeof GliRoute
+  '/pro/gli': typeof ProGliRoute
+  '/admin/': typeof AdminIndexRoute
+  '/housing/': typeof HousingIndexRoute
+  '/pro/': typeof ProIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gli'
+  fullPaths: '/' | '/pro/gli' | '/admin' | '/housing' | '/pro'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gli'
-  id: '__root__' | '/' | '/gli'
+  to: '/' | '/pro/gli' | '/admin' | '/housing' | '/pro'
+  id: '__root__' | '/' | '/pro/gli' | '/admin/' | '/housing/' | '/pro/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  GliRoute: typeof GliRoute
+  ProGliRoute: typeof ProGliRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  HousingIndexRoute: typeof HousingIndexRoute
+  ProIndexRoute: typeof ProIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/gli': {
-      id: '/gli'
-      path: '/gli'
-      fullPath: '/gli'
-      preLoaderRoute: typeof GliRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -65,12 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pro/': {
+      id: '/pro/'
+      path: '/pro'
+      fullPath: '/pro'
+      preLoaderRoute: typeof ProIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/': {
+      id: '/housing/'
+      path: '/housing'
+      fullPath: '/housing'
+      preLoaderRoute: typeof HousingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pro/gli': {
+      id: '/pro/gli'
+      path: '/pro/gli'
+      fullPath: '/pro/gli'
+      preLoaderRoute: typeof ProGliRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  GliRoute: GliRoute,
+  ProGliRoute: ProGliRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  HousingIndexRoute: HousingIndexRoute,
+  ProIndexRoute: ProIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
