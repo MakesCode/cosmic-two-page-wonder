@@ -1,11 +1,6 @@
-- Tailwind v4 lovable / tanstack-start
-- Pages dans packages
 - Rules lovable - path dossier
 - test ui
-- Inversion dependance
 - faire le vrai dependencie avec admin axios, redux ect..
 - Rules lovable logique
-- test logique
-- lovable multi project
-- pnpm workspace
+- pnpm workspace / architecture
 - prompt

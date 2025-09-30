@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import type { ReactNode } from "react";
+import { useMemo, type ReactNode } from "react";
 import {
   Outlet,
   createRootRoute,
@@ -15,6 +15,7 @@ import appCssPath from "@/index.css?url";
 import milaThemePath from "@/mila-theme.css?url";
 import { DependenciesProvider } from "@/lib/DI/DependenciesProvider";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
+import { DevtoolsProvider } from "@/lib/DevtoolsProvider";
 
 const queryClient = new QueryClient();
 
@@ -60,8 +61,12 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
     </html>
   );
 }
+import { routeTree } from '@/routeTree.gen'
+import { deriveProductPanels } from ".";
 
 function Providers({ children }: Readonly<{ children: ReactNode }>) {
+    const productPanels = useMemo(() => deriveProductPanels(routeTree), [])
+  
   return (
     <QueryClientProvider client={queryClient}>
       <SidebarProvider
@@ -73,11 +78,13 @@ function Providers({ children }: Readonly<{ children: ReactNode }>) {
         }
       >
         <DependenciesProvider>
+        <DevtoolsProvider productPanels={productPanels}>
           <TooltipProvider>
             <Toaster />
             <Sonner />
             {children}
           </TooltipProvider>
+        </DevtoolsProvider>
         </DependenciesProvider>
       </SidebarProvider>
     </QueryClientProvider>
