@@ -5,21 +5,19 @@ import tsConfigPaths from 'vite-tsconfig-paths'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import tailwindcss from '@tailwindcss/vite'
 
-export default defineConfig(({ mode }) => ({
-  // Make sure Vite runs from the admin app directory
+export default defineConfig({
   root: __dirname,
   server: {
     host: '::',
     port: 3001,
+    // https: true,
   },
   plugins: [
     tailwindcss(),
     tanstackStart({
       root: __dirname,
       customViteReactPlugin: true,
-      // target a Node server runtime for SSR
       target: 'node-server',
-      // no SPA masking here; this is the SSR admin app
       spa: { enabled: false },
       tsr: {
         srcDirectory: path.resolve(__dirname, 'src'),
@@ -28,7 +26,19 @@ export default defineConfig(({ mode }) => ({
       },
     }),
     viteReact(),
-    tsConfigPaths()
+    tsConfigPaths(),
+          {
+        name: 'allow-dev-host',
+        config() {
+          return {
+            server: {
+              allowedHosts: ['dev.smart-garant.fr'],
+              host: 'dev.smart-garant.fr',
+              // https: true,
+            },
+          };
+        },
+      },
   ],
   resolve: {
     alias: {
@@ -42,4 +52,4 @@ export default defineConfig(({ mode }) => ({
       "@dependencies": path.resolve(__dirname, "../../packages/dependencie"),
     },
   },
-}))
+})

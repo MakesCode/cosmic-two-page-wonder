@@ -1,6 +1,6 @@
+import { ApiParams } from '@/hooks/useFiltres';
 import { createAppAsyncThunk } from '../../../../lib/redux/createAppAsyncThunk';
 import { Dependencies } from '../../../../lib/redux/dependencies';
-import { ApiParams } from '../../../../routes/(gli)/(home)/-components/useFiltres';
 
 export interface CtxretrieveRentalApprovals {
   params: ApiParams & { subscriptionId: string };

@@ -1,5 +1,6 @@
 import { createAppAsyncThunk } from '../../../../lib/redux/createAppAsyncThunk';
 import { Dependencies } from '../../../../lib/redux/dependencies';
+import { subscriptionLoaded } from './subscription.action';
 
 export interface CtxretrieveSubscription {
   params: {};
@@ -15,6 +16,7 @@ export const retrieveSubscriptionUsecase = createAppAsyncThunk(
         data: {},
         params: {},
       });
+      dispatch(subscriptionLoaded(data.payload));
       return data.payload;
     } catch (error) {
       throw error;

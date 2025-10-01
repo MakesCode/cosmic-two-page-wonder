@@ -3,5 +3,6 @@ import GliPage from '@pages/Gli';
 
 export const Route = createFileRoute('/')({
   component: () => <GliPage />,
+  ssr: false,
 })
 

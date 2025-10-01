@@ -1,8 +1,8 @@
-import { ApiService } from '../../../lib/axios/ApiService';
-import { ApiRequest } from '../../../lib/type/type';
-import { SmartGarantResponse } from '../../common/model/SmartGarantResponse';
+import { ApiRequest } from '@/features/common/model/apiRequest';
 import { GLICreationResponse } from './model/GLICreationResponse';
 import { Kpi } from './model/kpi';
+import { SmartGarantResponse } from '@/features/common/model/SmartGarantResponse';
+import { ApiService } from '@/lib/axios/ApiService';
 
 export type getSubscriptionRequest = ApiRequest<{}, {}>;
 export type getKpiRequest = ApiRequest<

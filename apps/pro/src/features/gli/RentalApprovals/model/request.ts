@@ -1,6 +1,6 @@
-import { ApiRequest } from '../../../../lib/type/type';
-import { ApiParams } from '../../../../routes/(gli)/(home)/-components/useFiltres';
+import { ApiParams } from '@/hooks/useFiltres';
 import { LegalEntity, NaturalEntity } from './RentalApproval';
+import { ApiRequest } from '@/features/common/model/apiRequest';
 
 
 export type postCreateApprovalRequest = ApiRequest<

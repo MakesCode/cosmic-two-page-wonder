@@ -4,6 +4,7 @@ import {
   createRootRoute,
   HeadContent,
   Scripts,
+  redirect,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { Toaster } from "@ui/components/ui/toaster";
@@ -13,11 +14,29 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import appCssPath from "@styles/app.css?url";
 import milaThemePath from "@styles/mila-theme.css?url";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
-import { DependenciesProvider } from "../../../lovable/lib/DI/DependenciesProvider";
+import { BootstrapQueries } from "@/lib/loader/BootstrapQueries";
+import { getSetting } from "@/lib/tanstack-start/getSetting";
+import { isPublicPath } from "@/lib/tanstack-start/publicRoutes";
+import { authGuard } from "@/features/common/auth/authGuard";
+import { isProRoleFromToken } from "@/features/common/auth/roles";
+import { createDependencies, createStoreWithDependencies, Dependencies } from "@/lib/redux/dependencies";
+import { Settings } from "@/lib/tanstack-start/settings";
+import { Provider } from "react-redux";
+import { DependenciesProvider } from "@/lib/DI/DependenciesProvider";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-const queryClient = new QueryClient();
 
-export const Route = createRootRoute({
+export const Route = createRootRoute<{
+  queryClient: QueryClient;
+  dependencies: Dependencies;
+  user?: {
+    housingId: string;
+    applicationId: string;
+    exp: number;
+    isAuth: boolean;
+  };
+  settings: Settings;
+}>({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -27,6 +46,27 @@ export const Route = createRootRoute({
     links: [{ rel: "stylesheet", href: appCssPath }, { rel: "stylesheet", href: milaThemePath }],
   }),
   component: RootComponent,
+    beforeLoad: async (ctx) => {
+    const settings = getSetting();
+    const pathname: string | undefined = (ctx as any)?.location?.pathname ?? (ctx as any)?.location?.href;
+    const isPublicRoute = isPublicPath(pathname);
+    
+    if (isPublicRoute) {
+      return {  isPublicRoute } as const;
+    }
+
+    const auth = await authGuard(ctx.context.dependencies, {
+      settings: ctx.context.settings,
+      roleCheckFromToken: isProRoleFromToken,
+    });
+    if (!auth.isAuth) {
+      if (auth.status === 401) {
+        throw redirect({ href: '/401' });
+      }
+      throw redirect({ href: `${settings.VITE_DOMAIN_APP_URL}/login` });
+    }
+    return { isPublicRoute } as const;
+  },
 });
 
 function RootComponent() {
@@ -52,8 +92,10 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 }
 
 function Providers({ children }: Readonly<{ children: ReactNode }>) {
+  const { store } = Route.useRouteContext() as {
+    store: ReturnType<typeof createStoreWithDependencies>;
+  };
   return (
-    <QueryClientProvider client={queryClient}>
       <SidebarProvider
         style={
           {
@@ -64,12 +106,15 @@ function Providers({ children }: Readonly<{ children: ReactNode }>) {
       >
         <DependenciesProvider>
           <TooltipProvider>
+          <Provider store={store}>
             <Toaster />
             <Sonner />
+            <ReactQueryDevtools buttonPosition="bottom-right" />
+            <BootstrapQueries />
             {children}
+            </Provider>
           </TooltipProvider>
         </DependenciesProvider>
       </SidebarProvider>
-    </QueryClientProvider>
   );
 }

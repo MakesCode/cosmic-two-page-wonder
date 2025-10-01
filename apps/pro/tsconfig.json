@@ -19,5 +19,5 @@
       "@dependencies/*": ["../../packages/dependencie/*"]
     }
   },
-  "include": ["src", "../lovable/lib/DevtoolsProvider.tsx"]
+  "include": ["src", "../lovable/lib/DevtoolsProvider.tsx"],
 }

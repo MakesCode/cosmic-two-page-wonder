@@ -1,6 +1,4 @@
-- Rules lovable - path dossier
-- test ui
 - faire le vrai dependencie avec admin axios, redux ect..
-- Rules lovable logique
+- Rules lovable logique / Rules lovable - path dossier
 - pnpm workspace / architecture
 - prompt

@@ -2,7 +2,7 @@ import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { queryOptions } from '@tanstack/react-query';
 import { CtxretrieveRentalApprovals, retrieveRentalApprovalsUsecase } from './retrieveRentalApprovals.usecase';
 import { RentalApproval } from '../model/RentalApproval';
-import { SmartGarantGrid } from '../../../common/model/SmartGarantResponse';
+import { SmartGarantGrid } from '@/features/common/model/SmartGarantResponse';
 
 export const retrieveRentalApprovalsQueryOption = (
   ctx: CtxretrieveRentalApprovals,

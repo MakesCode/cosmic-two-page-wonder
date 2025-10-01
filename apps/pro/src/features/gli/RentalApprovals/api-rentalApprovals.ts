@@ -1,5 +1,5 @@
+import { SmartGarantGrid, SmartGarantResponse } from '@/features/common/model/SmartGarantResponse';
 import { ApiService } from '../../../lib/axios/ApiService';
-import { SmartGarantGrid, SmartGarantResponse } from '../../common/model/SmartGarantResponse';
 import { RentalApproval } from './model/RentalApproval';
 import {
   getRentalApprovalsRequest,

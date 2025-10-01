@@ -1,25 +1,17 @@
 import React from 'react';
 import { 
-  useKpiPresenter,
-  useRentalApprovalsPresenter,
-  useSubscriptionPresenter
+useStats
 } from '@mock/index';
 import { DIProvider } from '@dependencies/depencieProvider';
+import { TypeDI } from '@dependencies/type';
 
-export type Dependencies = {
-  useSubscriptionPresenter?:  any;
-  useKpiPresenter?:  any;
-  useRentalApprovalsPresenter?:  any;
-};
 
 export const DependenciesProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const value: Dependencies = {
-      useSubscriptionPresenter: useSubscriptionPresenter,
-      useKpiPresenter: useKpiPresenter,
-      useRentalApprovalsPresenter:  useRentalApprovalsPresenter,
+  const value: TypeDI = {
+   useStats: useStats,
   };
 
-  return <DIProvider<Dependencies> dependencies={value}>{children}</DIProvider>;
+  return <DIProvider<TypeDI> dependencies={value}>{children}</DIProvider>;
 };

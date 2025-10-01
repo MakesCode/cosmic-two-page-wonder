@@ -42,3 +42,25 @@ export enum ProfessionalStatus {
   //   /// <summary>Autre situation (AAH, rentes, allocations)</summary>
   OtherAllowance = 18,
 }
+export const labelProfessionalStatus = {
+  [ProfessionalStatus.PublicTitulaire]: 'Titulaire du public',
+  [ProfessionalStatus.PublicCDI]: 'CDI',
+  [ProfessionalStatus.PublicCDD]: 'CDD',
+  [ProfessionalStatus.PublicMilitaire]: 'Militaire',
+  [ProfessionalStatus.PrivateCDI]: 'CDI',
+  [ProfessionalStatus.PrivateCDD]: 'CDD',
+  [ProfessionalStatus.PrivateInterim]: 'Intérimaire',
+  [ProfessionalStatus.PrivateIntermittent]: 'Intermittent',
+  [ProfessionalStatus.IndepArtisant]: 'Artisan / Commerçant',
+  [ProfessionalStatus.IndepAuto]: 'Auto-entrepreneur',
+  [ProfessionalStatus.IndepLiberal]: 'Libéral',
+  [ProfessionalStatus.IndepChef]: "Chef d'entreprise",
+  [ProfessionalStatus.OtherEtudiant]: 'Etudiant',
+  [ProfessionalStatus.OtherEtudiantAlternant]: 'Alternant',
+  [ProfessionalStatus.OtherRetaite]: 'Retraité',
+  [ProfessionalStatus.OtherRecherche]: "Recherche d'emploi",
+  [ProfessionalStatus.OtherResidenceEtudiant]: 'Etudiant (compatible offre residence)',
+  [ProfessionalStatus.OtherResidenceAlternant]: 'Etudiant Alternant (compatible offre residence)',
+  [ProfessionalStatus.OtherAllowance]: 'Autre situation (AAH, rentes, allocations)',
+  [9999]: 'N/A',
+};

@@ -1,4 +1,4 @@
-import { ProfessionalStatus } from '../../../common/model/ProfessionalStatus';
+import { ProfessionalStatus } from '@/features/common/model/ProfessionalStatus';
 import { OwnerType } from './request';
 
 export interface Subscription {
