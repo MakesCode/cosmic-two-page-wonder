@@ -16,6 +16,8 @@ import milaThemePath from "@/mila-theme.css?url";
 import { DependenciesProvider } from "@/lib/DI/DependenciesProvider";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
 import { DevtoolsProvider } from "@/lib/DevtoolsProvider";
+import { Provider } from "react-redux";
+import { BootstrapQueries } from "../../../packages/lib/loader/BootstrapQueries";
 
 const queryClient = new QueryClient();
 
@@ -63,10 +65,13 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 }
 import { routeTree } from '@/routeTree.gen'
 import { deriveProductPanels } from ".";
+import { createStoreWithDependencies } from "@/lib/redux/dependencies";
 
 function Providers({ children }: Readonly<{ children: ReactNode }>) {
-    const productPanels = useMemo(() => deriveProductPanels(routeTree), [])
-  
+  const productPanels = useMemo(() => deriveProductPanels(routeTree), [])
+  const { store } = Route.useRouteContext() as {
+    store: ReturnType<typeof createStoreWithDependencies>;
+  };
   return (
     <QueryClientProvider client={queryClient}>
       <SidebarProvider
@@ -80,9 +85,12 @@ function Providers({ children }: Readonly<{ children: ReactNode }>) {
         <DependenciesProvider>
         <DevtoolsProvider productPanels={productPanels}>
           <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            {children}
+            <Provider store={store}>
+              <BootstrapQueries />
+              <Toaster />
+              <Sonner />
+              {children}
+            </Provider>
           </TooltipProvider>
         </DevtoolsProvider>
         </DependenciesProvider>

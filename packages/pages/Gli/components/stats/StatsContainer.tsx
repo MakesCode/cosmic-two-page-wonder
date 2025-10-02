@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { Users, CheckCircle, Home, AlertTriangle, Euro } from 'lucide-react';
-import { useDI } from '@dependencies/depencieProvider';
-import { TypeDI } from '@dependencies/type';
+import { useStats } from './useStats';
 
 export const StatsContainer = () => {
-    const { 
-      useStats
-    } = useDI<TypeDI>();
     const {averageRent, guaranteedTenants, openClaims, totalCandidates, validatedFiles} = useStats();
     console.log(averageRent, guaranteedTenants, openClaims, totalCandidates, validatedFiles);
     

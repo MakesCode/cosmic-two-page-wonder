@@ -14,15 +14,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import appCssPath from "@styles/app.css?url";
 import milaThemePath from "@styles/mila-theme.css?url";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
-import { BootstrapQueries } from "@/lib/loader/BootstrapQueries";
-import { getSetting } from "@/lib/tanstack-start/getSetting";
-import { isPublicPath } from "@/lib/tanstack-start/publicRoutes";
-import { authGuard } from "@/features/common/auth/authGuard";
-import { isProRoleFromToken } from "@/features/common/auth/roles";
-import { createDependencies, createStoreWithDependencies, Dependencies } from "@/lib/redux/dependencies";
-import { Settings } from "@/lib/tanstack-start/settings";
+import { BootstrapQueries } from "../../../../packages/lib/loader/BootstrapQueries";
+import { getSetting } from "../../../../packages/lib/tanstack-start/getSetting";
+import { isPublicPath } from "../../../../packages/lib/tanstack-start/publicRoutes";
+import { authGuard } from "../../../../packages/features/common/auth/authGuard";
+import { isProRoleFromToken } from "../../../../packages/features/common/auth/roles";
+import { createDependencies, createStoreWithDependencies, Dependencies } from "../../../../packages/lib/redux/dependencies";
+import { Settings } from "../../../../packages/lib/tanstack-start/settings";
 import { Provider } from "react-redux";
-import { DependenciesProvider } from "@/lib/DI/DependenciesProvider";
+import { DependenciesProvider } from "../../../../packages/lib/DI/DependenciesProvider";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 

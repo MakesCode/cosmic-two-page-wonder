@@ -2,7 +2,7 @@ import React from 'react';
 // import { 
 // useStats
 // } from '@mock/index';
-import { useStats } from '../../../pro/src/lib/DI/hooks/useStats';
+import { useStats } from '../../../../packages/pages/Gli/components/stats/useStats';
 import { DIProvider } from '@dependencies/depencieProvider';
 import { TypeDI } from '@dependencies/type';
 

@@ -1,5 +1,5 @@
 import { createAsyncThunk, ThunkDispatch, UnknownAction } from '@reduxjs/toolkit';
-import { rootReducer } from './rootReducer';
+import { rootReducer } from '../../../../packages/lib/redux/rootReducer';
 import { Dependencies } from './dependencies';
 
 export type RootState = ReturnType<typeof rootReducer>;
