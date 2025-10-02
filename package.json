@@ -9,8 +9,9 @@
   ],
   "packageManager": "bun@1.2.21",
   "scripts": {
+    "dev": "cd apps/lovable && vite -c vite.config.ts",
     "start": "turbo run dev --parallel",
-    "build": "turbo run build --filter=@apps/lovable",
+    "build": "cd apps/lovable && vite build -c vite.config.ts",
     "build:all": "turbo run build",
     "lint": "eslint .",
     "preview": "vite preview "
