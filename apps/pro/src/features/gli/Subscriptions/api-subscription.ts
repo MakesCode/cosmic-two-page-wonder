@@ -1,21 +1,8 @@
-import { ApiRequest } from '@/features/common/model/apiRequest';
-import { GLICreationResponse } from './model/GLICreationResponse';
-import { Kpi } from './model/kpi';
-import { SmartGarantResponse } from '@/features/common/model/SmartGarantResponse';
+import { SmartGarantResponse } from '../../../../../../packages/model/common/SmartGarantResponse';
+import { GLICreationResponse } from '../../../../../../packages/model/pro/GLICreationResponse';
+import { Kpi } from '../../../../../../packages/model/pro/kpi';
 import { ApiService } from '@/lib/axios/ApiService';
-
-export type getSubscriptionRequest = ApiRequest<{}, {}>;
-export type getKpiRequest = ApiRequest<
-  {
-    subscriptionId: string;
-  },
-  {}
->;
-
-export interface SubscriptionGateway {
-  getSubscription({ params, data }: getSubscriptionRequest): Promise<SmartGarantResponse<GLICreationResponse>>;
-  getKpi({ params, data }: getKpiRequest): Promise<SmartGarantResponse<Kpi>>;
-}
+import { getKpiRequest, SubscriptionGateway , getSubscriptionRequest} from '@dependencies/interface/pro/SubscriptionGateway';
 
 export class ApiSubscriptionGateway implements SubscriptionGateway {
   constructor(private apiService: ApiService) {}

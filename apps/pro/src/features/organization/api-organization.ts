@@ -1,6 +1,6 @@
 import { ApiService } from '@/lib/axios/ApiService';
-import { ApiRequest } from '../common/model/apiRequest';
-import { SmartGarantResponse } from '../common/model/SmartGarantResponse';
+import { ApiRequest } from '../../../../../packages/model/common/apiRequest';
+import { SmartGarantResponse } from '../../../../../packages/model/common/SmartGarantResponse';
 import { OrganizationBase, ProfileApi } from './model/organization';
 
 export type getOrganizationRequest = ApiRequest<{}, {}>;

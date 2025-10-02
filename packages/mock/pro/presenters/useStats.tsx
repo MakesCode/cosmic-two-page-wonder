@@ -1,21 +1,22 @@
 import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { MockKpiGateway } from '../gateways/KpiGateway';
-import { MockSubscriptionGateway } from '../gateways/SubscriptionGateway';
+import { MockSubscriptionGateway } from '../gateways/MockSubscriptionGateway';
 import { TypeDI } from '@dependencies/type';
 
 export const useStats: TypeDI["useStats"] = () => {
-   const gateway = useMemo(() => new MockKpiGateway(), []);
+   const gateway = useMemo(() => new MockSubscriptionGateway(), []);
     const gatewaySub = new MockSubscriptionGateway()
     const { data: dataSub } = useQuery({
       queryKey: ['subscription'],
-      queryFn: () => gatewaySub.getSubscription({}),
+      queryFn: () => gatewaySub.getSubscription({data: {}, params: {}}),
       select: (response) => response.payload,
     });
     const subscriptionId = dataSub?.id 
     const { data : kpi } = useQuery({
       queryKey: ['kpi', subscriptionId],
-      queryFn: () => gateway.getKpi(subscriptionId || 'sub-001'),
+      queryFn: () => gateway.getKpi({
+        params: {subscriptionId: "", }, data: {}
+      }),
       select: (response) => response.payload,
       enabled: !!subscriptionId,
     });

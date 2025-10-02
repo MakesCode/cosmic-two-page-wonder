@@ -1,7 +1,7 @@
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { queryOptions } from '@tanstack/react-query';
 import { CtxretrieveSubscription, retrieveSubscriptionUsecase } from './retrieveSubscription.usecase';
-import { GLICreationResponse } from '../model/GLICreationResponse';
+import { GLICreationResponse } from '../../../../../../../packages/model/pro/GLICreationResponse';
 
 export const retrieveSubscriptionQueryOption = (ctx: CtxretrieveSubscription, dispatch?: Dispatch<UnknownAction> | null | undefined) =>
   queryOptions<GLICreationResponse>({

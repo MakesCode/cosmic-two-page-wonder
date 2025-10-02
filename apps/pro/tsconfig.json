@@ -19,5 +19,5 @@
       "@dependencies/*": ["../../packages/dependencie/*"]
     }
   },
-  "include": ["src", "../lovable/lib/DevtoolsProvider.tsx"],
+  "include": ["src", "../lovable/lib/DevtoolsProvider.tsx", "../../packages/model/common/apiRequest.ts", "../../packages/model/common/SmartGarantResponse.ts", "../../packages/model/pro/kpi.ts", "../../packages/model/pro/GLICreationResponse.tsx"],
 }
