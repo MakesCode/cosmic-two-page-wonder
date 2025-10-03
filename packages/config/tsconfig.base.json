@@ -25,7 +25,6 @@
       "@lib/*": ["packages/lib/*"],
       "@mock/*": ["packages/mock/*"],
       "@presenter/*": ["packages/mock/presenter/*"],
-      "@model/*": ["packages/model/*"],
       "@pages/*": ["packages/pages/*"],
       "@sgComponent/*": ["packages/ui/src/components/sgComponent/*"],
       "@ui/*": ["packages/ui/src/*"],

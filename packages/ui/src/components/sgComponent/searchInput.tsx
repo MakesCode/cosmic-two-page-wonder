@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, ReactNode } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Loader2 } from 'lucide-react';
-import { Button } from '@ui/components/ui/button';
-import { Input } from '@ui/components/ui/input';
-import { cn } from '@ui/lib/utils';
+import React, { useState, useEffect, useRef, ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, X, Loader2 } from "lucide-react";
+import { Button } from "@ui/components/ui/button";
+import { Input } from "@ui/components/ui/input";
+import { cn } from "@utils/cn";
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
@@ -29,17 +29,18 @@ function useClickOutside(ref: React.RefObject<HTMLDivElement>, handler: () => vo
       handler();
     };
 
-    document.addEventListener('mousedown', listener);
-    document.addEventListener('touchstart', listener);
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
 
     return () => {
-      document.removeEventListener('mousedown', listener);
-      document.removeEventListener('touchstart', listener);
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
     };
   }, [ref, handler]);
 }
 
-export interface SearchInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+export interface SearchInputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   value?: string;
   onChange?: (value: string) => void;
   onDebouncedChange?: (value: string) => void;
@@ -57,7 +58,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
   (
     {
       className,
-      value = '',
+      value = "",
       onChange,
       onDebouncedChange,
       debounceDelay = 300,
@@ -131,8 +132,8 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     };
 
     const handleClear = () => {
-      setInternalValue('');
-      onChange?.('');
+      setInternalValue("");
+      onChange?.("");
       onClear?.();
       if (onDropdownChange) {
         onDropdownChange(false);
@@ -150,7 +151,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 
           <Input
             ref={ref}
-            className={cn('pl-9', showClearButton && 'pr-9', loading && 'pr-9', className)}
+            className={cn("pl-9", showClearButton && "pr-9", loading && "pr-9", className)}
             value={internalValue}
             onChange={handleInputChange}
             onFocus={handleFocus}
@@ -183,7 +184,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ duration: 0.1 }}
               className={cn(
-                'absolute top-full z-50 mt-1 w-full rounded-md border bg-popover p-0 text-popover-foreground shadow-md outline-none',
+                "absolute top-full z-50 mt-1 w-full rounded-md border bg-popover p-0 text-popover-foreground shadow-md outline-none",
                 dropdownClassName,
               )}
             >

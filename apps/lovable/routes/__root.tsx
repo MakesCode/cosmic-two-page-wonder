@@ -1,11 +1,6 @@
 /// <reference types="vite/client" />
 import { useMemo, type ReactNode } from "react";
-import {
-  Outlet,
-  createRootRoute,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
+import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import NotFound from "@pages/NotFound";
 import { Toaster } from "@ui/components/ui/toaster";
 import { Toaster as Sonner } from "@ui/components/ui/sonner";
@@ -31,7 +26,10 @@ export const Route = createRootRoute({
       { title: "cosmic-two-page-wonder" },
       { name: "description", content: "Lovable Generated Project" },
     ],
-    links: [{ rel: "stylesheet", href: appCssPath }, { rel: "stylesheet", href: milaThemePath }],
+    links: [
+      { rel: "stylesheet", href: appCssPath },
+      { rel: "stylesheet", href: milaThemePath },
+    ],
   }),
   component: RootComponent,
   notFoundComponent: () => (
@@ -68,7 +66,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 import { createStoreWithDependencies } from "@lovable/lib/redux/dependencies";
 
 function Providers({ children }: Readonly<{ children: ReactNode }>) {
-  const productPanels = useMemo(() => deriveProductPanels(routeTree), [])
+  const productPanels = useMemo(() => deriveProductPanels(routeTree), []);
   const { store } = Route.useRouteContext() as {
     store: ReturnType<typeof createStoreWithDependencies>;
   };
@@ -83,16 +81,16 @@ function Providers({ children }: Readonly<{ children: ReactNode }>) {
         }
       >
         <DependenciesProvider>
-        <DevtoolsProvider productPanels={productPanels}>
-          <TooltipProvider>
-            <Provider store={store}>
-              <BootstrapQueries />
-              <Toaster />
-              <Sonner />
-              {children}
-            </Provider>
-          </TooltipProvider>
-        </DevtoolsProvider>
+          <DevtoolsProvider productPanels={productPanels}>
+            <TooltipProvider>
+              <Provider store={store}>
+                <BootstrapQueries />
+                <Toaster />
+                <Sonner />
+                {children}
+              </Provider>
+            </TooltipProvider>
+          </DevtoolsProvider>
         </DependenciesProvider>
       </SidebarProvider>
     </QueryClientProvider>

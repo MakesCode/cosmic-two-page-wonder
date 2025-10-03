@@ -3,10 +3,10 @@
   "include": [
     "./src",
     "../lovable/lib/DevtoolsProvider.tsx",
-    "../../packages/model/common/apiRequest.ts",
-    "../../packages/model/common/SmartGarantResponse.ts",
-    "../../packages/model/pro/kpi.ts",
-    "../../packages/model/pro/GLICreationResponse.tsx"
+    "../../packages/features/model/apiRequest.ts",
+    "../../packages/features/model/SmartGarantResponse.ts",
+    "../../packages/features/pro/gli/Subscriptions/model/kpi.ts",
+    "../../packages/features/pro/gli/Subscriptions/model/GLICreationResponse.tsx"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

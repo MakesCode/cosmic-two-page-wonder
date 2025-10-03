@@ -1,7 +1,6 @@
-import { useCallback, useMemo } from 'react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
-import { useDebounce } from '@hooks/useDebounce';
-import { GliRentalApprovalStatus } from '@features/gli/RentalApprovals/model/RentalApproval';
+import { useCallback, useMemo } from "react";
+import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useDebounce } from "@hooks/useDebounce";
 
 export enum RentalApprovalStatusFilter {
   Ongoing = 1,
@@ -13,15 +12,15 @@ export interface RentalApprovalsFilters {
   q?: string; // search
   p?: number; // page index (0-based)
   l?: number; // limit
-  sst?: GliRentalApprovalStatus;
-  st?: RentalApprovalStatusFilter; // status
+  sst?: number; // status
+  st?: number; // status
 }
 
 export interface ApiParams {
   search: string;
   pageIndex: number;
   limite: number;
-  status?: GliRentalApprovalStatus;
+  status?: number;
   groupe?: RentalApprovalStatusFilter;
 }
 
@@ -32,14 +31,14 @@ export interface UseFiltresParams {
 export interface UseFiltresReturn {
   filters: RentalApprovalsFilters;
   search: string;
-  status: GliRentalApprovalStatus | undefined;
+  status: number | undefined;
   groupe: RentalApprovalStatusFilter | undefined;
   pageIndex: number;
   pageSize: number;
   debouncedSearch: string;
 
   setSearch: (search: string) => void;
-  setStatus: (sst: GliRentalApprovalStatus | undefined) => void;
+  setStatus: (sst: number | undefined) => void;
   setGroupe: (st: RentalApprovalStatusFilter | undefined) => void;
   setPageIndex: (pageIndex: number) => void;
   setPageSize: (pageSize: number) => void;
@@ -56,14 +55,14 @@ export const useFiltres = ({ defaultPageSize = 10 }: UseFiltresParams = {}): Use
   }) as RentalApprovalsFilters;
 
   const filters = {
-    q: searchParams.q || '',
+    q: searchParams.q || "",
     p: searchParams.p || 0,
     l: searchParams.l || defaultPageSize,
     sst: searchParams.sst,
     st: searchParams.st || 1,
   };
 
-  const debouncedSearch = useDebounce(filters.q || '', 300);
+  const debouncedSearch = useDebounce(filters.q || "", 300);
 
   const updateFilters = useCallback(
     (newFilters: Partial<RentalApprovalsFilters>) => {
@@ -71,7 +70,7 @@ export const useFiltres = ({ defaultPageSize = 10 }: UseFiltresParams = {}): Use
 
       const cleanFilters = Object.entries(updatedFilters).reduce(
         (acc, [key, value]) => {
-          if (value !== undefined && value !== null && value !== '') {
+          if (value !== undefined && value !== null && value !== "") {
             acc[key] = value;
           }
           return acc;
@@ -95,7 +94,7 @@ export const useFiltres = ({ defaultPageSize = 10 }: UseFiltresParams = {}): Use
   );
 
   const setStatus = useCallback(
-    (status: GliRentalApprovalStatus | undefined) => {
+    (status: number | undefined) => {
       updateFilters({ sst: status, p: 0 });
     },
     [updateFilters],
@@ -130,7 +129,7 @@ export const useFiltres = ({ defaultPageSize = 10 }: UseFiltresParams = {}): Use
   }, [navigate]);
 
   const currentPageIndex = filters.p || 0;
-  const searchTerm = filters.q || '';
+  const searchTerm = filters.q || "";
   const shouldUseDirectSearch = currentPageIndex > 0 && searchTerm === debouncedSearch;
 
   const apiParams = useMemo(
@@ -141,7 +140,16 @@ export const useFiltres = ({ defaultPageSize = 10 }: UseFiltresParams = {}): Use
       status: filters.sst,
       groupe: filters.st,
     }),
-    [shouldUseDirectSearch, searchTerm, debouncedSearch, currentPageIndex, filters.l, filters.sst, filters.st, defaultPageSize],
+    [
+      shouldUseDirectSearch,
+      searchTerm,
+      debouncedSearch,
+      currentPageIndex,
+      filters.l,
+      filters.sst,
+      filters.st,
+      defaultPageSize,
+    ],
   );
 
   return {

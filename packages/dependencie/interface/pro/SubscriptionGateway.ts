@@ -1,7 +1,7 @@
-import { ApiRequest } from "@model/common/apiRequest";
-import { GLICreationResponse } from "@model/pro/GLICreationResponse";
-import { Kpi } from "@model/pro/kpi";
-import { SmartGarantResponse } from "@model/common/SmartGarantResponse";
+import { ApiRequest } from "@features/model/apiRequest";
+import { GLICreationResponse } from "@features/pro/gli/Subscriptions/model/GLICreationResponse";
+import { Kpi } from "@features/pro/gli/Subscriptions/model/kpi";
+import { SmartGarantResponse } from "@features/model/SmartGarantResponse";
 
 export type getSubscriptionRequest = ApiRequest<{}, {}>;
 export type getKpiRequest = ApiRequest<
@@ -12,6 +12,9 @@ export type getKpiRequest = ApiRequest<
 >;
 
 export interface SubscriptionGateway {
-  getSubscription({ params, data }: getSubscriptionRequest): Promise<SmartGarantResponse<GLICreationResponse>>;
+  getSubscription({
+    params,
+    data,
+  }: getSubscriptionRequest): Promise<SmartGarantResponse<GLICreationResponse>>;
   getKpi({ params, data }: getKpiRequest): Promise<SmartGarantResponse<Kpi>>;
 }

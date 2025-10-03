@@ -8,7 +8,10 @@ import tailwindcss from "@tailwindcss/vite";
 
 const repoRoot = path.resolve(__dirname, "..", "..");
 const tsconfigBase = JSON.parse(
-  fs.readFileSync(path.resolve(repoRoot, "tsconfig.base.json"), "utf-8"),
+  fs.readFileSync(
+    path.resolve(repoRoot, "packages/config/tsconfig.base.json"),
+    "utf-8",
+  ),
 );
 
 const sharedAliases = Object.entries(tsconfigBase.compilerOptions?.paths ?? {}).reduce(

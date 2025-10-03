@@ -1,6 +1,6 @@
-import { Sidebar } from '@ui/components/sgComponent/sidebar/Sidebar';
-import { SiteHeader } from '@ui/components/sgComponent/sidebar/SiteHeader';
-import { StatsContainer } from '@pages/Gli/components/stats/StatsContainer';
+import { Sidebar } from "@ui/components/sgComponent/sidebar/Sidebar";
+import { SiteHeader } from "@ui/components/sgComponent/sidebar/SiteHeader";
+import { StatsContainer } from "@pages/Gli/components/stats/StatsContainer";
 
 export function GliPage() {
   return (
@@ -11,15 +11,11 @@ export function GliPage() {
           <div className="">
             <StatsContainer />
           </div>
-          <div className="w-full">
-            {/* <RentalGuaranteeManagement presenter={presenter} /> */}
-          </div>
+          <div className="w-full"></div>
         </div>
       </div>
     </Sidebar>
   );
 }
-
-
 
 export default GliPage;
