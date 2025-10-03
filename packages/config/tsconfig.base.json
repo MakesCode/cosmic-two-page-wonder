@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "strictNullChecks": false,
+    "baseUrl": "../..",
+    "paths": {
+      "@asset/*": ["packages/asset/*"],
+      "@dependencies/*": ["packages/dependencie/*"],
+      "@features/*": ["packages/features/*"],
+      "@hooks/*": ["packages/hooks/*"],
+      "@lib/*": ["packages/lib/*"],
+      "@mock/*": ["packages/mock/*"],
+      "@presenter/*": ["packages/mock/presenter/*"],
+      "@model/*": ["packages/model/*"],
+      "@pages/*": ["packages/pages/*"],
+      "@sgComponent/*": ["packages/ui/src/components/sgComponent/*"],
+      "@ui/*": ["packages/ui/src/*"],
+      "@utils/*": ["packages/utils/*"],
+      "@lovable/*": ["apps/lovable/*"],
+      "@lovable-lib/*": ["apps/lovable/lib/*"],
+      "@pro/*": ["apps/pro/src/*"],
+      "@admin/*": ["apps/admin/src/*"]
+    }
+  }
+}

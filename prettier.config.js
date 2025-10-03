@@ -1,6 +1,1 @@
-export default {
-  semi: true,
-  singleQuote: false,
-  trailingComma: 'all',
-  printWidth: 100,
-};
+export { default } from "./packages/config/prettier.config.js";

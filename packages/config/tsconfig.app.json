@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "useDefineForClassFields": true,
+    "noFallthroughCasesInSwitch": false
+  },
+  "include": ["../../apps/lovable", "../../apps/admin/src", "../../apps/pro/src", "../../packages"]
+}
