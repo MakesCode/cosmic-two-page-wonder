@@ -1,4 +1,4 @@
-import { ParsedSchema, SchemaValidation } from "./types";
+import { ParsedSchema, SchemaValidation } from "@ui/components/sgComponent/autoform/core/types";
 
 /**
  * Schema provider interface

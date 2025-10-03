@@ -1,11 +1,11 @@
-import { SmartGarantGrid, SmartGarantResponse } from '../../../model/common/SmartGarantResponse';
-import { ApiService } from '../../../lib/axios/ApiService';
-import { RentalApproval } from './model/RentalApproval';
+import { SmartGarantGrid, SmartGarantResponse } from '@model/common/SmartGarantResponse';
+import { ApiService } from '@lib/axios/ApiService';
+import { RentalApproval } from '@features/gli/RentalApprovals/model/RentalApproval';
 import {
   getRentalApprovalsRequest,
   getSubscriptionRentalApprovalsRequest,
   postArchiveProjectRequest,
-} from './model/request';
+} from '@features/gli/RentalApprovals/model/request';
 
 export interface RentalApprovalsGateway {
   getRentalApprovals({ params, data }: getRentalApprovalsRequest): Promise<SmartGarantResponse<SmartGarantGrid<RentalApproval>>>;

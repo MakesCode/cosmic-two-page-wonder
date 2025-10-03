@@ -1,7 +1,7 @@
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { queryOptions } from '@tanstack/react-query';
-import { CtxretrieveKpi, retrieveKpiUsecase } from './retrieveKpi.usecase';
-import { Kpi } from '../../../../model/pro/kpi';
+import { CtxretrieveKpi, retrieveKpiUsecase } from '@features/gli/Subscriptions/retrieveKpi/retrieveKpi.usecase';
+import { Kpi } from '@model/pro/kpi';
 
 export const retrieveKpiQueryOption = (ctx: CtxretrieveKpi, dispatch?: Dispatch<UnknownAction> | null | undefined) =>
   queryOptions<Kpi>({

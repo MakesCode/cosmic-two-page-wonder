@@ -10,7 +10,7 @@ import {
 } from 'react'
 import type { LucideIcon } from 'lucide-react'
 import { ArrowRight, LayoutDashboard, ListTree, ServerCog, ShieldCheck, Terminal } from 'lucide-react'
-import { routeTree } from '@/routeTree.gen'
+import { routeTree } from '@lovable/routeTree.gen'
 
 type KnownPath = FileRouteTypes['to']
 

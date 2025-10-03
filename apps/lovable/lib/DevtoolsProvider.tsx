@@ -1,4 +1,4 @@
-import { ProductPanel } from "@/routes"
+import { ProductPanel } from "@lovable/routes"
 import { Link } from "@tanstack/react-router"
 import { ArrowRight } from "lucide-react"
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react"

@@ -1,4 +1,4 @@
-import { ParsedField } from "./types";
+import { ParsedField } from "@ui/components/sgComponent/autoform/core/types";
 
 /**
  * Get the best label to use for a field.

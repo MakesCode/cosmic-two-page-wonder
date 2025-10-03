@@ -1,6 +1,6 @@
-import { createAppAsyncThunk } from '../../../lib/redux/createAppAsyncThunk';
-import { Dependencies } from '../../../lib/redux/dependencies';
-import { organizationLoaded } from './organization.action';
+import { createAppAsyncThunk } from '@lib/redux/createAppAsyncThunk';
+import { Dependencies } from '@lib/redux/dependencies';
+import { organizationLoaded } from '@features/organization/retrieveOrganization/organization.action';
 
 export interface CtxRetrieveOrganization {
   params: {};

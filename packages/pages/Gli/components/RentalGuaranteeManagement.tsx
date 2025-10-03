@@ -36,9 +36,9 @@ import {
   TableHead,
   TableCell,
 } from "@ui/components/ui/table";
-import { OwnersCell } from "./OwnersCell";
-import { TenantsCell } from "./TenantsCell";
-import { AddressCell } from "./AddressCell";
+import { OwnersCell } from "@pages/Gli/components/OwnersCell";
+import { TenantsCell } from "@pages/Gli/components/TenantsCell";
+import { AddressCell } from "@pages/Gli/components/AddressCell";
 
 type Presenter = {
   // filters

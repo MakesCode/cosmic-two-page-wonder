@@ -1,6 +1,6 @@
 import { Sidebar } from '@ui/components/sgComponent/sidebar/Sidebar';
 import { SiteHeader } from '@ui/components/sgComponent/sidebar/SiteHeader';
-import { StatsContainer } from './components/stats/StatsContainer';
+import { StatsContainer } from '@pages/Gli/components/stats/StatsContainer';
 
 export function GliPage() {
   return (

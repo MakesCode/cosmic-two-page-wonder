@@ -1,8 +1,8 @@
-import { createAppAsyncThunk } from "../../../lib/redux/createAppAsyncThunk";
-import { Dependencies } from "../../../lib/redux/dependencies";
-import { TypeNotifyMessage } from "../../common/notify/model/typeMessage";
-import { notificationAdded } from "../../common/notify/notify.action";
-import { postArchiveProjectRequest } from "../RentalApprovals/model/request";
+import { createAppAsyncThunk } from "@lib/redux/createAppAsyncThunk";
+import { Dependencies } from "@lib/redux/dependencies";
+import { TypeNotifyMessage } from "@features/common/notify/model/typeMessage";
+import { notificationAdded } from "@features/common/notify/notify.action";
+import { postArchiveProjectRequest } from "@features/gli/RentalApprovals/model/request";
 
 
 export interface CtxarchiveProject {

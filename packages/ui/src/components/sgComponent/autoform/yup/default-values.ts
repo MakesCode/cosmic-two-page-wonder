@@ -1,4 +1,4 @@
-import { YupField, YupObjectOrWrapped } from "./types";
+import { YupField, YupObjectOrWrapped } from "@ui/components/sgComponent/autoform/yup/types";
 
 export function getYupFieldDefaultValue(schema: YupField): any {
   return schema.spec.default;

@@ -1,6 +1,6 @@
-import { ApiParams } from '../../../../hooks/useFiltres';
-import { LegalEntity, NaturalEntity } from './RentalApproval';
-import { ApiRequest } from '../../../../model/common/apiRequest';
+import { ApiParams } from '@hooks/useFiltres';
+import { LegalEntity, NaturalEntity } from '@features/gli/RentalApprovals/model/RentalApproval';
+import { ApiRequest } from '@model/common/apiRequest';
 
 
 export type postCreateApprovalRequest = ApiRequest<
@@ -84,7 +84,7 @@ export type postAddGuarantorRequest = ApiRequest<
       lastName: string;
       birthDate?: string;
       email?: string;
-      phone?: import('./RentalApproval').Phone;
+      phone?: import('@features/gli/RentalApprovals/model/RentalApproval').Phone;
     };
     professionalStatus: number;
     incomes?: number;

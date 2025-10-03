@@ -1,6 +1,6 @@
-import { SidebarInset, SidebarProvider } from '../../ui/sidebar';
+import { SidebarInset, SidebarProvider } from '@ui/components/ui/sidebar';
 import * as React from 'react';
-import { AppSidebar } from './AppSidebar';
+import { AppSidebar } from '@ui/components/sgComponent/sidebar/AppSidebar';
 
 export const Sidebar = (props: { children: React.ReactNode }) => {
   return (

@@ -1,2 +1,2 @@
-export * from './pro/gateways';
-export * from './pro/data';
+export * from '@mock/pro/gateways';
+export * from '@mock/pro/data';

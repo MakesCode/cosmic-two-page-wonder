@@ -7,7 +7,7 @@ import {
 
 export const AddressCell = ({ address }: { address: string }) => {
   const shortAddress =
-    address?.length > 50 ? address.substring(0, 50) + "..." : address;
+    address?.length > 50 ? address.substring(0, 50) + "@pages/Gli/components/..." : address;
   return (
     <TooltipProvider>
       <Tooltip>

@@ -1,13 +1,13 @@
 'use client';
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '../../ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@ui/components/ui/sidebar';
 import { BookmarkCheck, Gift, HeartHandshake, House, PersonStanding, X } from 'lucide-react';
 import * as React from 'react';
-import { NavUser } from './NavUser';
-import { NavMain } from './NavMain';
-import { NavDocuments } from './NavDocument';
-import { NavSecondary } from './NavSecondary';
-import logo from '../../../assets/img/logoMobile.png';
+import { NavUser } from '@ui/components/sgComponent/sidebar/NavUser';
+import { NavMain } from '@ui/components/sgComponent/sidebar/NavMain';
+import { NavDocuments } from '@ui/components/sgComponent/sidebar/NavDocument';
+import { NavSecondary } from '@ui/components/sgComponent/sidebar/NavSecondary';
+import logo from '@ui/assets/img/logoMobile.png';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const data = {

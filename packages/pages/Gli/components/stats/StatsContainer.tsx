@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Users, CheckCircle, Home, AlertTriangle, Euro } from 'lucide-react';
-import { useStats } from './useStats';
+import { useStats } from '@pages/Gli/components/stats/useStats';
 
 export const StatsContainer = () => {
     const {averageRent, guaranteedTenants, openClaims, totalCandidates, validatedFiles} = useStats();

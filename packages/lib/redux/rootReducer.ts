@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from '@reduxjs/toolkit';
-import { globalIdsInitialStateModel, globalIdsReducer } from '../../features/common/globalIds/globalIds.reducer';
-import { confettiInitialStateModel, confettiReducer } from '../../features/common/confetti/confetti.reducer';
-import { notifyInitialStateModel, notifyReducer } from '../../features/common/notify/notify.reducer';
+import { globalIdsInitialStateModel, globalIdsReducer } from '@features/common/globalIds/globalIds.reducer';
+import { confettiInitialStateModel, confettiReducer } from '@features/common/confetti/confetti.reducer';
+import { notifyInitialStateModel, notifyReducer } from '@features/common/notify/notify.reducer';
 
 export type RootState = {
   globalIds: globalIdsInitialStateModel;

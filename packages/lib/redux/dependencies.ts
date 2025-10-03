@@ -1,9 +1,9 @@
 import { QueryClient } from '@tanstack/react-query';
-import { createAppStore } from './createAppStore';
-import { ApiSubscriptionGateway } from '../../features/gli/Subscriptions/api-subscription';
-import { ApiRentalApprovalsGateway, RentalApprovalsGateway } from '../../features/gli/RentalApprovals/api-rentalApprovals';
-import { ApiOrganizationGateway, OrganizationGateway } from '../../features/organization/api-organization';
-import { ApiService } from '../axios/ApiService';
+import { createAppStore } from '@lib/redux/createAppStore';
+import { ApiSubscriptionGateway } from '@features/gli/Subscriptions/api-subscription';
+import { ApiRentalApprovalsGateway, RentalApprovalsGateway } from '@features/gli/RentalApprovals/api-rentalApprovals';
+import { ApiOrganizationGateway, OrganizationGateway } from '@features/organization/api-organization';
+import { ApiService } from '@lib/axios/ApiService';
 
 export type Dependencies = {
   subscriptionApi: ApiSubscriptionGateway;

@@ -1,5 +1,5 @@
-import { FieldConfig } from "../core/types";
-import { YupField } from "./types";
+import { FieldConfig } from "@ui/components/sgComponent/autoform/core/types";
+import { YupField } from "@ui/components/sgComponent/autoform/yup/types";
 
 export const YUP_FIELD_CONFIG_SYMBOL = Symbol("GetFieldConfig");
 

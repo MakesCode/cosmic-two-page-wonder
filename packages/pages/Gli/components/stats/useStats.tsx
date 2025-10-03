@@ -1,5 +1,5 @@
-import { selectSubscriptionId } from '../../../../features/common/globalIds/globalIds.selector';
-import { retrieveKpiQueryOption } from '../../../../features/gli/Subscriptions/retrieveKpi/retrieveKpiQueryOption';
+import { selectSubscriptionId } from '@features/common/globalIds/globalIds.selector';
+import { retrieveKpiQueryOption } from '@features/gli/Subscriptions/retrieveKpi/retrieveKpiQueryOption';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 

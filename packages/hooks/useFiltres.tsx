@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
-import { useDebounce } from './useDebounce';
-import { GliRentalApprovalStatus } from '../features/gli/RentalApprovals/model/RentalApproval';
+import { useDebounce } from '@hooks/useDebounce';
+import { GliRentalApprovalStatus } from '@features/gli/RentalApprovals/model/RentalApproval';
 
 export enum RentalApprovalStatusFilter {
   Ongoing = 1,

@@ -1,7 +1,7 @@
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { queryOptions } from '@tanstack/react-query';
-import type { ProfileApi } from '../model/organization';
-import { CtxRetrieveSaleProfile, retrieveSaleProfileUsecase } from './retrieveSaleProfile.usecase';
+import type { ProfileApi } from '@features/organization/model/organization';
+import { CtxRetrieveSaleProfile, retrieveSaleProfileUsecase } from '@features/organization/retrieveSaleProfile/retrieveSaleProfile.usecase';
 
 export const retrieveSaleProfileQueryOption = (
   ctx: CtxRetrieveSaleProfile,

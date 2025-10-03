@@ -1,15 +1,15 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, MapPin, Globe, Check } from 'lucide-react';
-import { Button } from '../../../ui/button';
-import { cn } from '../../../../hooks/utils';
+import { Button } from '@ui/components/ui/button';
+import { cn } from '@ui/lib/utils';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { Loader } from '@googlemaps/js-api-loader';
-import { AutoFormFieldProps } from '../react';
-import { LabelWrapper } from './FieldWrapper';
-import { ToggleGroup, ToggleGroupItem } from '../../ui/toggle-group';
-import { Input } from '../../ui/input';
-import { Separator } from '../../ui/separator';
+import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react';
+import { LabelWrapper } from '@ui/components/sgComponent/autoform/components/FieldWrapper';
+import { ToggleGroup, ToggleGroupItem } from '@ui/components/ui/toggle-group';
+import { Input } from '@ui/components/ui/input';
+import { Separator } from '@ui/components/ui/separator';
 
 const getGoogleMapsConfig = () => {
   const isDevelopment = process.env.NODE_ENV === 'development';
@@ -59,7 +59,6 @@ export const getGooglePlaceDetails = async (placeId: string): Promise<AddressInf
     return null;
   }
 };
-// @ts-expect-error
 const parseAddressComponentsNew = (place: google.maps.places.Place): AddressInformation => {
   const components: AddressInformation = {
     fullAddress: place.formattedAddress || '',

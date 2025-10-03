@@ -1,10 +1,10 @@
 import Cookies from 'js-cookie';
 import { createIsomorphicFn } from '@tanstack/react-start';
 import { setCookie } from '@tanstack/react-start/server';
-import { getCookieIsomorphic } from '../../../lib/tanstack-start/getCookieIsomorphic';
-import { Dependencies } from '../../../lib/redux/dependencies';
-import { Settings } from '../../../lib/tanstack-start/settings';
-import { encodeRefreshCookie, parseRefreshCookie } from '../../../utils/refreshCookie';
+import { getCookieIsomorphic } from '@lib/tanstack-start/getCookieIsomorphic';
+import { Dependencies } from '@lib/redux/dependencies';
+import { Settings } from '@lib/tanstack-start/settings';
+import { encodeRefreshCookie, parseRefreshCookie } from '@utils/refreshCookie';
 
 type RefreshPayload = { refreshToken: string; userName: string } | null;
 

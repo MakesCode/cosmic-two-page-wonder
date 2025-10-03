@@ -1,7 +1,7 @@
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { queryOptions } from '@tanstack/react-query';
-import { OrganizationBase } from '../model/organization';
-import { CtxRetrieveOrganization, retrieveOrganizationUsecase } from './retrieveOrganization.usecase';
+import { OrganizationBase } from '@features/organization/model/organization';
+import { CtxRetrieveOrganization, retrieveOrganizationUsecase } from '@features/organization/retrieveOrganization/retrieveOrganization.usecase';
 
 export const retrieveOrganizationQueryOption = (ctx: CtxRetrieveOrganization, dispatch?: Dispatch<UnknownAction> | null | undefined) =>
   queryOptions<OrganizationBase>({

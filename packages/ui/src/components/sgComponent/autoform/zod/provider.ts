@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { SchemaProvider } from "../core/schema-provider";
-import { getDefaultValues } from "./default-values";
-import { parseSchema } from "./schema-parser";
-import { ZodObjectOrWrapped } from "./types";
-import { ParsedSchema, SchemaValidation } from "../core/types";
+import { SchemaProvider } from "@ui/components/sgComponent/autoform/core/schema-provider";
+import { getDefaultValues } from "@ui/components/sgComponent/autoform/zod/default-values";
+import { parseSchema } from "@ui/components/sgComponent/autoform/zod/schema-parser";
+import { ZodObjectOrWrapped } from "@ui/components/sgComponent/autoform/zod/types";
+import { ParsedSchema, SchemaValidation } from "@ui/components/sgComponent/autoform/core/types";
 
 export class ZodProvider<T extends ZodObjectOrWrapped>
   implements SchemaProvider<z.infer<T>>

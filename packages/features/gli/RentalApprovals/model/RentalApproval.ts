@@ -1,5 +1,5 @@
-import { ProfessionalStatus } from '../../../common/model/ProfessionalStatus';
-import { OwnerType } from './request';
+import { ProfessionalStatus } from '@features/common/model/ProfessionalStatus';
+import { OwnerType } from '@features/gli/RentalApprovals/model/request';
 
 export interface Subscription {
   id: string;

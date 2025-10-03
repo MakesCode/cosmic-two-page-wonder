@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from './rootReducer';
-import { Dependencies } from './dependencies';
+import { rootReducer } from '@lib/redux/rootReducer';
+import { Dependencies } from '@lib/redux/dependencies';
 
 export const createAppStore = (dependencies: Dependencies, preloadedState = undefined) => {
   return configureStore({

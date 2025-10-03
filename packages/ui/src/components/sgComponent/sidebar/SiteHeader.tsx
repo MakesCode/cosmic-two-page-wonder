@@ -1,8 +1,8 @@
-import {  SidebarTrigger } from '../../ui/sidebar';
+import {  SidebarTrigger } from '@ui/components/ui/sidebar';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
-import logo from '../../../assets/img/logoMobile.png';
-import { Button } from '../../ui/button';
-import { Separator } from '../../ui/separator';
+import logo from '@ui/assets/img/logoMobile.png';
+import { Button } from '@ui/components/ui/button';
+import { Separator } from '@ui/components/ui/separator';
 
 export function SiteHeader() {
 

@@ -1,11 +1,11 @@
 import React, { JSX, useState } from 'react';
-import { AutoFormFieldProps } from '../react';
+import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react';
 import clsx from 'clsx';
 import { LucideProps } from 'lucide-react';
-import { Button } from '../../ui/button';
-import { cn } from 'packages/hooks/utils';
-import { Label } from '../../ui/label';
-import { TooltipProvider } from '../../ui/tooltip';
+import { Button } from '@ui/components/ui/button';
+import { cn } from '@ui/lib/utils';
+import { Label } from '@ui/components/ui/label';
+import { TooltipProvider } from '@ui/components/ui/tooltip';
 
 interface Data {
   name: string;

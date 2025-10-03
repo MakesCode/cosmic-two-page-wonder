@@ -1,5 +1,5 @@
 import React from 'react';
-import { DIProvider } from '../../dependencie/depencieProvider';
+import { DIProvider } from '@dependencies/depencieProvider';
 
 export const DependenciesProvider: React.FC<{
   children: React.ReactNode;

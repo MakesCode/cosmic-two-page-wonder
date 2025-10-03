@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { TypeNotifyMessage } from './model/typeMessage';
+import { TypeNotifyMessage } from '@admin/features/common/notify/model/typeMessage';
 
 export const notificationAdded = createAction<{
   message?: string;

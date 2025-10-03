@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { organizationLoaded } from '../../organization/retrieveOrganization/organization.action';
-import { subscriptionLoaded } from '../../gli/Subscriptions/retrieveSubscription/subscription.action';
+import { organizationLoaded } from '@features/organization/retrieveOrganization/organization.action';
+import { subscriptionLoaded } from '@features/gli/Subscriptions/retrieveSubscription/subscription.action';
 
 export type globalIdsInitialStateModel = {
   organizationId: string | null;

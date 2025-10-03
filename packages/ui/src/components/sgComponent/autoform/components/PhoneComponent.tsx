@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { AutoFormFieldProps } from '../react';
+import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react';
 import { Check, ChevronsUpDown } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
-import { Button } from '../../ui/button';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '../../ui/command';
-import { Input } from '../../ui/input';
-import { cn } from 'packages/hooks/utils';
+import { Popover, PopoverContent, PopoverTrigger } from '@ui/components/ui/popover';
+import { Button } from '@ui/components/ui/button';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@ui/components/ui/command';
+import { Input } from '@ui/components/ui/input';
+import { cn } from '@ui/lib/utils';
 
 export const PhoneComponent: React.FC<AutoFormFieldProps> = (props) => {
   const [phoneNumber, setPhoneNumber] = React.useState<string>(props.value?.phoneNumber || '');

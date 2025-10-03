@@ -1,4 +1,4 @@
-import { Kpi } from "packages/model/pro/kpi";
+import { Kpi } from "@model/pro/kpi";
 
 export const mockKpiData: Kpi = {
     averageGuaranteedRentAmount: 1250.75,

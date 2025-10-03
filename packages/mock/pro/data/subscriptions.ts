@@ -1,4 +1,4 @@
-import { GLICreationResponse } from "packages/model/pro/GLICreationResponse";
+import { GLICreationResponse } from "@model/pro/GLICreationResponse";
 
 export const mockSubscriptions: GLICreationResponse = {
     status: 200,

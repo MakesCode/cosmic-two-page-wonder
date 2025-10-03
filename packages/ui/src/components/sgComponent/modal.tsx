@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../ui/dialog';
+} from '@ui/components/ui/dialog';
 import {
     Drawer,
   DrawerContent,
@@ -15,9 +15,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '../ui/drawer';
-import { cn } from '../../lib/utils';
-import { useIsMobile } from '../../hooks/use-mobile';
+} from '@ui/components/ui/drawer';
+import { cn } from '@ui/lib/utils';
+import { useIsMobile } from '@ui/hooks/use-mobile';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 

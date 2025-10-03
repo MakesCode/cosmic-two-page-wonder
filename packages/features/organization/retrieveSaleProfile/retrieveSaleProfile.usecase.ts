@@ -1,6 +1,6 @@
-import { createAppAsyncThunk } from '../../../lib/redux/createAppAsyncThunk';
-import { Dependencies } from '../../../lib/redux/dependencies';
-import type { ProfileApi } from '../model/organization';
+import { createAppAsyncThunk } from '@lib/redux/createAppAsyncThunk';
+import { Dependencies } from '@lib/redux/dependencies';
+import type { ProfileApi } from '@features/organization/model/organization';
 
 export interface CtxRetrieveSaleProfile {
   params: { organizationId: string };

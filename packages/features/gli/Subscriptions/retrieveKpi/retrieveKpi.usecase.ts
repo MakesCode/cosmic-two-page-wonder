@@ -1,6 +1,6 @@
 import { getKpiRequest } from '@dependencies/interface/pro/SubscriptionGateway';
-import { createAppAsyncThunk } from '../../../../lib/redux/createAppAsyncThunk';
-import { Dependencies } from '../../../../lib/redux/dependencies';
+import { createAppAsyncThunk } from '@lib/redux/createAppAsyncThunk';
+import { Dependencies } from '@lib/redux/dependencies';
 
 export interface CtxretrieveKpi {
   params: getKpiRequest['params'];

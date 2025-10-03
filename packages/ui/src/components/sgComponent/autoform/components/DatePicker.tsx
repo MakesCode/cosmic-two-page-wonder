@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { format } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
-import { AutoFormFieldProps } from '../react';
+import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react';
 import { fr } from 'date-fns/locale';
-import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
-import { Button } from '../../ui/button';
-import { Calendar } from '../../ui/calendar';
-import { cn } from 'packages/hooks/utils';
+import { Popover, PopoverContent, PopoverTrigger } from '@ui/components/ui/popover';
+import { Button } from '@ui/components/ui/button';
+import { Calendar } from '@ui/components/ui/calendar';
+import { cn } from '@ui/lib/utils';
 
 export const DatePicker: React.FC<AutoFormFieldProps> = (props) => {
   const [date, setDate] = React.useState<Date | undefined>(props.value ? new Date(props.value) : undefined);

@@ -1,6 +1,6 @@
-import { createAppAsyncThunk } from '../../../../lib/redux/createAppAsyncThunk';
-import { Dependencies } from '../../../../lib/redux/dependencies';
-import { subscriptionLoaded } from './subscription.action';
+import { createAppAsyncThunk } from '@lib/redux/createAppAsyncThunk';
+import { Dependencies } from '@lib/redux/dependencies';
+import { subscriptionLoaded } from '@features/gli/Subscriptions/retrieveSubscription/subscription.action';
 
 export interface CtxretrieveSubscription {
   params: {};

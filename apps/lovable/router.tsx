@@ -1,5 +1,5 @@
 // import { createRouter as createTanStackRouter } from '@tanstack/react-router'
-// import { routeTree } from './routeTree.gen'
+// import { routeTree } from '@lovable/routeTree.gen'
 
 // export function createRouter() {
 //   const router = createTanStackRouter({
@@ -16,10 +16,10 @@
 // }
 
 import { createRouter as createTanStackRouter } from '@tanstack/react-router';
-import { routeTree } from './routeTree.gen';
+import { routeTree } from '@lovable/routeTree.gen';
 import { QueryClient } from '@tanstack/react-query';
 import { routerWithQueryClient } from '@tanstack/react-router-with-query';
-import { createDependencies, createStoreWithDependencies } from './lib/redux/dependencies';
+import { createDependencies, createStoreWithDependencies } from '@lovable/lib/redux/dependencies';
 
 // NOTE: Most of the integration code found here is experimental and will
 // definitely end up in a more streamlined API in the future. This is just

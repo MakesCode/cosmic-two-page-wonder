@@ -1,5 +1,5 @@
-import { retrieveSubscriptionQueryOption } from '../../features/gli/Subscriptions/retrieveSubscription/retrieveSubscriptionQueryOption';
-import { retrieveOrganizationQueryOption } from '../../features/organization/retrieveOrganization/retrieveOrganizationQueryOption';
+import { retrieveSubscriptionQueryOption } from '@features/gli/Subscriptions/retrieveSubscription/retrieveSubscriptionQueryOption';
+import { retrieveOrganizationQueryOption } from '@features/organization/retrieveOrganization/retrieveOrganizationQueryOption';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 

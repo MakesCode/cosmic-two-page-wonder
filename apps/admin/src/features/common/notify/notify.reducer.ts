@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { notificationAdded, notificationClosed } from './notify.action';
-import { messageNotify, TypeNotifyMessage } from './model/typeMessage';
+import { notificationAdded, notificationClosed } from '@admin/features/common/notify/notify.action';
+import { messageNotify, TypeNotifyMessage } from '@admin/features/common/notify/model/typeMessage';
 
 export type notifyInitialStateModel = {
   isOpen: boolean;

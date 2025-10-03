@@ -1,8 +1,8 @@
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { queryOptions } from '@tanstack/react-query';
-import { CtxretrieveRentalApprovals, retrieveRentalApprovalsUsecase } from './retrieveRentalApprovals.usecase';
-import { RentalApproval } from '../model/RentalApproval';
-import { SmartGarantGrid } from '../../../../model/common/SmartGarantResponse';
+import { CtxretrieveRentalApprovals, retrieveRentalApprovalsUsecase } from '@features/gli/RentalApprovals/retrieveRentalApprovals/retrieveRentalApprovals.usecase';
+import { RentalApproval } from '@features/gli/RentalApprovals/model/RentalApproval';
+import { SmartGarantGrid } from '@model/common/SmartGarantResponse';
 
 export const retrieveRentalApprovalsQueryOption = (
   ctx: CtxretrieveRentalApprovals,

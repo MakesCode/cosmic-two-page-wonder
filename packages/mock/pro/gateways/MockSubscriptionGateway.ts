@@ -1,9 +1,9 @@
-import {  mockSubscriptions } from '../data/subscriptions';
+import {  mockSubscriptions } from '@mock/pro/data/subscriptions';
 import { getKpiRequest, getSubscriptionRequest, SubscriptionGateway } from '@dependencies/interface/pro/SubscriptionGateway';
 import { mockKpiData } from '@mock/pro/data';
-import { SmartGarantResponse } from 'packages/model/common/SmartGarantResponse';
-import { GLICreationResponse } from 'packages/model/pro/GLICreationResponse';
-import { Kpi } from 'packages/model/pro/kpi';
+import { SmartGarantResponse } from '@model/common/SmartGarantResponse';
+import { GLICreationResponse } from '@model/pro/GLICreationResponse';
+import { Kpi } from '@model/pro/kpi';
 
 export class MockSubscriptionGateway implements SubscriptionGateway {
   async getSubscription({ params, data }: getSubscriptionRequest): Promise<SmartGarantResponse<GLICreationResponse>> {

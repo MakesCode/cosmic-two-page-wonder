@@ -1,10 +1,10 @@
 import React from 'react';
-import { AutoFormFieldProps } from '../react';
+import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react';
 import { BriefcaseBusiness, LucideProps } from 'lucide-react';
 import { clsx } from 'clsx';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select';
-import { Button } from '../../ui/button';
+import { useIsMobile } from '@ui/hooks/use-mobile';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/components/ui/select';
+import { Button } from '@ui/components/ui/button';
 
 export const SituationForm: React.FC<AutoFormFieldProps> = (props) => {
   const isMobile = useIsMobile();

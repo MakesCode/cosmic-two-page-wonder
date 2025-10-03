@@ -1,43 +1,13 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
-    "strict": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": false,
-
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./app/lovable/*"],
-      "@ui/*": ["./packages/ui/src/*"],
-      "@pages/*": ["./packages/pages/*"],
-      "@sgComponent/*": ["./packages/ui/src/components/sgComponent/*"],
-      "@mock/*": ["./packages/mock/*"],
-      "@presenter/*": ["./packages/mock/presenter/*"],
-      "@dependencies/*": ["./packages/dependencie/*"]
-    }
+    "noFallthroughCasesInSwitch": false
   },
   "include": [
-    "app/lovable",
+    "apps/lovable",
     "apps/admin/src",
-    "packages/ui/src",
-    "packages/pages",
-    "packages/mock",
-    "packages/dependencie"
+    "apps/pro/src",
+    "packages"
   ]
 }

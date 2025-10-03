@@ -1,8 +1,8 @@
 'use client';
 
-import { Button } from '../../ui/button';
-import { Card, CardContent } from '../../ui/card';
-import {  SidebarGroup, SidebarMenu, SidebarMenuItem, useSidebar } from '../../ui/sidebar';
+import { Button } from '@ui/components/ui/button';
+import { Card, CardContent } from '@ui/components/ui/card';
+import {  SidebarGroup, SidebarMenu, SidebarMenuItem, useSidebar } from '@ui/components/ui/sidebar';
 import { Clock, LucideIcon, Mail, MessageCircle, Phone, X } from 'lucide-react';
 
 export function NavDocuments() {
