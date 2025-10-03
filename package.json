@@ -5,13 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "cd apps/lovable && vite -c vite.config.ts",
+    "start": "turbo run dev --parallel",
     "build": "cd apps/lovable && vite build -c vite.config.ts",
-    "build:dev": "cd apps/lovable && vite build -c vite.config.ts --mode development",
-    "dev:admin": "cd apps/admin && vite -c vite.config.ts",
-    "build:admin": "cd apps/admin && rm -rf .output && vite build -c vite.config.ts",
-    "dev:pro": "cd apps/pro && vite -c vite.config.ts",
-    "build:pro": "cd apps/pro && rm -rf .output && vite build -c vite.config.ts",
-    "start:admin": "cd apps/admin && node .output/server/index.mjs",
+    "build:all": "turbo run build",
     "lint": "eslint .",
     "preview": "vite preview "
   },
