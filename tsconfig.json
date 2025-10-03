@@ -10,11 +10,7 @@
       "@sgComponent/*": ["./packages/ui/src/components/sgComponent/*"],
       "@mock/*": ["./packages/mock/*"],
       "@presenter/*": ["./packages/mock/presenter/*"],
-      "@dependencies/*": ["./packages/dependencie/*"],
-      "@utils/*": ["./packages/utils/*"],
-      "@hooks/*": ["./packages/hooks/*"],
-      "@lib/*": ["./packages/lib/*"],
-      "@features/*": ["./packages/features/*"]
+      "@dependencies/*": ["./packages/dependencie/*"]
     },
     "noImplicitAny": false,
     "noUnusedParameters": false,

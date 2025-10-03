@@ -3,6 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+    "packageManager": "bun@1.2.21",
   "scripts": {
     "dev": "cd apps/lovable && vite -c vite.config.ts",
     "start": "turbo run dev --parallel",
@@ -76,6 +81,7 @@
     "zod": "^4.1.8"
   },
   "devDependencies": {
+    "turbo": "^2.5.8",
     "@eslint/js": "^9.32.0",
     "@tailwindcss/postcss": "^4.1.13",
     "@tailwindcss/typography": "^0.5.16",

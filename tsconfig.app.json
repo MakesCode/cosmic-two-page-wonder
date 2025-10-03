@@ -39,5 +39,5 @@
     "packages/pages",
     "packages/mock",
     "packages/dependencie"
-, "packages/model/common/SmartGarantResponse.ts", "packages/model/common/apiRequest.ts"  ]
+  ]
 }
