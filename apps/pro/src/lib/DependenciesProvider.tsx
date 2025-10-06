@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { DIProvider } from '@dependencies/depencieProvider';
-import { Dependencies } from '@pro/lib/dependencies';
+import { createDependencies, Dependencies } from '@pro/lib/dependencies';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const DependenciesProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const value: Partial<Dependencies> = {
-  };
+  const queryClient = useQueryClient();
+  
+  const dependencies = useMemo(() => {
+    return createDependencies(queryClient);
+  }, [queryClient]);
 
-  return <DIProvider dependencies={value}>{children}</DIProvider>;
+  return <DIProvider dependencies={dependencies}>{children}</DIProvider>;
 };
