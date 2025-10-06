@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { inferFieldType } from "@ui/components/sgComponent/autoform/zod/field-type-inference";
-import { getDefaultValueInZodStack } from "@ui/components/sgComponent/autoform/zod/default-values";
-import { getFieldConfigInZodStack } from "@ui/components/sgComponent/autoform/zod/field-config";
-import { ZodObjectOrWrapped } from "@ui/components/sgComponent/autoform/zod/types";
-import { ParsedField, ParsedSchema } from "@ui/components/sgComponent/autoform/core/types";
+import { inferFieldType } from "./field-type-inference";
+import { getDefaultValueInZodStack } from "./default-values";
+import { getFieldConfigInZodStack } from "./field-config";
+import { ZodObjectOrWrapped } from "./types";
+import { ParsedField, ParsedSchema } from "../core/types";
 
 function parseField(key: string, schema: z.ZodTypeAny): ParsedField {
   const baseSchema = getBaseSchema(schema);

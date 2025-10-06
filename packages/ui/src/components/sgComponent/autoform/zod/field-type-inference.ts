@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { FieldConfig } from "@ui/components/sgComponent/autoform/core/types";
+import { FieldConfig } from "../core/types";
 
 export function inferFieldType(
   schema: z.ZodTypeAny,

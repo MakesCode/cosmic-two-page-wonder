@@ -1,6 +1,6 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { organizationLoaded } from "@features/pro/organization/retrieveOrganization/organization.action";
-import { subscriptionLoaded } from "@features/pro/gli/Subscriptions/retrieveSubscription/subscription.action";
+import { createReducer } from '@reduxjs/toolkit';
+import { organizationLoaded } from '../../organization/retrieveOrganization/organization.action';
+import { subscriptionLoaded } from '../../gli/Subscriptions/retrieveSubscription/subscription.action';
 
 export type globalIdsInitialStateModel = {
   organizationId: string | null;
@@ -18,7 +18,7 @@ export const globalIdsReducer = createReducer(globalIdsInitialState, (builder) =
   });
   builder.addCase(subscriptionLoaded, (state, action) => {
     console.log("subscriptionLoaded in reducer", action, state);
-
+    
     state.subscriptionId = action.payload?.id ?? state.subscriptionId;
   });
 });

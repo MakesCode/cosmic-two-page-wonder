@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react/types';
-import { Input } from '@ui/components/ui/input';
+import { AutoFormFieldProps } from '../react/types';
+import { Input } from '../../ui/input';
 
 export const CurrencyInput: React.FC<AutoFormFieldProps> = (props) => {
   const valueNumericProp = props?.value as number | undefined;
@@ -35,7 +35,7 @@ export const CurrencyInput: React.FC<AutoFormFieldProps> = (props) => {
 
     setValueString(inputValue);
 
-    const numericValue = inputValue ? parseFloat(inputValue.replace(',', '@ui/components/sgComponent/autoform/components')) : undefined;
+    const numericValue = inputValue ? parseFloat(inputValue.replace(',', '.')) : undefined;
     setInternalNumericValue(numericValue);
 
     const syntheticEvent = {

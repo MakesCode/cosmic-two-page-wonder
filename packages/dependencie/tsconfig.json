@@ -1,8 +1,4 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "include": [
-    "./**/*",
-    "../features/model/SmartGarantResponse.ts",
-    "../features/model/apiRequest.ts"
-  ]
+  "extends": "../../tsconfig.app.json",
+  "include": ["./**/*",  "../model/common/SmartGarantResponse.ts", "../model/common/apiRequest.ts"]
 }

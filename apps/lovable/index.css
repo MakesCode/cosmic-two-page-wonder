@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @source '../../packages/ui/src/**/*.{js,ts,jsx,tsx}';
 @source '../../packages/pages/**/*.{js,ts,jsx,tsx}';
@@ -136,12 +136,12 @@
 }
 
 @font-face {
-  font-family: "AvenirNext";
-  src: url("../../packages/asset/font/AvenirNextLTPro-Regular.otf") format("opentype");
+  font-family: 'AvenirNext';
+  src: url('../fonts/AvenirNextLTPro-Regular.otf') format('opentype');
 }
 @font-face {
-  font-family: "Raleway";
-  src: url("../../packages/asset/font/Raleway.ttf") format("opentype");
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway.ttf') format('opentype');
 }
 
 @layer base {
@@ -175,14 +175,14 @@
   h4,
   h5,
   h6 strong {
-    font-family: "Raleway", sans-serif;
+    font-family: 'Raleway', sans-serif;
   }
   span,
   p,
   a,
   li,
   button {
-    font-family: "AvenirNext", sans-serif;
+    font-family: 'AvenirNext', sans-serif;
   }
   body {
     @apply bg-background text-foreground;

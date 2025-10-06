@@ -1,11 +1,11 @@
-import React, { JSX, useState } from "react";
-import { AutoFormFieldProps } from "@ui/components/sgComponent/autoform/react";
-import clsx from "clsx";
-import { LucideProps } from "lucide-react";
-import { Button } from "@ui/components/ui/button";
-import { cn } from "@utils/cn";
-import { Label } from "@ui/components/ui/label";
-import { TooltipProvider } from "@ui/components/ui/tooltip";
+import React, { JSX, useState } from 'react';
+import { AutoFormFieldProps } from '../react';
+import clsx from 'clsx';
+import { LucideProps } from 'lucide-react';
+import { Button } from '../../ui/button';
+import { cn } from 'packages/hooks/utils';
+import { Label } from '../../ui/label';
+import { TooltipProvider } from '../../ui/tooltip';
 
 interface Data {
   name: string;
@@ -22,9 +22,7 @@ interface NestedData {
   title?: string;
   data?: Data;
   children?: ChildrenGroup[];
-  icon?: React.ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
-  >;
+  icon?: React.ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>>;
 }
 
 interface NestedButtonsProps {
@@ -43,13 +41,8 @@ interface SelectionState {
   selections: Map<string, number>;
 }
 
-const findPathByValues = (
-  items: NestedData[],
-  defaultValues: Record<string, string>,
-): SelectionState | null => {
-  const validDefaultValues = Object.fromEntries(
-    Object.entries(defaultValues).filter(([_, value]) => value != null && value !== ""),
-  );
+const findPathByValues = (items: NestedData[], defaultValues: Record<string, string>): SelectionState | null => {
+  const validDefaultValues = Object.fromEntries(Object.entries(defaultValues).filter(([_, value]) => value != null && value !== ''));
 
   if (Object.keys(validDefaultValues).length === 0) {
     return null;
@@ -74,9 +67,7 @@ const findPathByValues = (
     if (!parentMatches) continue;
 
     if (!parent.children) {
-      const matchedKeys = Object.keys(validDefaultValues).filter(
-        (key) => parentData[key] === validDefaultValues[key],
-      );
+      const matchedKeys = Object.keys(validDefaultValues).filter((key) => parentData[key] === validDefaultValues[key]);
       if (matchedKeys.length > 0) {
         return { parentIndex, selections: new Map() };
       }
@@ -136,10 +127,7 @@ const findPathByValues = (
                 for (const [key, expectedValue] of Object.entries(validDefaultValues)) {
                   if (subChildData[key] === expectedValue && !childData.hasOwnProperty(key)) {
                     subChildMatchCount++;
-                  } else if (
-                    subChildData.hasOwnProperty(key) &&
-                    subChildData[key] !== expectedValue
-                  ) {
+                  } else if (subChildData.hasOwnProperty(key) && subChildData[key] !== expectedValue) {
                     subChildMatches = false;
                     break;
                   }
@@ -163,10 +151,7 @@ const findPathByValues = (
   return null;
 };
 
-const getInitialSelections = (
-  defaultValues: Record<string, string> | undefined,
-  data: NestedData[],
-): SelectionState => {
+const getInitialSelections = (defaultValues: Record<string, string> | undefined, data: NestedData[]): SelectionState => {
   if (defaultValues) {
     const result = findPathByValues(data, defaultValues);
     if (result) {
@@ -190,10 +175,7 @@ export const NestedButtons = ({
   const [selectedParent, setSelectedParent] = useState<number | null>(initialState.parentIndex);
   const [selections, setSelections] = useState<Map<string, number>>(initialState.selections);
 
-  const collectAllData = (
-    parentIndex: number,
-    currentSelections: Map<string, number>,
-  ): Record<string, string> => {
+  const collectAllData = (parentIndex: number, currentSelections: Map<string, number>): Record<string, string> => {
     const parent = data[parentIndex];
     const result: Record<string, string> = {};
 
@@ -261,11 +243,11 @@ export const NestedButtons = ({
                 key={item.label}
                 variant="outline"
                 className={clsx(
-                  "h-auto min-h-[40px] sm:min-h-[60px] p-2 text-center whitespace-normal break-words leading-tight flex flex-row items-center justify-start gap-3 hover:bg-accent/70 transition-colors",
+                  'h-auto min-h-[40px] sm:min-h-[60px] p-2 text-center whitespace-normal break-words leading-tight flex flex-row items-center justify-start gap-3 hover:bg-accent/70 transition-colors',
                   buttonClassName,
                   {
-                    "bg-primary text-primary-foreground": isSelected,
-                    [selectedButtonClassName || ""]: isSelected && selectedButtonClassName,
+                    'bg-primary text-primary-foreground': isSelected,
+                    [selectedButtonClassName || '']: isSelected && selectedButtonClassName,
                   },
                 )}
                 onClick={() => handleParentClick(index)}
@@ -273,8 +255,8 @@ export const NestedButtons = ({
               >
                 {IconComponent && (
                   <IconComponent
-                    className={clsx("h-6 w-6 sm:h-8 sm:w-8", {
-                      "text-primary-foreground": isSelected,
+                    className={clsx('h-6 w-6 sm:h-8 sm:w-8', {
+                      'text-primary-foreground': isSelected,
                     })}
                   />
                 )}
@@ -287,18 +269,13 @@ export const NestedButtons = ({
     );
   };
 
-  const renderChildrenGroup = (
-    group: ChildrenGroup,
-    groupIndex: number,
-    basePath: string,
-    level: number = 0,
-  ): JSX.Element => {
+  const renderChildrenGroup = (group: ChildrenGroup, groupIndex: number, basePath: string, level: number = 0): JSX.Element => {
     const groupPath = basePath ? `${basePath}-${groupIndex}` : `${groupIndex}`;
 
     return (
       <div key={groupIndex} className="flex flex-col gap-4">
-        <Label className={cn("text-sm font-medium", titleClassName)}>{group.title}</Label>
-        <div className={cn("grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4")}>
+        <Label className={cn('text-sm font-medium', titleClassName)}>{group.title}</Label>
+        <div className={cn('grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4')}>
           {group.data.map((child, childIndex) => {
             const IconComponent = child.icon;
             const isSelected = selections.get(groupPath) === childIndex;
@@ -308,11 +285,11 @@ export const NestedButtons = ({
                 key={child.label}
                 variant="outline"
                 className={clsx(
-                  "h-auto min-h-[40px] sm:min-h-[60px] p-2 text-center whitespace-normal break-words leading-tight flex flex-row items-center justify-start gap-3 hover:bg-accent/70 transition-colors",
+                  'h-auto min-h-[40px] sm:min-h-[60px] p-2 text-center whitespace-normal break-words leading-tight flex flex-row items-center justify-start gap-3 hover:bg-accent/70 transition-colors',
                   buttonClassName,
                   {
-                    "bg-primary text-primary-foreground": isSelected,
-                    [selectedButtonClassName || ""]: isSelected && selectedButtonClassName,
+                    'bg-primary text-primary-foreground': isSelected,
+                    [selectedButtonClassName || '']: isSelected && selectedButtonClassName,
                   },
                 )}
                 onClick={() => handleChildClick(groupPath, childIndex)}
@@ -320,8 +297,8 @@ export const NestedButtons = ({
               >
                 {IconComponent && (
                   <IconComponent
-                    className={clsx("h-6 w-6 sm:h-8 sm:w-8", {
-                      "text-primary-foreground": isSelected,
+                    className={clsx('h-6 w-6 sm:h-8 sm:w-8', {
+                      'text-primary-foreground': isSelected,
                     })}
                   />
                 )}
@@ -339,12 +316,7 @@ export const NestedButtons = ({
               return (
                 <div className="flex flex-col gap-4">
                   {selectedChild.children.map((subGroup, subGroupIndex) =>
-                    renderChildrenGroup(
-                      subGroup,
-                      subGroupIndex,
-                      `${groupPath}-${selectedChildIndex}`,
-                      level + 1,
-                    ),
+                    renderChildrenGroup(subGroup, subGroupIndex, `${groupPath}-${selectedChildIndex}`, level + 1),
                   )}
                 </div>
               );
@@ -364,15 +336,13 @@ export const NestedButtons = ({
 
     return (
       <div className="flex flex-col gap-6">
-        {selectedItem.children.map((group, groupIndex) =>
-          renderChildrenGroup(group, groupIndex, "", 0),
-        )}
+        {selectedItem.children.map((group, groupIndex) => renderChildrenGroup(group, groupIndex, '', 0))}
       </div>
     );
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", containerClassName)}>
+    <div className={cn('flex flex-col gap-6', containerClassName)}>
       <TooltipProvider>
         {renderParentButtons()}
         {renderChildrenGroups()}

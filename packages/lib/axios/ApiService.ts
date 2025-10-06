@@ -1,10 +1,10 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
-import { getCookieIsomorphic } from '@lib/tanstack-start/getCookieIsomorphic.js';
-import { encodeRefreshCookie, parseRefreshCookie } from '@utils/refreshCookie.js';
-import { getTokenObject } from '@utils/getTokenObject.js';
-import { Settings } from '@lib/tanstack-start/settings.js';
-import { getSetting } from '@lib/tanstack-start/getSetting.js';
+import { getCookieIsomorphic } from '../tanstack-start/getCookieIsomorphic.js';
+import { encodeRefreshCookie, parseRefreshCookie } from '../../utils/refreshCookie.js';
+import { getTokenObject } from '../../utils/getTokenObject.js';
+import { Settings } from '../tanstack-start/settings.js';
+import { getSetting } from '../tanstack-start/getSetting.js';
 
 export interface ApiServiceConfig {
   options?: AxiosRequestConfig;

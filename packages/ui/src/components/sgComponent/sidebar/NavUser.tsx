@@ -6,11 +6,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@ui/components/ui/sidebar';
+} from '../../ui/sidebar';
 import { ChevronsUpDown, Handshake, Lightbulb, LogOut, User, X, Check } from 'lucide-react';
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@ui/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@ui/components/ui/avatar';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '../../ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 
 export function NavUser({
   user,

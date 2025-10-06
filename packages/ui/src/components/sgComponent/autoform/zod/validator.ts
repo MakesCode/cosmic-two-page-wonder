@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ZodObjectOrWrapped } from "@ui/components/sgComponent/autoform/zod/types";
+import { ZodObjectOrWrapped } from "./types";
 
 export function validateSchema(schema: ZodObjectOrWrapped, values: any) {
   try {

@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { YupObjectOrWrapped } from "@ui/components/sgComponent/autoform/yup/types";
+import { YupObjectOrWrapped } from "./types";
 
 export function validateSchema(schema: YupObjectOrWrapped, values: any) {
   try {
@@ -10,7 +10,7 @@ export function validateSchema(schema: YupObjectOrWrapped, values: any) {
       return {
         success: false,
         errors: error.inner.map((error) => ({
-          path: error.path?.split("@ui/components/sgComponent/autoform/yup") ?? [],
+          path: error.path?.split(".") ?? [],
           message: error.message,
         })),
       } as const;

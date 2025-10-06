@@ -1,4 +1,4 @@
-import { RootState } from '@lib/redux/rootReducer';
+import { RootState } from '../../../lib/redux/rootReducer';
 
 export const selectConfetti = (state: RootState) => state.confetti;
 

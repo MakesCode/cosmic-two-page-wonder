@@ -1,5 +1,5 @@
-import { buildZodFieldConfig } from '@ui/components/sgComponent/autoform/react/utils';
-import { FieldTypes } from '@ui/components/sgComponent/autoform/AutoForm';
+import { buildZodFieldConfig } from './react/utils';
+import { FieldTypes } from './AutoForm';
 
 export const fieldConfig = buildZodFieldConfig<
   FieldTypes,

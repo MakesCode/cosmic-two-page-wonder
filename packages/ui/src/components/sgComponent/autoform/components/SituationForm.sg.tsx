@@ -1,16 +1,10 @@
-import React from "react";
-import { AutoFormFieldProps } from "@ui/components/sgComponent/autoform/react";
-import { BriefcaseBusiness, LucideProps } from "lucide-react";
-import { clsx } from "clsx";
-import { useIsMobile } from "@hooks/use-mobile";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@ui/components/ui/select";
-import { Button } from "@ui/components/ui/button";
+import React from 'react';
+import { AutoFormFieldProps } from '../react';
+import { BriefcaseBusiness, LucideProps } from 'lucide-react';
+import { clsx } from 'clsx';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select';
+import { Button } from '../../ui/button';
 
 export const SituationForm: React.FC<AutoFormFieldProps> = (props) => {
   const isMobile = useIsMobile();
@@ -18,9 +12,7 @@ export const SituationForm: React.FC<AutoFormFieldProps> = (props) => {
   const options = props?.field.fieldConfig?.customData?.data as {
     label: string;
     value: string;
-    icon?: React.ForwardRefExoticComponent<
-      Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
-    >;
+    icon?: React.ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>>;
   }[];
   const handleButtonClick = (value: string) => {
     setSelectedValue(value);
@@ -34,7 +26,7 @@ export const SituationForm: React.FC<AutoFormFieldProps> = (props) => {
   };
   if (isMobile) {
     return (
-      <Select onValueChange={handleButtonClick} value={selectedValue ?? ""}>
+      <Select onValueChange={handleButtonClick} value={selectedValue ?? ''}>
         <SelectTrigger className="w-full">
           <SelectValue />
         </SelectTrigger>
@@ -59,9 +51,9 @@ export const SituationForm: React.FC<AutoFormFieldProps> = (props) => {
             key={option.value}
             variant="outline"
             className={clsx(
-              "h-auto min-h-[40px] sm:min-h-[60px] p-2 text-center whitespace-normal break-words leading-tight flex flex-row items-center justify-start gap-3 hover:bg-accent/70 transition-colors",
+              'h-auto min-h-[40px] sm:min-h-[60px] p-2 text-center whitespace-normal break-words leading-tight flex flex-row items-center justify-start gap-3 hover:bg-accent/70 transition-colors',
               {
-                ["bg-primary text-primary-foreground"]: selectedValue === option.value,
+                ['bg-primary text-primary-foreground']: selectedValue === option.value,
               },
             )}
             onClick={() => handleButtonClick(option.value)}
@@ -69,8 +61,8 @@ export const SituationForm: React.FC<AutoFormFieldProps> = (props) => {
           >
             {IconComponent && (
               <IconComponent
-                className={clsx("h-6 w-6 sm:h-8 sm:w-8", {
-                  ["text-primary-foreground"]: selectedValue === option.value,
+                className={clsx('h-6 w-6 sm:h-8 sm:w-8', {
+                  ['text-primary-foreground']: selectedValue === option.value,
                 })}
               />
             )}

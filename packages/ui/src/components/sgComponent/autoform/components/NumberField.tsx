@@ -1,5 +1,5 @@
-import { Input } from '@ui/components/ui/input';
-import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react/types';
+import { Input } from '../../../ui/input';
+import { AutoFormFieldProps } from '../react/types';
 import React from 'react';
 
 export const NumberField: React.FC<AutoFormFieldProps> = ({ inputProps, error, id }) => {

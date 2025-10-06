@@ -1,8 +1,8 @@
 import * as yup from "yup";
-import { parseSchema } from "@ui/components/sgComponent/autoform/yup/schema-parser";
-import { validateSchema } from "@ui/components/sgComponent/autoform/yup/validator";
-import { getDefaultValues } from "@ui/components/sgComponent/autoform/yup/default-values";
-import { SchemaProvider } from "@ui/components/sgComponent/autoform/core/schema-provider";
+import { parseSchema } from "./schema-parser";
+import { validateSchema } from "./validator";
+import { getDefaultValues } from "./default-values";
+import { SchemaProvider } from "../core/schema-provider";
 
 export class YupProvider<T extends yup.AnyObjectSchema>
   implements SchemaProvider

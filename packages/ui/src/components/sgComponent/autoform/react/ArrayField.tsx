@@ -1,9 +1,9 @@
 import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { AutoFormField } from '@ui/components/sgComponent/autoform/react/AutoFormField';
-import { useAutoForm } from '@ui/components/sgComponent/autoform/react/context';
-import { ParsedField } from '@ui/components/sgComponent/autoform/core/types';
-import { getLabel } from '@ui/components/sgComponent/autoform/core/label';
+import { AutoFormField } from './AutoFormField';
+import { useAutoForm } from './context';
+import { ParsedField } from '../core/types';
+import { getLabel } from '../core/label';
 
 export const ArrayField: React.FC<{
   field: ParsedField;
@@ -13,7 +13,7 @@ export const ArrayField: React.FC<{
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: path.join('@ui/components/sgComponent/autoform/react'),
+    name: path.join('.'),
   });
 
   const subFieldType = field.schema?.[0]?.type;

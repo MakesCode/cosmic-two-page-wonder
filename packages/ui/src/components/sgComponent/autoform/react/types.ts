@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
-import { SchemaProvider } from '@ui/components/sgComponent/autoform/core/schema-provider';
-import { ParsedField, ParsedSchema, Renderable, FieldConfig as BaseFieldConfig } from '@ui/components/sgComponent/autoform/core/types';
-import { Button } from '@ui/components/ui/button';
+import { SchemaProvider } from '../core/schema-provider';
+import { ParsedField, ParsedSchema, Renderable, FieldConfig as BaseFieldConfig } from '../core/types';
+import { Button } from '../../ui/button';
 
 export interface AutoFormProps<T extends FieldValues> {
   schema: SchemaProvider<T>;

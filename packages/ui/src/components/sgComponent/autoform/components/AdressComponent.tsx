@@ -1,27 +1,27 @@
-import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, MapPin, Globe, Check } from "lucide-react";
-import { Button } from "@ui/components/ui/button";
-import { cn } from "@utils/cn";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { Loader } from "@googlemaps/js-api-loader";
-import { AutoFormFieldProps } from "@ui/components/sgComponent/autoform/react";
-import { LabelWrapper } from "@ui/components/sgComponent/autoform/components/FieldWrapper";
-import { ToggleGroup, ToggleGroupItem } from "@ui/components/ui/toggle-group";
-import { Input } from "@ui/components/ui/input";
-import { Separator } from "@ui/components/ui/separator";
+import { useState, useEffect, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, X, MapPin, Globe, Check } from 'lucide-react';
+import { Button } from '../../../ui/button';
+import { cn } from '../../../../hooks/utils';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { Loader } from '@googlemaps/js-api-loader';
+import { AutoFormFieldProps } from '../react';
+import { LabelWrapper } from './FieldWrapper';
+import { ToggleGroup, ToggleGroupItem } from '../../ui/toggle-group';
+import { Input } from '../../ui/input';
+import { Separator } from '../../ui/separator';
 
 const getGoogleMapsConfig = () => {
-  const isDevelopment = process.env.NODE_ENV === "development";
+  const isDevelopment = process.env.NODE_ENV === 'development';
 
   return {
     apiKey: isDevelopment
-      ? "AIzaSyBvXKA17WI3Tzj87i8l3xU9YgTQUXY5M2M" // Clé dev
-      : "AIzaSyCzTJnXyjvQrWZax4Z7SvlNaApTzcYYYKc", // Clé prod
-    version: isDevelopment ? "weekly" : "quarterly",
-    libraries: ["places" as const],
-    region: "FR",
-    language: "fr",
+      ? 'AIzaSyBvXKA17WI3Tzj87i8l3xU9YgTQUXY5M2M' // Clé dev
+      : 'AIzaSyCzTJnXyjvQrWZax4Z7SvlNaApTzcYYYKc', // Clé prod
+    version: isDevelopment ? 'weekly' : 'quarterly',
+    libraries: ['places' as const],
+    region: 'FR',
+    language: 'fr',
   };
 };
 
@@ -38,66 +38,65 @@ export interface AddressInformation {
   isManual?: boolean;
 }
 
-export const getGooglePlaceDetails = async (
-  placeId: string,
-): Promise<AddressInformation | null> => {
+export const getGooglePlaceDetails = async (placeId: string): Promise<AddressInformation | null> => {
   try {
-    const { Place } = await loader.importLibrary("places");
+    const { Place } = await loader.importLibrary('places');
 
     const place = new Place({
       id: placeId,
-      requestedLanguage: "fr",
+      requestedLanguage: 'fr',
     });
 
     await place.fetchFields({
-      fields: ["addressComponents", "formattedAddress", "location"],
+      fields: ['addressComponents', 'formattedAddress', 'location'],
     });
 
     const addressComponents = parseAddressComponentsNew(place);
 
     return addressComponents;
   } catch (error) {
-    console.error("Erreur détails du lieu:", error);
+    console.error('Erreur détails du lieu:', error);
     return null;
   }
 };
+// @ts-expect-error
 const parseAddressComponentsNew = (place: google.maps.places.Place): AddressInformation => {
   const components: AddressInformation = {
-    fullAddress: place.formattedAddress || "",
-    zipCode: "",
-    city: "",
-    address: "",
-    country: "",
+    fullAddress: place.formattedAddress || '',
+    zipCode: '',
+    city: '',
+    address: '',
+    country: '',
   };
 
-  let streetNumber = "";
-  let route = "";
+  let streetNumber = '';
+  let route = '';
 
   place.addressComponents?.forEach((component) => {
     const types = component.types;
 
-    if (types.includes("street_number")) {
-      streetNumber = component.longText || "";
+    if (types.includes('street_number')) {
+      streetNumber = component.longText || '';
     }
 
-    if (types.includes("route")) {
-      route = component.longText || "";
+    if (types.includes('route')) {
+      route = component.longText || '';
     }
 
-    if (types.includes("postal_code")) {
-      components.zipCode = component.longText || "";
+    if (types.includes('postal_code')) {
+      components.zipCode = component.longText || '';
     }
 
-    if (types.includes("locality") || types.includes("postal_town")) {
-      components.city = component.longText || "";
+    if (types.includes('locality') || types.includes('postal_town')) {
+      components.city = component.longText || '';
     }
 
-    if (!components.city && types.includes("administrative_area_level_2")) {
-      components.city = component.longText || "";
+    if (!components.city && types.includes('administrative_area_level_2')) {
+      components.city = component.longText || '';
     }
 
-    if (types.includes("country")) {
-      components.country = component.longText || "";
+    if (types.includes('country')) {
+      components.country = component.longText || '';
     }
   });
 
@@ -111,16 +110,16 @@ const parseAddressComponentsNew = (place: google.maps.places.Place): AddressInfo
 };
 const getGoogleAddressSuggestions = async (input: string): Promise<any> => {
   try {
-    const { AutocompleteService } = await loader.importLibrary("places");
+    const { AutocompleteService } = await loader.importLibrary('places');
     const autocompleteService = new AutocompleteService();
     const response = await autocompleteService.getPlacePredictions({
       input,
-      types: ["address"],
+      types: ['address'],
     });
 
     return response.predictions;
   } catch (error) {
-    console.error("Erreur suggestions:", error);
+    console.error('Erreur suggestions:', error);
     return [];
   }
 };
@@ -139,16 +138,13 @@ export const getGouvPlacePredictions = async (input: string): Promise<AddressInf
     city: feature.properties.city,
     address: feature.properties.name,
     description: feature.properties.label,
-    country: "France",
+    country: 'France',
     placeId: feature.properties.id,
   }));
 };
 
-const getAddressSuggestions = async (
-  input: string,
-  scope: "france" | "international",
-): Promise<any> => {
-  if (scope === "france") {
+const getAddressSuggestions = async (input: string, scope: 'france' | 'international'): Promise<any> => {
+  if (scope === 'france') {
     return getGouvPlacePredictions(input);
   } else {
     return getGoogleAddressSuggestions(input);
@@ -194,20 +190,18 @@ function AddressSuggestion({ suggestion, index, onClick }) {
 }
 
 export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [viewMode, setViewMode] = useState<"search" | "manual">(
-    props.value?.isManual ? "manual" : "search",
-  );
+  const [viewMode, setViewMode] = useState<'search' | 'manual'>(props.value?.isManual ? 'manual' : 'search');
   const [isAddressSelected, setIsAddressSelected] = useState(false);
   const debouncedQuery = useDebounce(query, 700);
-  const [searchScope, setSearchScope] = useState<"france" | "international">(
-    props?.field?.fieldConfig?.customData?.searchScope ?? "france",
+  const [searchScope, setSearchScope] = useState<'france' | 'international'>(
+    props?.field?.fieldConfig?.customData?.searchScope ?? 'france',
   );
 
   const { data: apiSuggestions, isFetching } = useQuery({
-    queryKey: ["addressSuggestions", debouncedQuery, searchScope],
+    queryKey: ['addressSuggestions', debouncedQuery, searchScope],
     queryFn: () => getAddressSuggestions(debouncedQuery, searchScope),
     enabled: debouncedQuery.length > 0 && !isAddressSelected,
     gcTime: 0,
@@ -219,20 +213,20 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
   const filteredSuggestions = useMemo(() => {
     if (!apiSuggestions) return [];
 
-    if (searchScope === "france") {
+    if (searchScope === 'france') {
       return apiSuggestions;
     } else {
       return apiSuggestions.map((pred) => {
-        const mainText = pred.structured_formatting?.main_text || "";
-        const secondaryText = pred.structured_formatting?.secondary_text || "";
+        const mainText = pred.structured_formatting?.main_text || '';
+        const secondaryText = pred.structured_formatting?.secondary_text || '';
 
         const cityParts = secondaryText.split(/\s+/);
         const postalMatch = cityParts.find((part) => /^\d{5}$/.test(part));
 
-        const postal = postalMatch || "";
+        const postal = postalMatch || '';
         const city = cityParts
           .filter((part) => part !== postalMatch)
-          .join(" ")
+          .join(' ')
           .trim();
 
         return {
@@ -267,7 +261,7 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
 
     let addressData: AddressInformation;
 
-    if (searchScope === "france") {
+    if (searchScope === 'france') {
       addressData = {
         country: selected.country,
         fullAddress: selected.fullAddress,
@@ -298,7 +292,7 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
 
     props.inputProps.onChange(syntheticEvent);
     setIsAddressSelected(true);
-    setQuery(addressData.fullAddress ?? "");
+    setQuery(addressData.fullAddress ?? '');
     setShowSuggestions(false);
     setIsTyping(false);
   };
@@ -316,7 +310,7 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
       },
     };
     props.inputProps.onChange(syntheticEvent);
-    setQuery("");
+    setQuery('');
     setIsTyping(false);
     setIsAddressSelected(false);
     setShowSuggestions(true);
@@ -332,7 +326,7 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
       props.value?.isManual === false;
 
     if (hasValidSelection && query !== props.value?.fullAddress) {
-      setQuery(props.value?.fullAddress || "");
+      setQuery(props.value?.fullAddress || '');
       setIsAddressSelected(true);
     }
   };
@@ -349,13 +343,13 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
   return (
     <div className="">
       <div className="w-full max-w-2xl">
-        {viewMode === "search" ? (
+        {viewMode === 'search' ? (
           <div className="space-y-1">
             {props?.field?.fieldConfig?.customData?.showActionSelectedScopeSearch && (
               <ToggleGroup
                 type="single"
                 value={searchScope}
-                onValueChange={(value: "france" | "international") => {
+                onValueChange={(value: 'france' | 'international') => {
                   if (value) {
                     setSearchScope(value);
                     setIsAddressSelected(false);
@@ -366,18 +360,10 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
                 className="grid grid-cols-2 w-fit border-2"
                 aria-label="Sélectionner le scope de recherche"
               >
-                <ToggleGroupItem
-                  value="france"
-                  aria-label="Recherche en France"
-                  className="cursor-pointer"
-                >
+                <ToggleGroupItem value="france" aria-label="Recherche en France" className="cursor-pointer">
                   <MapPin className="mr-2 h-4 w-4" /> France
                 </ToggleGroupItem>
-                <ToggleGroupItem
-                  value="international"
-                  aria-label="Recherche Internationale"
-                  className="cursor-pointer"
-                >
+                <ToggleGroupItem value="international" aria-label="Recherche Internationale" className="cursor-pointer">
                   <Globe className="mr-2 h-4 w-4" /> International
                 </ToggleGroupItem>
               </ToggleGroup>
@@ -394,11 +380,9 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
                   }}
                   onBlur={handleInputBlur}
                   placeholder={
-                    searchScope === "france"
-                      ? "Commencez à taper votre adresse en France..."
-                      : "Commencez à taper votre adresse..."
+                    searchScope === 'france' ? 'Commencez à taper votre adresse en France...' : 'Commencez à taper votre adresse...'
                   }
-                  className={cn("pl-10 pr-6", isSelected ? "border-primary " : "")}
+                  className={cn('pl-10 pr-6', isSelected ? 'border-primary ' : '')}
                 />
                 {isSelected && (
                   <div className="absolute right-1 top-1/2 transform -translate-y-1/2 right-10 flex items-center gap-2">
@@ -437,18 +421,13 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
                 {showSuggestions && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
+                    animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
                     className="border border-border rounded-md bg-background"
                   >
                     {filteredSuggestions?.map((suggestion, index) => (
-                      <AddressSuggestion
-                        key={index}
-                        suggestion={suggestion}
-                        index={index}
-                        onClick={() => handleSuggestionSelect(index)}
-                      />
+                      <AddressSuggestion key={index} suggestion={suggestion} index={index} onClick={() => handleSuggestionSelect(index)} />
                     ))}
                     <Separator />
                     <div className="p-4">
@@ -456,8 +435,8 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
                         variant="ghost"
                         className="w-full justify-start"
                         onClick={() => {
-                          setQuery("");
-                          setViewMode("manual");
+                          setQuery('');
+                          setViewMode('manual');
                           const syntheticEvent = {
                             target: {
                               value: {
@@ -480,8 +459,8 @@ export const AdressComponent: React.FC<AutoFormFieldProps> = (props) => {
         ) : (
           <ManualAddressForm
             onBackToSearch={() => {
-              setViewMode("search");
-              setQuery("");
+              setViewMode('search');
+              setQuery('');
             }}
             onChange={props.inputProps.onChange}
             value={props.value}
@@ -517,12 +496,7 @@ export const ManualAddressForm = ({ onBackToSearch, onChange, value, keyfield })
       <div className="space-y-4">
         <div>
           <LabelWrapper required id="street-address" label="Numéro et Rue" />
-          <Input
-            id="street-address"
-            name="address"
-            value={value?.address}
-            onChange={handleChange}
-          />
+          <Input id="street-address" name="address" value={value?.address} onChange={handleChange} />
         </div>
         <div>
           <LabelWrapper required id="postal-code" label="Code Postal" />

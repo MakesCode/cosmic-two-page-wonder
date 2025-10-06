@@ -1,6 +1,6 @@
 import { createIsomorphicFn } from '@tanstack/react-start';
 import Cookies from 'js-cookie';
-import { Settings } from '@lib/tanstack-start/settings';
+import { Settings } from './settings';
 
 export const getSetting = (): Settings => {
   const datasetting =

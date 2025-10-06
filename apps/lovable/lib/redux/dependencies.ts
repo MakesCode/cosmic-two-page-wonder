@@ -1,5 +1,5 @@
 import { QueryClient } from '@tanstack/react-query';
-import { createAppStore } from '@lovable/lib/redux/createAppStore';
+import { createAppStore } from './createAppStore';
 import { MockSubscriptionGateway } from '@mock/index';
 
 

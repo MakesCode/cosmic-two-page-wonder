@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { AutoFormContextType } from '@ui/components/sgComponent/autoform/react/types';
+import { AutoFormContextType } from './types';
 
 const AutoFormContext = createContext<AutoFormContextType | null>(null);
 

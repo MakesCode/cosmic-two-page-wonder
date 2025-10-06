@@ -1,7 +1,7 @@
 import React from 'react';
-import { FieldWrapperProps } from '@ui/components/sgComponent/autoform/react/types';
-import { Renderable } from '@ui/components/sgComponent/autoform/core/types';
-import { Label } from '@ui/components/ui/label';
+import { FieldWrapperProps } from '../react/types';
+import { Renderable } from '../core/types';
+import { Label } from '../../../ui/label';
 
 const DISABLED_LABELS = ['boolean', 'object', 'array'];
 

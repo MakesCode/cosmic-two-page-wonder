@@ -1,5 +1,5 @@
-import { FieldConfig } from "@ui/components/sgComponent/autoform/core/types";
-import { YupEnumSchema, YupField } from "@ui/components/sgComponent/autoform/yup/types";
+import { FieldConfig } from "../core/types";
+import { YupEnumSchema, YupField } from "./types";
 
 export function inferFieldType(
   schema: YupField,

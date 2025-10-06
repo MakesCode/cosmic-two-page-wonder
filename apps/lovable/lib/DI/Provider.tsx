@@ -1,4 +1,4 @@
-import { DependenciesProvider } from "@lovable/lib/DI/DependenciesProvider"
+import { DependenciesProvider } from "./DependenciesProvider"
 import { ReactNode } from "react"
 
 interface ProviderProps {

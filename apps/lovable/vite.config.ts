@@ -1,51 +1,34 @@
 import react from "@vitejs/plugin-react-swc";
 import path from "node:path";
-import fs from "node:fs";
 import { defineConfig } from "vite";
-import {  tanstackRouter } from "@tanstack/router-plugin/vite";
+import { TanStackRouterVite as tanstackRouter } from "@tanstack/router-plugin/vite";
 import tailwindcss from "@tailwindcss/vite";
-import tsConfigPaths from "vite-tsconfig-paths";
 
-const repoRoot = path.resolve(__dirname, "..", "..");
-const tsconfigBase = JSON.parse(
-  fs.readFileSync(
-    path.resolve(repoRoot, "packages/config/tsconfig.base.json"),
-    "utf-8",
-  ),
-);
-
-const sharedAliases = Object.entries(tsconfigBase.compilerOptions?.paths ?? {}).reduce(
-  (acc, [key, targets]) => {
-    if (!Array.isArray(targets) || targets.length === 0) return acc;
-    const aliasKey = key.endsWith("/*") ? key.slice(0, -2) : key;
-    const target = targets[0];
-    const normalizedTarget = target.endsWith("/*") ? target.slice(0, -2) : target;
-    acc[aliasKey] = path.resolve(repoRoot, normalizedTarget);
-    return acc;
-  },
-  {} as Record<string, string>,
-);
-
-export default defineConfig({
+export default defineConfig(() => ({
   root: __dirname,
   server: { host: "::", port: 8080 },
   build: {
+    // Emit the build to the repo root's dist folder for Lovable
     outDir: path.resolve(__dirname, "../../dist"),
     emptyOutDir: true,
   },
   plugins: [
     react(),
     tanstackRouter({
-      routesDirectory: path.resolve(__dirname, "routes"),
-      generatedRouteTree: path.resolve(__dirname, "routeTree.gen.ts"),
+      routesDirectory: path.resolve(__dirname, 'routes'),
+      generatedRouteTree: path.resolve(__dirname, 'routeTree.gen.ts'),
     }),
     tailwindcss(),
-    tsConfigPaths(),
   ],
   resolve: {
     alias: {
-      ...sharedAliases,
       "@": path.resolve(__dirname),
+      "@ui": path.resolve(__dirname, "../../packages/ui/src"),
+      "@pages": path.resolve(__dirname, "../../packages/pages"),
+      "@sgComponent": path.resolve(__dirname, "../../packages/ui/src/components/sgComponent"),
+      "@mock": path.resolve(__dirname, "../../packages/mock"),
+      "@presenter": path.resolve(__dirname, "../../packages/mock/presenter"),
+      "@dependencies": path.resolve(__dirname, "../../packages/dependencie"),
     },
   },
-});
+}));

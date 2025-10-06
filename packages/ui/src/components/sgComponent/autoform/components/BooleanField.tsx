@@ -1,7 +1,7 @@
 import React from 'react';
-import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react/types';
-import { Checkbox } from '@ui/components/ui/checkbox';
-import { Label } from '@ui/components/ui/label';
+import { AutoFormFieldProps } from '../react/types';
+import { Checkbox } from '../../../ui/checkbox';
+import { Label } from '../../../ui/label';
 
 export const BooleanField: React.FC<AutoFormFieldProps> = ({ field, label, id, inputProps }) => (
   <div className="flex items-center space-x-2">

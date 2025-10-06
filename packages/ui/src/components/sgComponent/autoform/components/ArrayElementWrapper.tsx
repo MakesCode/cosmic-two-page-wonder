@@ -1,7 +1,7 @@
 import React from 'react';
 import { TrashIcon } from 'lucide-react';
-import { ArrayElementWrapperProps } from '@ui/components/sgComponent/autoform/react/types';
-import { Button } from '@ui/components/ui/button';
+import { ArrayElementWrapperProps } from '../react/types';
+import { Button } from '../../ui/button';
 
 export const ArrayElementWrapper: React.FC<ArrayElementWrapperProps> = ({ children, onRemove }) => {
   return (

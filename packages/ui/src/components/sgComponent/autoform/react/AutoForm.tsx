@@ -1,10 +1,10 @@
 import React, { JSX, useEffect, useState } from 'react';
 import { useForm, FormProvider, DefaultValues } from 'react-hook-form';
-import { AutoFormProps } from '@ui/components/sgComponent/autoform/react/types';
-import { AutoFormProvider } from '@ui/components/sgComponent/autoform/react/context';
-import { AutoFormField } from '@ui/components/sgComponent/autoform/react/AutoFormField';
-import { getDefaultValues, parseSchema, removeEmptyValues } from '@ui/components/sgComponent/autoform/core/logic';
-import { ParsedField } from '@ui/components/sgComponent/autoform/core/types';
+import { AutoFormProps } from './types';
+import { AutoFormProvider } from './context';
+import { AutoFormField } from './AutoFormField';
+import { getDefaultValues, parseSchema, removeEmptyValues } from '../core/logic';
+import { ParsedField } from '../core/types';
 
 export function AutoForm<T extends Record<string, any>>({
   schema,
@@ -74,7 +74,7 @@ export function AutoForm<T extends Record<string, any>>({
       const formData = methods.getValues();
       const visibleErrors: any[] = [];
       validationResult.errors?.forEach((error) => {
-        const path = error.path.join('@ui/components/sgComponent/autoform/react');
+        const path = error.path.join('.');
         const field = getFieldByPath(parsedSchema.fields, error.path);
 
         if (field && field.fieldConfig?.shouldRender?.(formData) !== false) {
@@ -85,7 +85,7 @@ export function AutoForm<T extends Record<string, any>>({
 
           const correctedPath = error.path?.slice?.(0, -1);
           if (correctedPath?.length > 0) {
-            methods.setError(correctedPath.join('@ui/components/sgComponent/autoform/react') as any, {
+            methods.setError(correctedPath.join('.') as any, {
               type: 'custom',
               message: error.message,
             });

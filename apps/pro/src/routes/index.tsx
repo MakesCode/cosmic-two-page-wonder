@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import GliPage from "@pages/pro/Gli";
+import { createFileRoute } from '@tanstack/react-router'
+import GliPage from '@pages/Gli';
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
   component: () => <GliPage />,
   ssr: false,
-});
+})
+

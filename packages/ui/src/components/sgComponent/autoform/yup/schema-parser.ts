@@ -1,9 +1,9 @@
 import * as yup from "yup";
-import { inferFieldType } from "@ui/components/sgComponent/autoform/yup/field-type-inference";
-import { getYupFieldDefaultValue } from "@ui/components/sgComponent/autoform/yup/default-values";
-import { getYupFieldConfig } from "@ui/components/sgComponent/autoform/yup/field-config";
-import { YupEnumSchema, YupField, YupObjectOrWrapped } from "@ui/components/sgComponent/autoform/yup/types";
-import { ParsedField, ParsedSchema } from "@ui/components/sgComponent/autoform/core/types";
+import { inferFieldType } from "./field-type-inference";
+import { getYupFieldDefaultValue } from "./default-values";
+import { getYupFieldConfig } from "./field-config";
+import { YupEnumSchema, YupField, YupObjectOrWrapped } from "./types";
+import { ParsedField, ParsedSchema } from "../core/types";
 
 function parseField(key: string, schema: YupField): ParsedField {
   const fieldConfig = getYupFieldConfig(schema);
