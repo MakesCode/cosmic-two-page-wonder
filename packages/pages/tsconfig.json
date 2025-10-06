@@ -1,4 +1,4 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["./**/*", "../../bin/AddressCell.tsx", "../../bin/OwnersCell.tsx", "../../bin/RentalGuaranteeManagement.tsx", "../../bin/TenantsCell.tsx"]
+  "include": ["./**/*",]
 }
