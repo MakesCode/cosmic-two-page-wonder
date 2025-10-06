@@ -18,3 +18,7 @@ export const useDI = <T,>() => {
   }
   return context as T;
 };
+
+export const useDependencies = <T,>() => {
+  return useDI<T>();
+};

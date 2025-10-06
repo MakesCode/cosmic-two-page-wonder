@@ -9,15 +9,18 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@ui/components/ui/sidebar";
-import { BookmarkCheck, Gift, HeartHandshake, House, PersonStanding, X } from "lucide-react";
+import { BookmarkCheck, Gift, HeartHandshake, House, PersonStanding, AlertTriangle } from "lucide-react";
 import * as React from "react";
 import { NavUser } from "@ui/components/sgComponent/sidebar/NavUser";
 import { NavMain } from "@ui/components/sgComponent/sidebar/NavMain";
 import { NavDocuments } from "@ui/components/sgComponent/sidebar/NavDocument";
 import { NavSecondary } from "@ui/components/sgComponent/sidebar/NavSecondary";
 import logo from "@asset/img/logoMobile.png";
+import { useNavigate } from "@tanstack/react-router";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const navigate = useNavigate();
+  
   const data = {
     user: {
       name: "shadcn",
@@ -27,27 +30,32 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     navMain: [
       {
         title: "Mes Locataires",
-        url: "#",
+        url: () => navigate({ to: "/" }),
         icon: () => <BookmarkCheck className="text-blue-500" />,
       },
       {
         title: "Mes logements",
-        url: "#",
+        url: () => navigate({ to: "/" }),
         icon: () => <PersonStanding className="text-violet-500" />,
       },
       {
         title: "Mes GLI",
-        url: "#",
+        url: () => navigate({ to: "/" }),
         icon: () => <HeartHandshake className="text-green-500" />,
       },
       {
+        title: "Gestion sinistres",
+        url: () => navigate({ to: "/sinistres" }),
+        icon: () => <AlertTriangle className="text-red-500" />,
+      },
+      {
         title: "Avantages",
-        url: "#",
+        url: () => navigate({ to: "/" }),
         icon: () => <Gift />,
       },
       {
         title: "Nos annonces",
-        url: "#",
+        url: () => navigate({ to: "/" }),
         icon: () => <House />,
       },
     ],
