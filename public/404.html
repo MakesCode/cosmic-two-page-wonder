@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=/index.html" />
+    <title>Redirecting…</title>
+    <script>
+      // Hard redirect to SPA shell while preserving path for client-side router
+      (function() {
+        var redirect = '/index.html'
+        // If the CDN serves this 404.html at the failing path, try to preserve it
+        if (location && location.pathname) {
+          // For simple SPAs, just go to index.html and let the router handle it
+          // More advanced setups could embed the path into a query/hash
+        }
+        location.replace(redirect)
+      })()
+    </script>
+  </head>
+  <body>
+    Redirecting…
+  </body>
+  </html>
+
