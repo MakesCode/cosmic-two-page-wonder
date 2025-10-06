@@ -1,4 +1,4 @@
 {
   "extends": "./packages/config/tsconfig.app.json",
-  "include": ["apps/lovable", "apps/admin/src", "apps/pro/src", "packages", "bin/AddressCell.tsx", "bin/OwnersCell.tsx", "bin/RentalGuaranteeManagement.tsx", "bin/TenantsCell.tsx"]
+  "include": ["apps/lovable", "apps/admin/src", "apps/pro/src", "packages"]
 }
