@@ -1,26 +1,26 @@
 import React from 'react';
-import { AutoForm as BaseAutoForm } from './react/AutoForm';
-import { AutoFormProps } from './types';
-import { Form } from './components/Form';
-import { FieldWrapper } from './components/FieldWrapper';
-import { ErrorMessage } from './components/ErrorMessage';
-import { SubmitButton } from './components/SubmitButton';
-import { StringField } from './components/StringField';
-import { NumberField } from './components/NumberField';
-import { BooleanField } from './components/BooleanField';
-import { DateField } from './components/DateField';
-import { SelectField } from './components/SelectField';
-import { ObjectWrapper } from './components/ObjectWrapper';
-import { ArrayWrapper } from './components/ArrayWrapper';
-import { ArrayElementWrapper } from './components/ArrayElementWrapper';
-import { AutoFormUIComponents } from './react/types';
-import { SituationForm } from './components/SituationForm.sg';
-import { DatePicker } from './components/DatePicker';
-import { Switch } from './components/Switch';
-import { CurrencyInput } from './components/CurrencyInput';
-import { PhoneComponent } from './components/PhoneComponent';
-import { NestedButtonsComponent } from './components/NestedButtons';
-import { AdressComponent } from './components/AdressComponent';
+import { AutoForm as BaseAutoForm } from '@ui/components/sgComponent/autoform/react/AutoForm';
+import { AutoFormProps } from '@ui/components/sgComponent/autoform/types';
+import { Form } from '@ui/components/sgComponent/autoform/components/Form';
+import { FieldWrapper } from '@ui/components/sgComponent/autoform/components/FieldWrapper';
+import { ErrorMessage } from '@ui/components/sgComponent/autoform/components/ErrorMessage';
+import { SubmitButton } from '@ui/components/sgComponent/autoform/components/SubmitButton';
+import { StringField } from '@ui/components/sgComponent/autoform/components/StringField';
+import { NumberField } from '@ui/components/sgComponent/autoform/components/NumberField';
+import { BooleanField } from '@ui/components/sgComponent/autoform/components/BooleanField';
+import { DateField } from '@ui/components/sgComponent/autoform/components/DateField';
+import { SelectField } from '@ui/components/sgComponent/autoform/components/SelectField';
+import { ObjectWrapper } from '@ui/components/sgComponent/autoform/components/ObjectWrapper';
+import { ArrayWrapper } from '@ui/components/sgComponent/autoform/components/ArrayWrapper';
+import { ArrayElementWrapper } from '@ui/components/sgComponent/autoform/components/ArrayElementWrapper';
+import { AutoFormUIComponents } from '@ui/components/sgComponent/autoform/react/types';
+import { SituationForm } from '@ui/components/sgComponent/autoform/components/SituationForm.sg';
+import { DatePicker } from '@ui/components/sgComponent/autoform/components/DatePicker';
+import { Switch } from '@ui/components/sgComponent/autoform/components/Switch';
+import { CurrencyInput } from '@ui/components/sgComponent/autoform/components/CurrencyInput';
+import { PhoneComponent } from '@ui/components/sgComponent/autoform/components/PhoneComponent';
+import { NestedButtonsComponent } from '@ui/components/sgComponent/autoform/components/NestedButtons';
+import { AdressComponent } from '@ui/components/sgComponent/autoform/components/AdressComponent';
 
 const ShadcnUIComponents: AutoFormUIComponents = {
   Form,

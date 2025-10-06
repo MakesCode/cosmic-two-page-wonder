@@ -1,1 +1,1 @@
-export * from './MockSubscriptionGateway';
+export * from '@mock/pro/gateways/MockSubscriptionGateway';

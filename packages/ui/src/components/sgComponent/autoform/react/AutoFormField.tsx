@@ -1,12 +1,12 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useAutoForm } from './context';
-import { ObjectField } from './ObjectField';
-import { ArrayField } from './ArrayField';
-import { AutoFormFieldProps } from './types';
-import { getPathInObject } from './utils';
-import { ParsedField } from '../core/types';
-import { getLabel } from '../core/label';
+import { useAutoForm } from '@ui/components/sgComponent/autoform/react/context';
+import { ObjectField } from '@ui/components/sgComponent/autoform/react/ObjectField';
+import { ArrayField } from '@ui/components/sgComponent/autoform/react/ArrayField';
+import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react/types';
+import { getPathInObject } from '@ui/components/sgComponent/autoform/react/utils';
+import { ParsedField } from '@ui/components/sgComponent/autoform/core/types';
+import { getLabel } from '@ui/components/sgComponent/autoform/core/label';
 
 export const AutoFormField: React.FC<{
   field: ParsedField;
@@ -19,7 +19,7 @@ export const AutoFormField: React.FC<{
     getValues,
   } = useFormContext();
 
-  const fullPath = path.join('.');
+  const fullPath = path.join('@ui/components/sgComponent/autoform/react');
   const error = getPathInObject(errors, path)?.message as string | undefined;
   const value = getValues(fullPath);
 

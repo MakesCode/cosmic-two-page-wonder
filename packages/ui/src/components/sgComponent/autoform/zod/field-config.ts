@@ -1,5 +1,5 @@
 import { RefinementEffect, z } from "zod";
-import { FieldConfig } from "../core/types";
+import { FieldConfig } from "@ui/components/sgComponent/autoform/core/types";
 export const ZOD_FIELD_CONFIG_SYMBOL = Symbol("GetFieldConfig");
 export type SuperRefineFunction = () => unknown;
 

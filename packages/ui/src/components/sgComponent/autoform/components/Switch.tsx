@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Switch as SwitchShadcn } from '../../ui/switch';
-import { AutoFormFieldProps } from '../react/types';
+import { Switch as SwitchShadcn } from '@ui/components/ui/switch';
+import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react/types';
 
 export const Switch: React.FC<AutoFormFieldProps> = (props) => {
   const [value, setCheck] = React.useState<boolean>(props?.value ?? false);

@@ -1,6 +1,6 @@
-import { createAsyncThunk, ThunkDispatch, UnknownAction } from '@reduxjs/toolkit';
-import { rootReducer } from './rootReducer';
-import { Dependencies } from './dependencies';
+import { createAsyncThunk, ThunkDispatch, UnknownAction } from "@reduxjs/toolkit";
+import { rootReducer } from "@lib/redux/rootReducer";
+import { Dependencies } from "@pro/lib/dependencies";
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = ThunkDispatch<RootState, Dependencies, UnknownAction>;

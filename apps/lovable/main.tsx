@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import '@lovable/index.css'
 import { RouterProvider } from '@tanstack/react-router'
-import { createRouter } from './router'
+import { createRouter } from '@lovable/router'
 
 const router = createRouter()
 

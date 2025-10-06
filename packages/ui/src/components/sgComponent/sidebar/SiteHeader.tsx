@@ -1,30 +1,21 @@
-import {  SidebarTrigger } from '../../ui/sidebar';
-import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
-import logo from '../../../assets/img/logoMobile.png';
-import { Button } from '../../ui/button';
-import { Separator } from '../../ui/separator';
+import { SidebarTrigger } from "@ui/components/ui/sidebar";
+import { CircleArrowLeft, CircleArrowRight } from "lucide-react";
+import logo from "@asset/img/logoMobile.png";
+import { Button } from "@ui/components/ui/button";
+import { Separator } from "@ui/components/ui/separator";
 
 export function SiteHeader() {
-
   return (
     <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center px-4 lg:px-6 ">
         <div className="flex items-center gap-2">
-          <Button variant={'ghost'} size={'icon'}>
+          <Button variant={"ghost"} size={"icon"}>
             <SidebarTrigger />
           </Button>
-          <Button
-            variant={'ghost'}
-            size={'icon'}
-        
-          >
+          <Button variant={"ghost"} size={"icon"}>
             <CircleArrowLeft />
           </Button>
-          <Button
-            variant={'ghost'}
-            size={'icon'}
-       
-          >
+          <Button variant={"ghost"} size={"icon"}>
             <CircleArrowRight />
           </Button>
           <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4" />

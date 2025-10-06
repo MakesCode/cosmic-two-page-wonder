@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ZodObjectOrWrapped } from "./types";
+import { ZodObjectOrWrapped } from "@ui/components/sgComponent/autoform/zod/types";
 
 export function getDefaultValueInZodStack(schema: z.ZodTypeAny): any {
   if (schema instanceof z.ZodDefault) {

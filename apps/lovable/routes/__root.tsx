@@ -1,23 +1,20 @@
 /// <reference types="vite/client" />
 import { useMemo, type ReactNode } from "react";
-import {
-  Outlet,
-  createRootRoute,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
+import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import NotFound from "@pages/NotFound";
 import { Toaster } from "@ui/components/ui/toaster";
 import { Toaster as Sonner } from "@ui/components/ui/sonner";
 import { TooltipProvider } from "@ui/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import appCssPath from "@/index.css?url";
-import milaThemePath from "@/mila-theme.css?url";
-import { DependenciesProvider } from "@/lib/DI/DependenciesProvider";
+import appCssPath from "@lovable/index.css?url";
+import milaThemePath from "@lovable/mila-theme.css?url";
+import { DependenciesProvider } from "@lovable/lib/DI/DependenciesProvider";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
-import { DevtoolsProvider } from "@/lib/DevtoolsProvider";
+import { DevtoolsProvider } from "@lovable/lib/DevtoolsProvider";
 import { Provider } from "react-redux";
-import { BootstrapQueries } from "../../../packages/lib/loader/BootstrapQueries";
+import { BootstrapQueries } from "@lib/loader/BootstrapQueries";
+import { routeTree } from "@lovable/routeTree.gen";
+import { deriveProductPanels } from "@lovable/routes";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +26,10 @@ export const Route = createRootRoute({
       { title: "cosmic-two-page-wonder" },
       { name: "description", content: "Lovable Generated Project" },
     ],
-    links: [{ rel: "stylesheet", href: appCssPath }, { rel: "stylesheet", href: milaThemePath }],
+    links: [
+      { rel: "stylesheet", href: appCssPath },
+      { rel: "stylesheet", href: milaThemePath },
+    ],
   }),
   component: RootComponent,
   notFoundComponent: () => (
@@ -63,12 +63,10 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
     </html>
   );
 }
-import { routeTree } from '@/routeTree.gen'
-import { deriveProductPanels } from ".";
-import { createStoreWithDependencies } from "@/lib/redux/dependencies";
+import { createStoreWithDependencies } from "@lovable/lib/redux/dependencies";
 
 function Providers({ children }: Readonly<{ children: ReactNode }>) {
-  const productPanels = useMemo(() => deriveProductPanels(routeTree), [])
+  const productPanels = useMemo(() => deriveProductPanels(routeTree), []);
   const { store } = Route.useRouteContext() as {
     store: ReturnType<typeof createStoreWithDependencies>;
   };
@@ -83,16 +81,16 @@ function Providers({ children }: Readonly<{ children: ReactNode }>) {
         }
       >
         <DependenciesProvider>
-        <DevtoolsProvider productPanels={productPanels}>
-          <TooltipProvider>
-            <Provider store={store}>
-              <BootstrapQueries />
-              <Toaster />
-              <Sonner />
-              {children}
-            </Provider>
-          </TooltipProvider>
-        </DevtoolsProvider>
+          <DevtoolsProvider productPanels={productPanels}>
+            <TooltipProvider>
+              <Provider store={store}>
+                <BootstrapQueries />
+                <Toaster />
+                <Sonner />
+                {children}
+              </Provider>
+            </TooltipProvider>
+          </DevtoolsProvider>
         </DependenciesProvider>
       </SidebarProvider>
     </QueryClientProvider>

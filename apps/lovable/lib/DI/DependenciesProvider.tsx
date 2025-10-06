@@ -1,18 +1,10 @@
-import React from 'react';
-// import { 
-// useStats
-// } from '@mock/index';
-import { useStats } from '../../../../packages/pages/Gli/components/stats/useStats';
-import { DIProvider } from '@dependencies/depencieProvider';
-import { TypeDI } from '@dependencies/type';
-
+import React from "react";
+import { DIProvider } from "@dependencies/depencieProvider";
 
 export const DependenciesProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const value: TypeDI = {
-   useStats: useStats,
-  };
+  const value = {};
 
-  return <DIProvider<TypeDI> dependencies={value}>{children}</DIProvider>;
+  return <DIProvider dependencies={value}>{children}</DIProvider>;
 };

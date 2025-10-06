@@ -1,6 +1,6 @@
-import { getCookieIsomorphic } from '../../../lib/tanstack-start/getCookieIsomorphic';
-import { Settings } from '../../../lib/tanstack-start/settings';
-import { AGENCY_ROLE, AGENT_ROLE, getTokenObject, MANAGER_ROLE, OWNER_ROLE, PARTNER_ROLE, ROLE_COMPOSE_MANAGER, ROLE_COMPOSE_PRO, SALES_ROLE, SYSTEM_ROLE, TENANT_ROLE } from '../../../utils/getTokenObject';
+import { getCookieIsomorphic } from '@lib/tanstack-start/getCookieIsomorphic';
+import { Settings } from '@lib/tanstack-start/settings';
+import { AGENCY_ROLE, AGENT_ROLE, getTokenObject, MANAGER_ROLE, OWNER_ROLE, PARTNER_ROLE, ROLE_COMPOSE_MANAGER, ROLE_COMPOSE_PRO, SALES_ROLE, SYSTEM_ROLE, TENANT_ROLE } from '@utils/getTokenObject';
 
 export function getRoles(settings: Settings): Array<string> {
   const token = getCookieIsomorphic(settings.TOKEN_COOKIE_NAME!)();

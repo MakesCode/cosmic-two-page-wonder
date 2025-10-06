@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { confettiClosed } from './confetti.action';
+import { confettiClosed } from '@features/common/confetti/confetti.action';
 
 export type confettiInitialStateModel = {
   isOpen: boolean;

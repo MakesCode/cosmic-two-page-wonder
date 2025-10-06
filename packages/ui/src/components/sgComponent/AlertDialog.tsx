@@ -8,9 +8,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '../ui/alert-dialog';
+} from '@ui/components/ui/alert-dialog';
 import React from 'react';
-import { Loading } from './Loading';
+import { Loading } from '@ui/components/sgComponent/Loading';
 interface DrawerDialogProps {
   trigger?: React.ReactNode;
   title?: string;

@@ -1,5 +1,5 @@
-import { SchemaProvider } from "./schema-provider";
-import { ParsedField, ParsedSchema } from "./types";
+import { SchemaProvider } from "@ui/components/sgComponent/autoform/core/schema-provider";
+import { ParsedField, ParsedSchema } from "@ui/components/sgComponent/autoform/core/types";
 
 export function parseSchema(schemaProvider: SchemaProvider): ParsedSchema {
   const schema = schemaProvider.parseSchema();

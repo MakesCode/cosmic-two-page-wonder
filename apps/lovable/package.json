@@ -1,0 +1,13 @@
+{
+  "name": "@apps/lovable",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite -c vite.config.ts",
+    "build": "vite build -c vite.config.ts",
+    "preview": "vite preview -c vite.config.ts",
+    "lint": "eslint ."
+  },
+  "prettier": "../../prettier.config.js"
+}

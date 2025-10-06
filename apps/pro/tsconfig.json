@@ -1,23 +1,12 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "jsx": "react-jsx",
-    "moduleResolution": "bundler",
-    "strict": false,
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@ui/*": ["../../packages/ui/src/*"],
-      "@styles/*": ["../../packages/styles/src/*"],
-      "@pages/*": ["../../packages/pages/*"],
-      "@sgComponent/*": ["../../packages/ui/src/components/sgComponent/*"],
-      "@mock/*": ["../../packages/mock/*"],
-      "@presenter/*": ["../../packages/mock/presenter/*"],
-      "@dependencies/*": ["../../packages/dependencie/*"]
-    }
-  },
-  "include": ["src", "../lovable/lib/DevtoolsProvider.tsx", "../../packages/model/common/apiRequest.ts", "../../packages/model/common/SmartGarantResponse.ts", "../../packages/model/pro/kpi.ts", "../../packages/model/pro/GLICreationResponse.tsx"],
+  "extends": "../../tsconfig.base.json",
+  "include": [
+    "./src",
+    "../lovable/lib/DevtoolsProvider.tsx",
+    "../../packages/features/model/apiRequest.ts",
+    "../../packages/features/model/SmartGarantResponse.ts",
+    "../../packages/features/pro/gli/Subscriptions/model/kpi.ts",
+    "../../packages/features/pro/gli/Subscriptions/model/GLICreationResponse.tsx"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

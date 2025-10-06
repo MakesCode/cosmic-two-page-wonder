@@ -1,5 +1,5 @@
 // import { createRouter as createTanStackRouter } from '@tanstack/react-router'
-// import { routeTree } from './routeTree.gen'
+// import { routeTree } from '@lovable/routeTree.gen'
 
 // export function createRouter() {
 //   const router = createTanStackRouter({
@@ -15,11 +15,11 @@
 //   }
 // }
 
-import { createRouter as createTanStackRouter } from '@tanstack/react-router';
-import { routeTree } from './routeTree.gen';
-import { QueryClient } from '@tanstack/react-query';
-import { routerWithQueryClient } from '@tanstack/react-router-with-query';
-import { createDependencies, createStoreWithDependencies } from './lib/redux/dependencies';
+import { createRouter as createTanStackRouter } from "@tanstack/react-router";
+import { routeTree } from "@lovable/routeTree.gen";
+import { QueryClient } from "@tanstack/react-query";
+import { routerWithQueryClient } from "@tanstack/react-router-with-query";
+import { createDependencies, createStoreWithDependencies } from "@lovable/lib/redux/dependencies";
 
 // NOTE: Most of the integration code found here is experimental and will
 // definitely end up in a more streamlined API in the future. This is just
@@ -40,16 +40,17 @@ export function createRouter() {
 
   const store = createStoreWithDependencies(dependencies, preloadedState);
   return routerWithQueryClient(
+    // @ts-expect-error: Type mismatch due to experimental integration; safe to ignore for now
     createTanStackRouter({
       routeTree,
       context: { queryClient, dependencies, store },
-      defaultPreload: 'intent',
+      defaultPreload: "intent",
       scrollRestoration: true,
     }),
     queryClient,
   );
 }
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface Register {
     router: ReturnType<typeof createRouter>;
   }

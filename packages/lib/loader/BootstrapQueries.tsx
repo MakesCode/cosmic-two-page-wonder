@@ -1,7 +1,7 @@
-import { retrieveSubscriptionQueryOption } from '../../features/gli/Subscriptions/retrieveSubscription/retrieveSubscriptionQueryOption';
-import { retrieveOrganizationQueryOption } from '../../features/organization/retrieveOrganization/retrieveOrganizationQueryOption';
-import { useQuery } from '@tanstack/react-query';
-import { useDispatch } from 'react-redux';
+import { retrieveSubscriptionQueryOption } from "@features/pro/gli/Subscriptions/retrieveSubscription/retrieveSubscriptionQueryOption";
+import { retrieveOrganizationQueryOption } from "@features/pro/organization/retrieveOrganization/retrieveOrganizationQueryOption";
+import { useQuery } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
 
 const useLoadedApi = () => {
   const dispatch = useDispatch();
