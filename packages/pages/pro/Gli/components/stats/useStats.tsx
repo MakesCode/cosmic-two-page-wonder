@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 export const useStats = () => {
   const dispatch = useDispatch();
   const subscriptionId = useSelector(selectSubscriptionId);
-  console.log("subscriptionId", subscriptionId);
 
   const { data: kpi } = useQuery(
     retrieveKpiQueryOption(
@@ -19,7 +18,6 @@ export const useStats = () => {
       dispatch,
     ),
   );
-  console.log("kpi", kpi);
 
   return {
     averageRent: kpi?.averageGuaranteedRentAmount ?? 0,
