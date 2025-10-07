@@ -1,0 +1,48 @@
+import { Claim, ClaimStatus } from '@features/pro/gli/Claims/model/Claim';
+
+export const mockClaims: Claim[] = [
+  {
+    id: '1',
+    rentalApprovalId: 'ra-1',
+    tenantName: 'Jean Dupont',
+    propertyAddress: '15 rue de la Paix, Paris',
+    claimType: 'Loyers impayés',
+    claimDate: new Date('2024-01-15'),
+    status: ClaimStatus.OPEN,
+    amount: 2400,
+    description: '3 mois de loyers impayés',
+  },
+  {
+    id: '2',
+    rentalApprovalId: 'ra-2',
+    tenantName: 'Marie Martin',
+    propertyAddress: '28 avenue des Champs, Lyon',
+    claimType: 'Dégradations',
+    claimDate: new Date('2024-02-20'),
+    status: ClaimStatus.IN_PROGRESS,
+    amount: 1500,
+    description: 'Dégâts matériels dans l\'appartement',
+  },
+  {
+    id: '3',
+    rentalApprovalId: 'ra-3',
+    tenantName: 'Pierre Dubois',
+    propertyAddress: '42 boulevard Victor Hugo, Marseille',
+    claimType: 'Loyers impayés',
+    claimDate: new Date('2024-03-10'),
+    status: ClaimStatus.CLOSED,
+    amount: 3600,
+    description: '4 mois de loyers impayés - remboursé',
+  },
+  {
+    id: '4',
+    rentalApprovalId: 'ra-4',
+    tenantName: 'Sophie Lambert',
+    propertyAddress: '7 rue Voltaire, Toulouse',
+    claimType: 'Charges impayées',
+    claimDate: new Date('2024-04-05'),
+    status: ClaimStatus.REJECTED,
+    amount: 800,
+    description: 'Charges non payées - dossier incomplet',
+  },
+];

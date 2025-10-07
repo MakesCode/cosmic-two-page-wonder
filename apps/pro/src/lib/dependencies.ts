@@ -10,11 +10,16 @@ import {
   ApiOrganizationGateway,
   OrganizationGateway,
 } from "@features/pro/organization/api-organization";
+import {
+  ApiClaimsGateway,
+  ClaimsGateway,
+} from "@features/pro/gli/Claims/api-claims";
 
 export type Dependencies = {
   subscriptionApi: ApiSubscriptionGateway;
   rentalApprovalApi: RentalApprovalsGateway;
   organizationApi: OrganizationGateway;
+  claimsApi: ClaimsGateway;
   apiService: ApiService;
   queryClient: QueryClient;
 };
@@ -24,12 +29,14 @@ export function createDependencies(queryClient: QueryClient): Dependencies {
   const subscriptionApi = new ApiSubscriptionGateway(apiService);
   const rentalApprovalApi = new ApiRentalApprovalsGateway(apiService);
   const organizationApi = new ApiOrganizationGateway(apiService);
+  const claimsApi = new ApiClaimsGateway(apiService);
   return {
     apiService,
     queryClient,
     subscriptionApi,
     rentalApprovalApi,
     organizationApi,
+    claimsApi,
   };
 }
 
