@@ -47,6 +47,10 @@ Nous travaillons sur un projet en monorepo. L’objectif est que les apps Admin 
 - Les fonctionnalités sont regroupées par domaine (`common`, `pro`, `admin`, `model`, etc.). Chaque feature expose les use cases de l’application cible (hooks, services, slices Redux). Le dossier `common` rassemble les use cases communs aux apps. `model` centralise les interfaces globales. Les dossiers `pro` et `admin` contiennent la logique métier spécifique à chaque app.
 - Dans `pro/client`, rangez les features qui nécessitent un state propre à l’app Pro.
 - Exemple : `packages/features/pro/organization/retrieveOrganization` contient l’action, le use case via `createAppAsyncThunk`, ainsi que les `queryOptions` pour le cache React Query. Avec Redux nous restons événementiels via les actions. `packages/features/pro/organization/model` regroupe les modèles API du domaine Organization. `packages/features/pro/organization/api-organization.ts` expose les appels API correspondants.
+- Les use cases sont toujours portés par Redux Toolkit (`createAction`, `createSlice`, `createAppAsyncThunk`) et orchestrent les gateways via des événements. Ne créez pas de classes de use case qui appellent directement un gateway (`new RetrieveClaimsUseCase(claimsGateway).execute(...)`). Au lieu de cela, exposez un thunk et un `queryOption` qui reçoivent `dispatch` (cf. `retrieveKpiQueryOption`).
+- Chaque feature doit proposer un presenter dédié pour la composition UI (hook, factory ou composant conteneur). Le presenter adapte la donnée pour la vue et reste dans `packages/pages/**/*`. Inspirez-vous du pattern `packages/pages/pro/Gli/components/stats/useStats.tsx` : le hook lit le state Redux (`useSelector`), passe le `dispatch` au `queryOption`, et ne laisse aucune logique métier dans le composant d’affichage.
+- Lorsque vous ajoutez un `queryOption`, veillez à ce qu’il prenne en charge `dispatch` et toute dépendance externe via les `dependencies` injectées par la route. On ne crée jamais de logique d’accès API directement dans un composant React.
+- Documentez systématiquement les presenters et exports de feature dans les `index.ts` correspondants pour garantir l’arborescence d’imports (`@features/*`, `@pages/*`).
 
 ### Données mock & presenters (`packages/mock`)
 
@@ -93,6 +97,7 @@ Nous travaillons sur un projet en monorepo. L’objectif est que les apps Admin 
 - **NE JAMAIS** dupliquer des composants entre les apps.
 - **NE JAMAIS** recréer des composants UI de base : utilisez shadcn/ui.
 - **NE JAMAIS** toucher au autres apps autre que lovable.
+- **NE JAMAIS** toucher au config de l'app, ne touche jamais au fichier de config typescript.
 - **TOUJOURS** utiliser TypeScript avec des types adaptés.
 - **TOUJOURS** Utilisez toujours AutoForm pour les formulaires
 - **TOUJOURS** Utilisez toujours multi-step pour tout formulaire multi-step.
