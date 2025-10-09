@@ -35,12 +35,14 @@ Nous travaillons sur un projet en monorepo. L’objectif est que les apps Admin 
 - `src/components/sgComponent/AutoForm` : regroupe tout le code nécessaire pour construire les formulaires avec Zod. Utilisez toujours AutoForm pour les formulaires.
 - `src/components/sgComponent/multi-step` : contient le socle des formulaires multi-étapes. Utilisez-le pour tout formulaire multi-step.
 - `src/components/sgComponent/sidebar` : contient la logique de la sidebar partagée entre les différentes apps.
+- Toutes les tables de données doivent être construites avec TanStack Table (primitives `@tanstack/table-core` + composant shadcn). N’introduisez pas de table HTML ad hoc ou de librairie tierce.
 - `src/components/template/` : gabarits d’écran. Ajoutez-y les layouts partagés plutôt que dans une app.
 - Exports : privilégiez les exports nommés pour les primitives réutilisables. Les pages ou layouts complets peuvent rester en `export default`.
 
 ### Pages partagées (`packages/pages`)
 
 - Contient les pages complètes réutilisables, partagées entre Lovable et les autres apps.
+- Les pages Pro (ex. `packages/pages/pro/Gli`) s’ouvrent toujours dans `<Sidebar>` et rendent `<SiteHeader />` en premier enfant. Placez toute la logique métier derrière des presenters/hooks et insérez uniquement les composants d’affichage dans le contenu de la sidebar.
 
 ### Features & logique métier (`packages/features`)
 
