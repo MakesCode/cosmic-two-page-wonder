@@ -16,22 +16,23 @@
     "noUnusedParameters": false,
     "noUnusedLocals": false,
     "strictNullChecks": false,
+    "baseUrl": "../..",
     "paths": {
-      "@asset/*": ["../../packages/asset/*"],
-      "@dependencies/*": ["../../packages/dependencie/*"],
-      "@features/*": ["../../packages/features/*"],
-      "@hooks/*": ["../../packages/hooks/*"],
-      "@lib/*": ["../../packages/lib/*"],
-      "@mock/*": ["../../packages/mock/*"],
-      "@presenter/*": ["../../packages/mock/presenter/*"],
-      "@pages/*": ["../../packages/pages/*"],
-      "@sgComponent/*": ["../../packages/ui/src/components/sgComponent/*"],
-      "@ui/*": ["../../packages/ui/src/*"],
-      "@utils/*": ["../../packages/utils/*"],
-      "@lovable/*": ["../../apps/lovable/*"],
-      "@lovable-lib/*": ["../../apps/lovable/lib/*"],
-      "@pro/*": ["../../apps/pro/src/*"],
-      "@admin/*": ["../../apps/admin/src/*"]
+      "@asset/*": ["packages/asset/*"],
+      "@dependencies/*": ["packages/dependencie/*"],
+      "@features/*": ["packages/features/*"],
+      "@hooks/*": ["packages/hooks/*"],
+      "@lib/*": ["packages/lib/*"],
+      "@mock/*": ["packages/mock/*"],
+      "@presenter/*": ["packages/mock/presenter/*"],
+      "@pages/*": ["packages/pages/*"],
+      "@sgComponent/*": ["packages/ui/src/components/sgComponent/*"],
+      "@ui/*": ["packages/ui/src/*"],
+      "@utils/*": ["packages/utils/*"],
+      "@lovable/*": ["apps/lovable/*"],
+      "@lovable-lib/*": ["apps/lovable/lib/*"],
+      "@pro/*": ["apps/pro/src/*"],
+      "@admin/*": ["apps/admin/src/*"]
     }
   }
 }

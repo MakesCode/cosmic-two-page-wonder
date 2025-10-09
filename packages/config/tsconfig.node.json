@@ -8,5 +8,6 @@
     "composite": true,
     "noEmit": false,
     "allowImportingTsExtensions": false
-  }
+  },
+  "include": ["../../vite.config.ts"]
 }
