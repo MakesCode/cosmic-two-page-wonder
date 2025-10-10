@@ -16,8 +16,6 @@ import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as ProGliRouteImport } from './routes/pro/gli'
 import { Route as ProsinistresSinistresRouteRouteImport } from './routes/pro/(sinistres)/sinistres.route'
 import { Route as ProsinistresSinistresIndexRouteImport } from './routes/pro/(sinistres)/sinistres.index'
-import { Route as ProsinistresSinistresTestRouteImport } from './routes/pro/(sinistres)/sinistres_.test'
-import { Route as ProsinistresSinistresNewRouteImport } from './routes/pro/(sinistres)/sinistres.new'
 import { Route as ProsinistresSinistresClaimIdRouteImport } from './routes/pro/(sinistres)/sinistres.$claimId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -57,18 +55,6 @@ const ProsinistresSinistresIndexRoute =
     path: '/',
     getParentRoute: () => ProsinistresSinistresRouteRoute,
   } as any)
-const ProsinistresSinistresTestRoute =
-  ProsinistresSinistresTestRouteImport.update({
-    id: '/pro/(sinistres)/sinistres_/test',
-    path: '/pro/sinistres/test',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ProsinistresSinistresNewRoute =
-  ProsinistresSinistresNewRouteImport.update({
-    id: '/new',
-    path: '/new',
-    getParentRoute: () => ProsinistresSinistresRouteRoute,
-  } as any)
 const ProsinistresSinistresClaimIdRoute =
   ProsinistresSinistresClaimIdRouteImport.update({
     id: '/$claimId',
@@ -84,8 +70,6 @@ export interface FileRoutesByFullPath {
   '/pro': typeof ProIndexRoute
   '/pro/sinistres': typeof ProsinistresSinistresRouteRouteWithChildren
   '/pro/sinistres/$claimId': typeof ProsinistresSinistresClaimIdRoute
-  '/pro/sinistres/new': typeof ProsinistresSinistresNewRoute
-  '/pro/sinistres/test': typeof ProsinistresSinistresTestRoute
   '/pro/sinistres/': typeof ProsinistresSinistresIndexRoute
 }
 export interface FileRoutesByTo {
@@ -95,8 +79,6 @@ export interface FileRoutesByTo {
   '/housing': typeof HousingIndexRoute
   '/pro': typeof ProIndexRoute
   '/pro/sinistres/$claimId': typeof ProsinistresSinistresClaimIdRoute
-  '/pro/sinistres/new': typeof ProsinistresSinistresNewRoute
-  '/pro/sinistres/test': typeof ProsinistresSinistresTestRoute
   '/pro/sinistres': typeof ProsinistresSinistresIndexRoute
 }
 export interface FileRoutesById {
@@ -108,8 +90,6 @@ export interface FileRoutesById {
   '/pro/': typeof ProIndexRoute
   '/pro/(sinistres)/sinistres': typeof ProsinistresSinistresRouteRouteWithChildren
   '/pro/(sinistres)/sinistres/$claimId': typeof ProsinistresSinistresClaimIdRoute
-  '/pro/(sinistres)/sinistres/new': typeof ProsinistresSinistresNewRoute
-  '/pro/(sinistres)/sinistres_/test': typeof ProsinistresSinistresTestRoute
   '/pro/(sinistres)/sinistres/': typeof ProsinistresSinistresIndexRoute
 }
 export interface FileRouteTypes {
@@ -122,8 +102,6 @@ export interface FileRouteTypes {
     | '/pro'
     | '/pro/sinistres'
     | '/pro/sinistres/$claimId'
-    | '/pro/sinistres/new'
-    | '/pro/sinistres/test'
     | '/pro/sinistres/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -133,8 +111,6 @@ export interface FileRouteTypes {
     | '/housing'
     | '/pro'
     | '/pro/sinistres/$claimId'
-    | '/pro/sinistres/new'
-    | '/pro/sinistres/test'
     | '/pro/sinistres'
   id:
     | '__root__'
@@ -145,8 +121,6 @@ export interface FileRouteTypes {
     | '/pro/'
     | '/pro/(sinistres)/sinistres'
     | '/pro/(sinistres)/sinistres/$claimId'
-    | '/pro/(sinistres)/sinistres/new'
-    | '/pro/(sinistres)/sinistres_/test'
     | '/pro/(sinistres)/sinistres/'
   fileRoutesById: FileRoutesById
 }
@@ -157,7 +131,6 @@ export interface RootRouteChildren {
   HousingIndexRoute: typeof HousingIndexRoute
   ProIndexRoute: typeof ProIndexRoute
   ProsinistresSinistresRouteRoute: typeof ProsinistresSinistresRouteRouteWithChildren
-  ProsinistresSinistresTestRoute: typeof ProsinistresSinistresTestRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -211,20 +184,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProsinistresSinistresIndexRouteImport
       parentRoute: typeof ProsinistresSinistresRouteRoute
     }
-    '/pro/(sinistres)/sinistres_/test': {
-      id: '/pro/(sinistres)/sinistres_/test'
-      path: '/pro/sinistres/test'
-      fullPath: '/pro/sinistres/test'
-      preLoaderRoute: typeof ProsinistresSinistresTestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pro/(sinistres)/sinistres/new': {
-      id: '/pro/(sinistres)/sinistres/new'
-      path: '/new'
-      fullPath: '/pro/sinistres/new'
-      preLoaderRoute: typeof ProsinistresSinistresNewRouteImport
-      parentRoute: typeof ProsinistresSinistresRouteRoute
-    }
     '/pro/(sinistres)/sinistres/$claimId': {
       id: '/pro/(sinistres)/sinistres/$claimId'
       path: '/$claimId'
@@ -237,14 +196,12 @@ declare module '@tanstack/react-router' {
 
 interface ProsinistresSinistresRouteRouteChildren {
   ProsinistresSinistresClaimIdRoute: typeof ProsinistresSinistresClaimIdRoute
-  ProsinistresSinistresNewRoute: typeof ProsinistresSinistresNewRoute
   ProsinistresSinistresIndexRoute: typeof ProsinistresSinistresIndexRoute
 }
 
 const ProsinistresSinistresRouteRouteChildren: ProsinistresSinistresRouteRouteChildren =
   {
     ProsinistresSinistresClaimIdRoute: ProsinistresSinistresClaimIdRoute,
-    ProsinistresSinistresNewRoute: ProsinistresSinistresNewRoute,
     ProsinistresSinistresIndexRoute: ProsinistresSinistresIndexRoute,
   }
 
@@ -260,7 +217,6 @@ const rootRouteChildren: RootRouteChildren = {
   HousingIndexRoute: HousingIndexRoute,
   ProIndexRoute: ProIndexRoute,
   ProsinistresSinistresRouteRoute: ProsinistresSinistresRouteRouteWithChildren,
-  ProsinistresSinistresTestRoute: ProsinistresSinistresTestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

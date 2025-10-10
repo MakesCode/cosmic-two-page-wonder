@@ -1,166 +1,203 @@
-# `AutoForm` (`packages/ui/src/components/sgComponent/autoform`)
+# AutoForm – Guide de référence interne
 
-## Vue d'ensemble
-`AutoForm` encapsule la génération d'interfaces de formulaire basées sur un schéma (Zod ou Yup) en s'appuyant sur `react-hook-form` et les primitives shadcn/ui. Le composant exporté depuis `packages/ui` habille la version "nue" (`react/AutoForm`) avec des wrappers UI par défaut tout en vous laissant la possibilité de les surcharger.
+## Objectifs
 
-Flux général :
-1. Vous construisez un `SchemaProvider` (ex. `new ZodProvider(z.object({...}))`).
-2. Vous alimentez `AutoForm` avec ce provider et, si besoin, des `defaultValues`/`values`.
-3. Le schéma est parsé en une arborescence de champs (`ParsedField`). Chaque champ déduit son type (`string`, `number`, `select`, `object`, `array`, etc.) grâce à `fieldConfig`.
-4. `AutoForm` instancie `react-hook-form`, rend les champs correspondants et déclenche la validation du `SchemaProvider` lors du submit.
+- Ancrer une convention commune autour de `AutoForm`.
+- Décrire la composition d’un schéma (`ZodProvider`, `fieldConfig`) et le cycle de vie des données.
+- Illustrer les cas d’usage rencontrés dans le parcours GLI : candidature locataire, logement, bail, locataires/garants et documents.
 
-## Exports principaux
-- `AutoForm<T>` : composant React générique, déjà pré-configuré avec les composants UI shadcn.
-- `AutoFormProps<T>` : interface de props (extension d'`ExtendableAutoFormProps` de la couche `react`).
-- `fieldConfig` : fabrique typée (`buildZodFieldConfig`) permettant d'enrichir un champ Zod (`label`, `fieldType`, `shouldRender`, `order`, `customData`, etc.).
-- Types utiles : `FieldTypes` (alias des clés disponibles dans `ShadcnAutoFormFieldComponents`).
+## Anatomie d’un formulaire AutoForm
 
-## Props du composant
-| Prop | Type | Description |
-| --- | --- | --- |
-| `schema` | `SchemaProvider<T>` | Fournisseur de schéma (Zod/Yup). Le repo expose `ZodProvider` et `YupProvider` dans les sous-dossiers correspondants. |
-| `id` | `string` | Identifiant du formulaire. Permet d'associer un bouton externe via l'attribut HTML `form`. |
-| `onSubmit` | `(values: T, form: UseFormReturn<T>) => void \| Promise<void>` | Callback déclenchée après validation réussie du schéma. Les valeurs sont passées par `removeEmptyValues` (null/''/[]/{} filtrés). |
-| `onErrorForm?` | `(errors, methods) => void` | Reçoit les erreurs visibles (celles dont `shouldRender` est vrai) + l'instance `react-hook-form` pour des traitements custom (ex. scroll to first error). |
-| `defaultValues?` | `Partial<T>` | Valeurs initiales fusionnées avec `schema.getDefaultValues()`. |
-| `values?` | `Partial<T>` | Valeurs contrôlées (synchro externe). |
-| `children?` | `ReactNode` | Sera rendu **après** les champs auto-générés. |
-| `uiComponents?` | `Partial<AutoFormUIComponents>` | Permet d'écraser un wrapper (Form, FieldWrapper, ErrorMessage, SubmitButton, ObjectWrapper, ArrayWrapper, ArrayElementWrapper). |
-| `formComponents?` | `Partial<AutoFormFieldComponents>` | Permet d'ajouter/overrider un render pour `fieldType`. Les types par défaut sont définis dans `ShadcnAutoFormFieldComponents`. |
-| `withSubmit?` | `boolean` | Ajoute automatiquement un bouton submit (`uiComponents.SubmitButton`). |
-| `onFormInit?` | `(form: UseFormReturn<T>) => void` | Hook d'initialisation (actuellement appelé lors du montage). |
-| `formProps?` | `React.ComponentProps<'form'>` | Propagées au `<form>`. |
+- **`AutoForm`** : composant contrôleur qui orchestre la validation, la soumission et le rendu.
+- **`schema`** : instance de `ZodProvider` enveloppant un schéma `zod`. Chaque champ appelle `fieldConfig(...)` pour brancher la métadonnée UI.
+- **`StepProps<T>`** : contrat standard des écrans multi-étapes (`data`, `onDataChange`, `id`).
+- **Accrochages optionnels** :
+  - `formComponents` pour fournir des rendus personnalisés.
+  - `defaultValues` pour pré-hydrater le formulaire.
+  - `onSubmit`, `onErrorForm` pour piloter les mutations et la gestion d’erreur.
 
-## Définir un schéma Zod annoté
-Le helper `fieldConfig` encapsule la fonction `buildZodFieldConfig`. Vous l'utilisez dans un `.superRefine()` pour attacher les métadonnées de rendu.
+## Exemple minimal
 
-```ts
-import { z } from 'zod';
-import { ZodProvider } from '@ui/components/sgComponent/autoform/zod/provider';
-import { fieldConfig } from '@ui/components/sgComponent/autoform';
-
-const subscriptionSchema = new ZodProvider(
-  z
-    .object({
-      email: z
-        .string()
-        .email()
-        .superRefine(fieldConfig({
-          label: 'Adresse e-mail',
-          fieldType: 'string',
-          inputProps: { placeholder: 'jane@doe.com' },
-          order: 1,
-        })),
-      plan: z
-        .enum(['basic', 'pro'])
-        .superRefine(
-          fieldConfig({
-            label: 'Plan',
-            fieldType: 'select',
-            inputProps: {
-              options: [
-                { value: 'basic', label: 'Standard' },
-                { value: 'pro', label: 'Professionnel' },
-              ],
-            },
-            customData: { group: 'pricing' },
-          }),
-        ),
-      seats: z
-        .number()
-        .min(1)
-        .max(50)
-        .superRefine(fieldConfig({
-          label: 'Nombre de licences',
-          fieldType: 'number',
-          shouldRender: (data) => data.plan === 'pro',
-        })),
-    })
-    .superRefine(fieldConfig({ label: 'Abonnement', fieldType: 'object' })),
-);
-```
-
-Notes :
-- `fieldType` doit correspondre à une clé disponible dans `ShadcnAutoFormFieldComponents` ou dans vos overrides (`formComponents`).
-- `customData.group` est interprété dans `react/AutoForm` pour regrouper les champs horizontalement.
-- `shouldRender` masque dynamiquement le champ (il sera exclu du submit si caché).
-
-## Exemple complet
 ```tsx
-import { AutoForm, fieldConfig } from '@ui/components/sgComponent/autoform';
-import { ZodProvider } from '@ui/components/sgComponent/autoform/zod/provider';
-import { Button } from '@ui/components/ui/button';
-import { z } from 'zod';
+import { z } from "zod";
+import { AutoForm, ZodProvider, fieldConfig, StepProps } from "@sg/design";
 
-const provider = new ZodProvider(
-  z
-    .object({
-      company: z
-        .string()
-        .min(1)
-        .superRefine(fieldConfig({ label: 'Société', fieldType: 'string' })),
-      contact: z
-        .object({
-          name: z
+type ExampleForm = { lastName: string; phone: { phoneNumber: string; countryCode: string } };
+
+export const ExampleForm = ({ data, onDataChange, id }: StepProps<ExampleForm>) => (
+  <AutoForm
+    id={id}
+    defaultValues={data}
+    schema={
+      new ZodProvider(
+        z.object({
+          lastName: z
             .string()
-            .superRefine(fieldConfig({ label: 'Nom', fieldType: 'string', customData: { group: 'contact' } })),
+            .min(1)
+            .superRefine(fieldConfig({ label: "Nom", inputProps: { required: false } })),
           phone: z
-            .string()
-            .superRefine(fieldConfig({ label: 'Téléphone', fieldType: 'phone', customData: { group: 'contact' } })),
-        })
-        .superRefine(fieldConfig({ label: 'Contact', fieldType: 'object' })),
-      addons: z
-        .array(
-          z
             .object({
-              name: z.string().superRefine(fieldConfig({ label: 'Nom', fieldType: 'string' })),
-              price: z.number().superRefine(fieldConfig({ label: 'Prix HT', fieldType: 'currency' })),
+              phoneNumber: z.string().min(6),
+              countryCode: z.string().min(1),
             })
-            .superRefine(fieldConfig({ label: 'Option', fieldType: 'object' })),
-        )
-        .superRefine(fieldConfig({ label: 'Options', fieldType: 'array' })),
-    })
-    .superRefine(fieldConfig({ label: 'Nouvel abonnement' })),
+            .superRefine(fieldConfig({ label: "Téléphone", fieldType: "phone" })),
+        }),
+      )
+    }
+    onSubmit={(values) => onDataChange(values)}
+  />
 );
-
-export function SubscriptionForm() {
-  return (
-    <AutoForm
-      id="subscription-form"
-      schema={provider}
-      defaultValues={{ addons: [] }}
-      withSubmit
-      onSubmit={(values) => console.log('payload', values)}
-      onErrorForm={(errors) => console.error(`${errors.length} champ(s) à corriger`, errors)}
-    >
-      <Button type="submit" form="subscription-form">
-        Enregistrer
-      </Button>
-    </AutoForm>
-  );
-}
 ```
 
-## Personnaliser le rendu
-- **UI wrappers** : passez `uiComponents={{ Form: CustomForm, FieldWrapper: MyWrapper }}` pour changer la structure sans toucher aux champs.
-- **Champs personnalisés** : ajoutez un composant dans `formComponents`. Exemple :
-  ```tsx
-  const myDateField = ({ inputProps, id }: AutoFormFieldProps) => (
-    <MyDatePicker {...inputProps} id={id} />
-  );
+## Configurer les champs
 
-  <AutoForm formComponents={{ date: myDateField }} ... />
-  ```
-  Si vous avez besoin d'un nouveau `fieldType`, exposez-le via `fieldConfig({ fieldType: 'richtext' })` et fournissez `formComponents={{ richtext: RichTextField }}`.
-- **Fallback** : ajoutez `fallback` dans `formComponents` pour gérer les types non prévus.
+### `fieldConfig`
 
-## Gestion des erreurs
-- `AutoForm` ne déclenche `onSubmit` que si `schema.validateSchema` renvoie `success: true` **ou** si toutes les erreurs appartiennent à des champs cachés (`shouldRender === false`).
-- Les erreurs visibles sont propagées à `react-hook-form` afin que `FieldWrapper` affiche `ErrorMessage`.
-- Pour un comportement personnalisé (scroll, analytics), utilisez `onErrorForm`.
+`fieldConfig` encapsule toutes les métadonnées nécessaires au composant d’input :
+
+- `label`, `description`, `placeholder` : textes affichés (chaînes brutes ou construites dynamiquement).
+- `fieldType` : sélectionne un rendu spécifique (`'currency'`, `'phone'`, `'nestedbutton'`, `'situation'`, `'address'`, etc.).
+- `inputProps` : propage des props natives (`required`, `min`, `type`, `disabled`…).
+- `customData` : charge utile libre pour un renderer (ex. listes d’options, groupes, icônes).
+- `shouldRender(formValues)` : masquage conditionnel côté UI.
+
+### Champs conditionnels (`shouldRender`)
+
+Sur un step bail, un champ peut être masqué en fonction d'une réponse précédente :
+
+```tsx
+rentAmount: z.number({ message: "Champ requis" }).superRefine(
+  fieldConfig({
+    fieldType: "currency",
+    label: "Loyer hors charges",
+    shouldRender(data) {
+      return data?.sittingTenant === "true";
+    },
+  }),
+);
+```
+
+> Utilisez une vérification défensive (`data?.field`) car `shouldRender` peut recevoir `undefined` avant l’hydratation complète.
+
+### Options complexes
+
+- **`customData.data`** : alimente les boutons illustrés (sélecteurs de situation, nested buttons) ou les listes dynamiques.
+- **`fieldType: 'address'`** : gère la suggestion d’adresse et le mode saisie libre.
+- **`fieldType: 'phone'`** : encapsule code pays + numéro et s’intègre dans les formulaires de contacts.
+
+## Cycle de vie des données
+
+1. **Initialisation**
+   - Hiverner les données serveur via `defaultValues`.
+   - S’appuyer sur `useQuery` pour remplir les champs avant d’afficher le step.
+
+2. **Soumission**
+   - `onSubmit` reçoit les données validées. Transformer si besoin avant l’appel d’API (conversion `Number`, `toBoolean`, mapping d’objets).
+   - `onDataChange` (issu de `StepProps`) notifie l’étape parente lorsque le step est “validé”.
+
+3. **Gestion d’erreurs**
+   - `AutoForm` déclenche `onErrorForm` avec les erreurs agrégées (ex. transformer en notification via `generateFormErrorMessage`).
+   - Prévoir une expérience utilisateur cohérente (toast, bannière, re-highlight).
+
+## Intégrer des composants personnalisés
+
+Un step documents peut exposer un composant custom :
+
+```tsx
+<AutoForm
+  schema={
+    new ZodProvider(
+      z.object({
+        documents: z.any().superRefine(fieldConfig({ fieldType: "documentsStructure" })),
+      }),
+    )
+  }
+  formComponents={{ documentsStructure: DocumentStructuresForm }}
+  onSubmit={(values) => (validateDocuments() ? onDataChange(values) : toast("Documents manquants"))}
+/>
+```
+
+Le composant `DocumentStructuresForm` reçoit les props `AutoFormFieldProps` (valeur, erreurs, helpers) et peut piloter une expérience riche : drag & drop, aperçus (`ViewFileFactory`), suppression via mutations (`useMutation` + `deleteDocumentMutationOption`).
+
+## Formulaires composites & modaux
+
+Le module locataires/garants illustre la combinaison de plusieurs `AutoForm` :
+
+- **Liste principale** : affichage en cartes des locataires/garants (gestion état local, mutations `react-query`).
+- **Modales d’ajout/édition** : `AutoForm` embarqué dans un `DrawerDialog`.
+- **Suppression** : confirmation via `AlertDialog` + mutation dédiée.
+
+Points clés à retenir :
+
+- Passer un `id` distinct à chaque `AutoForm` pour relier le bouton de soumission (prop `form` des boutons).
+- Pré-remplir les modales avec les données sélectionnées (`defaultValues`) en convertissant les types (`String(...)`, `toBoolean`).
+- Réutiliser les utilitaires de formatage (`enumToStringValues`, helpers `convertLabel...`) pour construire `customData`.
 
 ## Bonnes pratiques
-- Centralisez la définition du schéma et des `fieldConfig` dans un fichier dédié pour réutiliser la logique entre apps (`packages/features` ou similaire).
-- Servez-vous de `customData` pour transmettre des informations d'affichage (groupes, colonnes, icônes) plutôt que de hardcoder dans le composant.
-- Pensez à vider / synchroniser `values` lorsque vous utilisez `defaultValues` pour éviter des resets inattendus (la prop `values` force l'état contrôlé).
-- Pour des formulaires volumineux, couplez `AutoForm` avec `MultiStepForm` : chaque étape peut rendre un sous-ensemble de champs en manipulant `shouldRender`.
+
+- **Schémas Zod typés** : centraliser les types (`export type ...FormType`) et réutiliser dans les props.
+- **Gestion des conversions** : utiliser `z.coerce.number` pour parser les inputs textuels en nombres.
+- **Découplage API/UI** : encapsuler les mutations dans `useMutation` et isoler les transformations dans `handleRegister...`.
+- **Error UX** : fournir un feedback cohérent (`notificationAdded`, `toast`).
+- **Réactivité** : invalider les `queryKey` pertinents après mutation pour synchroniser l’état.
+
+## Schéma de référence (GLI)
+
+```tsx
+const schema = new ZodProvider(
+  z.object({
+    type: z
+      .enum(getEnumNumericValuesAsStrings(RealEstateLotType) as [string, ...string[]])
+      .superRefine(
+        fieldConfig({
+          label: "Type de logement",
+          fieldType: "situation",
+          customData: {
+            data: [
+              { label: "Appartement", value: RealEstateLotType.APARTMENT.toString(), icon: Home },
+              { label: "Maison", value: RealEstateLotType.HOUSE.toString(), icon: Key },
+            ],
+          },
+        }),
+      ),
+    address: z
+      .object({
+        country: z.string().min(1),
+        address: z.string().min(1),
+        fullAddress: z.string(),
+        zipCode: z.string().min(1),
+        city: z.string().min(1),
+        isManual: z.boolean(),
+      })
+      .superRefine(
+        fieldConfig({
+          fieldType: "address",
+          label: "Adresse du logement",
+          customData: {
+            showActionSelectedScopeSearch: false,
+            searchScope: "france",
+          },
+        }),
+      ),
+    rentAmount: z.number().superRefine(
+      fieldConfig({
+        fieldType: "currency",
+        label: "Loyer hors charges",
+        description: "Avant prélèvement à la source",
+      }),
+    ),
+  }),
+);
+```
+
+Ce fragment regroupe les patterns essentiels : liste typée (`enum`), objet imbriqué (`address`), champ monétaire, métadonnées i18n.
+
+---
+
+Pour ajouter un nouveau formulaire :
+
+1. Définir le type `FormType` et les valeurs par défaut.
+2. Décrire le schéma `zod` en s’appuyant sur `fieldConfig`.
+3. Implémenter `onSubmit` (mutations, `onDataChange`) et `onErrorForm` si nécessaire.
+4. Factoriser les listes d’options et helpers dans `packages/common` / `packages/utils` pour éviter la duplication.
+5. Tester via `pnpm --filter @sg/tests test` et valider les flux critiques en Storybook ou e2e si la logique UI est complexe.

@@ -9,7 +9,6 @@ import {
 export interface ClaimsGateway {
   getClaims(request: GetClaimsRequest): Promise<SmartGarantResponse<SmartGarantGrid<Claim>>>;
   getClaim(request: GetClaimRequest): Promise<SmartGarantResponse<Claim>>;
-  createClaim(request: CreateClaimRequest): Promise<SmartGarantResponse<Claim>>;
 }
 
 export type { GetClaimsRequest, GetClaimRequest, CreateClaimRequest };
