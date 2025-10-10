@@ -11,72 +11,82 @@ import { Button } from "@ui/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@ui/components/ui/card";
 
 const claimSchema = new ZodProvider(
-  z
-    .object({
-      rentalApprovalId: z
-        .string()
-        .min(1, "Veuillez sélectionner un locataire")
-        .superRefine(
-          fieldConfig({
-            label: "Locataire",
-            fieldType: "string",
-            inputProps: {
-              placeholder: "ID du locataire (ex: rental-1)",
-            },
-            order: 1,
-          })
-        ),
-      type: z
-        .enum([
-          ClaimType.UNPAID_RENT,
-          ClaimType.PROPERTY_DAMAGE,
-          ClaimType.LEGAL_FEES,
-          ClaimType.EVICTION,
-          ClaimType.OTHER,
-        ])
-        .superRefine(
-          fieldConfig({
-            label: "Type de sinistre",
-            fieldType: "select",
-            inputProps: {
-              options: [
-                { value: ClaimType.UNPAID_RENT, label: "Loyer impayé" },
-                { value: ClaimType.PROPERTY_DAMAGE, label: "Dégradation" },
-                { value: ClaimType.LEGAL_FEES, label: "Frais juridiques" },
-                { value: ClaimType.EVICTION, label: "Expulsion" },
-                { value: ClaimType.OTHER, label: "Autre" },
-              ],
-            },
-            order: 2,
-          })
-        ),
-      amount: z
-        .number()
-        .min(1, "Le montant doit être supérieur à 0")
-        .superRefine(
-          fieldConfig({
-            label: "Montant du sinistre (€)",
-            fieldType: "currency",
-            order: 3,
-          })
-        ),
-      description: z
-        .string()
-        .min(10, "La description doit contenir au moins 10 caractères")
-        .superRefine(
-          fieldConfig({
-            label: "Description du sinistre",
-            fieldType: "string",
-            inputProps: {
-              placeholder: "Décrivez le sinistre en détail...",
-            },
-            order: 4,
-          })
-        ),
-    })
-    .superRefine(fieldConfig({ label: "Nouveau sinistre" }))
+  z.object({
+    rentalApprovalId: z
+      .string()
+      .min(1, "Veuillez sélectionner un locataire")
+      .superRefine(
+        fieldConfig({
+          label: "Locataire",
+          fieldType: "string",
+          inputProps: {
+            placeholder: "ID du locataire (ex: rental-1)",
+          },
+          order: 1,
+        }),
+      ),
+    type: z
+      .enum([
+        ClaimType.UNPAID_RENT,
+        ClaimType.PROPERTY_DAMAGE,
+        ClaimType.LEGAL_FEES,
+        ClaimType.EVICTION,
+        ClaimType.OTHER,
+      ])
+      .superRefine(
+        fieldConfig({
+          label: "Type de sinistre",
+          fieldType: "select",
+          inputProps: {
+            options: [
+              { value: ClaimType.UNPAID_RENT, label: "Loyer impayé" },
+              { value: ClaimType.PROPERTY_DAMAGE, label: "Dégradation" },
+              { value: ClaimType.LEGAL_FEES, label: "Frais juridiques" },
+              { value: ClaimType.EVICTION, label: "Expulsion" },
+              { value: ClaimType.OTHER, label: "Autre" },
+            ],
+          },
+          order: 2,
+        }),
+      ),
+    amount: z
+      .number()
+      .min(1, "Le montant doit être supérieur à 0")
+      .superRefine(
+        fieldConfig({
+          label: "Montant du sinistre (€)",
+          fieldType: "currency",
+          order: 3,
+        }),
+      ),
+    description: z
+      .string()
+      .min(10, "La description doit contenir au moins 10 caractères")
+      .superRefine(
+        fieldConfig({
+          label: "Description du sinistre",
+          fieldType: "string",
+          inputProps: {
+            placeholder: "Décrivez le sinistre en détail...",
+          },
+          order: 4,
+        }),
+      ),
+  }),
 );
-
+// lastName: z
+//         .string({
+//           message: `${t('RequiredFields18362', 'Champs requis')}`,
+//         })
+//         .superRefine(
+//           fieldConfig({
+//             label: `${t(isPro ? 'LastNamePro' : 'LastName')}`,
+//             customData: { group: 'group1' },
+//             inputProps: {
+//               required: false,
+//             },
+//           }),
+//         ),
 export const CreateClaimForm: React.FC = () => {
   const navigate = useNavigate();
   const subscriptionId = useSelector(selectSubscriptionId);
@@ -109,11 +119,7 @@ export const CreateClaimForm: React.FC = () => {
         <CardTitle>Déclarer un sinistre</CardTitle>
       </CardHeader>
       <CardContent>
-        <AutoForm
-          id="create-claim-form"
-          schema={claimSchema}
-          onSubmit={handleSubmit}
-        >
+        <AutoForm id="create-claim-form" schema={claimSchema} onSubmit={handleSubmit}>
           <div className="flex items-center justify-end space-x-2 mt-6">
             <Button
               type="button"

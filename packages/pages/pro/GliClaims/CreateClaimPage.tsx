@@ -10,27 +10,24 @@ export default function CreateClaimPage() {
   const navigate = useNavigate();
 
   return (
-    <Sidebar>
-      <SiteHeader />
-      <div className="p-6 space-y-6">
-        <div className="flex items-center space-x-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate({ to: "/pro/sinistres" })}
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </Button>
-          <div>
-            <h1 className="text-3xl font-bold">Nouveau sinistre</h1>
-            <p className="text-muted-foreground">
-              Déclarez un nouveau sinistre pour votre garantie GLI
-            </p>
-          </div>
+    <div className="p-6 space-y-6">
+      <div className="flex items-center space-x-4">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => navigate({ to: "/pro/sinistres/nouveau" })}
+        >
+          <ArrowLeft className="h-4 w-4" />
+        </Button>
+        <div>
+          <h1 className="text-3xl font-bold">Nouveau sinistre</h1>
+          <p className="text-muted-foreground">
+            Déclarez un nouveau sinistre pour votre garantie GLI
+          </p>
         </div>
-
-        <CreateClaimForm />
       </div>
-    </Sidebar>
+
+      <CreateClaimForm />
+    </div>
   );
 }

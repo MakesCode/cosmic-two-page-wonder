@@ -35,7 +35,7 @@ interface ClaimsTableProps {
 }
 
 const getStatusVariant = (
-  status: ClaimStatus
+  status: ClaimStatus,
 ): "default" | "secondary" | "destructive" | "outline" => {
   switch (status) {
     case ClaimStatus.APPROVED:
@@ -57,9 +57,7 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({ claims }) => {
     {
       accessorKey: "claimNumber",
       header: "N° Sinistre",
-      cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("claimNumber")}</div>
-      ),
+      cell: ({ row }) => <div className="font-medium">{row.getValue("claimNumber")}</div>,
     },
     {
       accessorKey: "tenantName",
@@ -68,9 +66,7 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({ claims }) => {
     {
       accessorKey: "propertyAddress",
       header: "Bien",
-      cell: ({ row }) => (
-        <div className="max-w-xs truncate">{row.getValue("propertyAddress")}</div>
-      ),
+      cell: ({ row }) => <div className="max-w-xs truncate">{row.getValue("propertyAddress")}</div>,
     },
     {
       accessorKey: "type",
@@ -82,11 +78,7 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({ claims }) => {
       header: "Statut",
       cell: ({ row }) => {
         const status = row.getValue("status") as ClaimStatus;
-        return (
-          <Badge variant={getStatusVariant(status)}>
-            {ClaimStatusLabels[status]}
-          </Badge>
-        );
+        return <Badge variant={getStatusVariant(status)}>{ClaimStatusLabels[status]}</Badge>;
       },
     },
     {
@@ -157,10 +149,7 @@ export const ClaimsTable: React.FC<ClaimsTableProps> = ({ claims }) => {
                   <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                      : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>

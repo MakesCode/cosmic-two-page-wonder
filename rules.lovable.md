@@ -57,6 +57,7 @@ Nous travaillons sur un projet en monorepo. L’objectif est que les apps Admin 
 ### Données mock & presenters (`packages/mock`)
 
 - Le dossier mock contient les fausses API et données utilisées par l’app Lovable. Elles sont injectées par inversion de dépendances via Redux. Respectez la convention suivante : `nomApp/data` et `nomApp/gateway`. ici pour chaque ajout tu devras bien mettre l'exportation dans les index.ts qui ce trouve dans les dossier
+- Conservez les identifiants et clés métiers fournis par les mocks ou les modèles du domaine. N’introduisez pas d’IDs aléatoires ou temporaires : définissez-les explicitement et réutilisez-les d’un bout à l’autre de la feature.
 
 ### Configuration (`packages/config`)
 
@@ -82,6 +83,7 @@ Nous travaillons sur un projet en monorepo. L’objectif est que les apps Admin 
 
 - Tous les fichiers sont en TypeScript (`.ts`/`.tsx`).
 - Les hooks personnalisés commencent par `use` et vivent dans `packages/hooks` ou dans la feature qui les consomme.
+- Tous les noms côté code (dossiers, fichiers, composants, variables, actions, exports) sont rédigés en anglais. Les textes visibles par l’utilisateur final peuvent rester localisés.
 
 ## Règles importantes
 

@@ -4,7 +4,7 @@ export const mockClaims: Claim[] = [
   {
     id: "claim-1",
     claimNumber: "SIN-2024-001",
-    subscriptionId: "sub-1",
+    subscriptionId: "sub-001",
     rentalApprovalId: "rental-1",
     tenantName: "Jean Dupont",
     propertyAddress: "15 rue de la Paix, 75002 Paris",
@@ -19,7 +19,7 @@ export const mockClaims: Claim[] = [
   {
     id: "claim-2",
     claimNumber: "SIN-2024-002",
-    subscriptionId: "sub-1",
+    subscriptionId: "sub-001",
     rentalApprovalId: "rental-2",
     tenantName: "Marie Martin",
     propertyAddress: "8 avenue Victor Hugo, 69003 Lyon",
@@ -35,7 +35,7 @@ export const mockClaims: Claim[] = [
   {
     id: "claim-3",
     claimNumber: "SIN-2024-003",
-    subscriptionId: "sub-1",
+    subscriptionId: "sub-001",
     rentalApprovalId: "rental-3",
     tenantName: "Pierre Dubois",
     propertyAddress: "22 rue du Commerce, 33000 Bordeaux",
@@ -50,7 +50,7 @@ export const mockClaims: Claim[] = [
   {
     id: "claim-4",
     claimNumber: "SIN-2024-004",
-    subscriptionId: "sub-1",
+    subscriptionId: "sub-001",
     rentalApprovalId: "rental-4",
     tenantName: "Sophie Bernard",
     propertyAddress: "5 place de la République, 31000 Toulouse",
@@ -67,7 +67,7 @@ export const mockClaims: Claim[] = [
   {
     id: "claim-5",
     claimNumber: "SIN-2024-005",
-    subscriptionId: "sub-1",
+    subscriptionId: "sub-001",
     rentalApprovalId: "rental-5",
     tenantName: "Thomas Petit",
     propertyAddress: "12 boulevard Saint-Germain, 75005 Paris",
@@ -75,11 +75,7 @@ export const mockClaims: Claim[] = [
     status: ClaimStatus.CLOSED,
     amount: 4500,
     description: "Procédure d'expulsion complète avec huissier",
-    documents: [
-      "jugement-expulsion.pdf",
-      "pv-huissier.pdf",
-      "frais-procedure.pdf",
-    ],
+    documents: ["jugement-expulsion.pdf", "pv-huissier.pdf", "frais-procedure.pdf"],
     createdAt: "2024-10-01T07:00:00Z",
     updatedAt: "2024-11-30T18:00:00Z",
     resolvedAt: "2024-11-30T18:00:00Z",
