@@ -85,6 +85,62 @@ rentAmount: z.number({ message: "Champ requis" }).superRefine(
 - **`fieldType: 'address'`** : gère la suggestion d’adresse et le mode saisie libre.
 - **`fieldType: 'phone'`** : encapsule code pays + numéro et s’intègre dans les formulaires de contacts.
 
+### Catalogue des composants intégrés
+
+Les rendus par défaut sont centralisés dans `packages/ui/src/components/sgComponent/autoform/components` et exposés via `ShadcnAutoFormFieldComponents`. Ils couvrent la majorité des besoins métiers :
+
+- `string` → `StringField` : input texte shadcn.
+- `number` → `NumberField` : saisie numérique classique.
+- `boolean` → `BooleanField` : case à cocher.
+- `date` → `DateField` : `<input type="date" />` natif (HTML5).
+- `datepicker` → `DatePicker` : calendrier shadcn + popover (`react-day-picker`).
+- `select` → `SelectField` : liste déroulante shadcn.
+- `switch` → `Switch` : interrupteur.
+- `currency` → `CurrencyInput` : formatage locale (fr-FR) + affichage `€`.
+- `phone` → `PhoneComponent` : indicatif + numéro.
+- `nestedbutton` → `NestedButtonsComponent` : choix hiérarchiques.
+- `situation` → `SituationForm` : cartes illustrées (icône + label).
+- `address` → `AdressComponent` : suggestion + saisie libre.
+
+> Réutiliser ces `fieldType` avant de surcharger `formComponents`. Ils gèrent déjà les conventions Lovable (styles, accessibilité, formats).
+
+### Utiliser le `DatePicker`
+
+Privilégier `fieldType: 'datepicker'` pour les champs date afin de bénéficier de l’UI calendrier et de l’ISO string (`2024-01-31T00:00:00.000Z`) cohérente côté validation/mutation.
+
+```tsx
+const schema = new ZodProvider(
+  z.object({
+    period: z
+      .string()
+      .min(1, "Sélectionnez une date")
+      .superRefine(
+        fieldConfig({
+          fieldType: "datepicker",
+          label: "Période du bordereau",
+          description: "Choisissez la date via le calendrier",
+          inputProps: { placeholder: "Sélectionnez une date" },
+        }),
+      ),
+  }),
+);
+```
+
+```tsx
+import { format } from "date-fns";
+
+<AutoForm
+  id="create-bordereau-form"
+  schema={schema}
+  onSubmit={(values) => {
+    const periodMonth = format(new Date(values.period), "yyyy-MM");
+    runMutation({ ...values, period: periodMonth });
+  }}
+/>;
+```
+
+Astuce : adapter l’affichage (placeholder, format) via `fieldConfig.inputProps` et `fieldConfig.customData`. En cas de besoin spécifique (range, multi-date), passer un composant custom dans `formComponents`.
+
 ## Cycle de vie des données
 
 1. **Initialisation**

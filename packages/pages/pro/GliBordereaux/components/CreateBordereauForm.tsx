@@ -10,12 +10,13 @@ import { BordereauPeriodType } from "@features/pro/gli/Bordereaux/model/Borderea
 const createBordereauSchema = z.object({
   period: z
     .string()
-    .min(1, "La période est requise")
+    .min(1, "Sélectionnez une date")
     .superRefine(
       fieldConfig({
-        label: "Période",
-        description: "Format: YYYY-MM (ex: 2024-01)",
-        inputProps: { placeholder: "2024-01" },
+        fieldType: "datepicker",
+        label: "Période du bordereau",
+        description: "Choisissez la date via le calendrier",
+        inputProps: { placeholder: "Sélectionnez une date" },
       }),
     ),
   periodType: z.coerce.number().superRefine(
