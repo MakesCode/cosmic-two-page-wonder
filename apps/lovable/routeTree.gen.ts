@@ -15,8 +15,12 @@ import { Route as HousingIndexRouteImport } from './routes/housing/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as ProGliRouteImport } from './routes/pro/gli'
 import { Route as ProsinistresSinistresRouteRouteImport } from './routes/pro/(sinistres)/sinistres.route'
+import { Route as ProbordereauxBordereauxRouteRouteImport } from './routes/pro/(bordereaux)/bordereaux.route'
 import { Route as ProsinistresSinistresIndexRouteImport } from './routes/pro/(sinistres)/sinistres.index'
+import { Route as ProbordereauxBordereauxIndexRouteImport } from './routes/pro/(bordereaux)/bordereaux.index'
 import { Route as ProsinistresSinistresClaimIdRouteImport } from './routes/pro/(sinistres)/sinistres.$claimId'
+import { Route as ProbordereauxBordereauxNouveauRouteImport } from './routes/pro/(bordereaux)/bordereaux.nouveau'
+import { Route as ProbordereauxBordereauxBordereauIdRouteImport } from './routes/pro/(bordereaux)/bordereaux.$bordereauId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -49,17 +53,41 @@ const ProsinistresSinistresRouteRoute =
     path: '/pro/sinistres',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ProbordereauxBordereauxRouteRoute =
+  ProbordereauxBordereauxRouteRouteImport.update({
+    id: '/pro/(bordereaux)/bordereaux',
+    path: '/pro/bordereaux',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProsinistresSinistresIndexRoute =
   ProsinistresSinistresIndexRouteImport.update({
     id: '/',
     path: '/',
     getParentRoute: () => ProsinistresSinistresRouteRoute,
   } as any)
+const ProbordereauxBordereauxIndexRoute =
+  ProbordereauxBordereauxIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProbordereauxBordereauxRouteRoute,
+  } as any)
 const ProsinistresSinistresClaimIdRoute =
   ProsinistresSinistresClaimIdRouteImport.update({
     id: '/$claimId',
     path: '/$claimId',
     getParentRoute: () => ProsinistresSinistresRouteRoute,
+  } as any)
+const ProbordereauxBordereauxNouveauRoute =
+  ProbordereauxBordereauxNouveauRouteImport.update({
+    id: '/nouveau',
+    path: '/nouveau',
+    getParentRoute: () => ProbordereauxBordereauxRouteRoute,
+  } as any)
+const ProbordereauxBordereauxBordereauIdRoute =
+  ProbordereauxBordereauxBordereauIdRouteImport.update({
+    id: '/$bordereauId',
+    path: '/$bordereauId',
+    getParentRoute: () => ProbordereauxBordereauxRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -68,8 +96,12 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminIndexRoute
   '/housing': typeof HousingIndexRoute
   '/pro': typeof ProIndexRoute
+  '/pro/bordereaux': typeof ProbordereauxBordereauxRouteRouteWithChildren
   '/pro/sinistres': typeof ProsinistresSinistresRouteRouteWithChildren
+  '/pro/bordereaux/$bordereauId': typeof ProbordereauxBordereauxBordereauIdRoute
+  '/pro/bordereaux/nouveau': typeof ProbordereauxBordereauxNouveauRoute
   '/pro/sinistres/$claimId': typeof ProsinistresSinistresClaimIdRoute
+  '/pro/bordereaux/': typeof ProbordereauxBordereauxIndexRoute
   '/pro/sinistres/': typeof ProsinistresSinistresIndexRoute
 }
 export interface FileRoutesByTo {
@@ -78,7 +110,10 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/housing': typeof HousingIndexRoute
   '/pro': typeof ProIndexRoute
+  '/pro/bordereaux/$bordereauId': typeof ProbordereauxBordereauxBordereauIdRoute
+  '/pro/bordereaux/nouveau': typeof ProbordereauxBordereauxNouveauRoute
   '/pro/sinistres/$claimId': typeof ProsinistresSinistresClaimIdRoute
+  '/pro/bordereaux': typeof ProbordereauxBordereauxIndexRoute
   '/pro/sinistres': typeof ProsinistresSinistresIndexRoute
 }
 export interface FileRoutesById {
@@ -88,8 +123,12 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/housing/': typeof HousingIndexRoute
   '/pro/': typeof ProIndexRoute
+  '/pro/(bordereaux)/bordereaux': typeof ProbordereauxBordereauxRouteRouteWithChildren
   '/pro/(sinistres)/sinistres': typeof ProsinistresSinistresRouteRouteWithChildren
+  '/pro/(bordereaux)/bordereaux/$bordereauId': typeof ProbordereauxBordereauxBordereauIdRoute
+  '/pro/(bordereaux)/bordereaux/nouveau': typeof ProbordereauxBordereauxNouveauRoute
   '/pro/(sinistres)/sinistres/$claimId': typeof ProsinistresSinistresClaimIdRoute
+  '/pro/(bordereaux)/bordereaux/': typeof ProbordereauxBordereauxIndexRoute
   '/pro/(sinistres)/sinistres/': typeof ProsinistresSinistresIndexRoute
 }
 export interface FileRouteTypes {
@@ -100,8 +139,12 @@ export interface FileRouteTypes {
     | '/admin'
     | '/housing'
     | '/pro'
+    | '/pro/bordereaux'
     | '/pro/sinistres'
+    | '/pro/bordereaux/$bordereauId'
+    | '/pro/bordereaux/nouveau'
     | '/pro/sinistres/$claimId'
+    | '/pro/bordereaux/'
     | '/pro/sinistres/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,7 +153,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/housing'
     | '/pro'
+    | '/pro/bordereaux/$bordereauId'
+    | '/pro/bordereaux/nouveau'
     | '/pro/sinistres/$claimId'
+    | '/pro/bordereaux'
     | '/pro/sinistres'
   id:
     | '__root__'
@@ -119,8 +165,12 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/housing/'
     | '/pro/'
+    | '/pro/(bordereaux)/bordereaux'
     | '/pro/(sinistres)/sinistres'
+    | '/pro/(bordereaux)/bordereaux/$bordereauId'
+    | '/pro/(bordereaux)/bordereaux/nouveau'
     | '/pro/(sinistres)/sinistres/$claimId'
+    | '/pro/(bordereaux)/bordereaux/'
     | '/pro/(sinistres)/sinistres/'
   fileRoutesById: FileRoutesById
 }
@@ -130,6 +180,7 @@ export interface RootRouteChildren {
   AdminIndexRoute: typeof AdminIndexRoute
   HousingIndexRoute: typeof HousingIndexRoute
   ProIndexRoute: typeof ProIndexRoute
+  ProbordereauxBordereauxRouteRoute: typeof ProbordereauxBordereauxRouteRouteWithChildren
   ProsinistresSinistresRouteRoute: typeof ProsinistresSinistresRouteRouteWithChildren
 }
 
@@ -177,12 +228,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProsinistresSinistresRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pro/(bordereaux)/bordereaux': {
+      id: '/pro/(bordereaux)/bordereaux'
+      path: '/pro/bordereaux'
+      fullPath: '/pro/bordereaux'
+      preLoaderRoute: typeof ProbordereauxBordereauxRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pro/(sinistres)/sinistres/': {
       id: '/pro/(sinistres)/sinistres/'
       path: '/'
       fullPath: '/pro/sinistres/'
       preLoaderRoute: typeof ProsinistresSinistresIndexRouteImport
       parentRoute: typeof ProsinistresSinistresRouteRoute
+    }
+    '/pro/(bordereaux)/bordereaux/': {
+      id: '/pro/(bordereaux)/bordereaux/'
+      path: '/'
+      fullPath: '/pro/bordereaux/'
+      preLoaderRoute: typeof ProbordereauxBordereauxIndexRouteImport
+      parentRoute: typeof ProbordereauxBordereauxRouteRoute
     }
     '/pro/(sinistres)/sinistres/$claimId': {
       id: '/pro/(sinistres)/sinistres/$claimId'
@@ -191,8 +256,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProsinistresSinistresClaimIdRouteImport
       parentRoute: typeof ProsinistresSinistresRouteRoute
     }
+    '/pro/(bordereaux)/bordereaux/nouveau': {
+      id: '/pro/(bordereaux)/bordereaux/nouveau'
+      path: '/nouveau'
+      fullPath: '/pro/bordereaux/nouveau'
+      preLoaderRoute: typeof ProbordereauxBordereauxNouveauRouteImport
+      parentRoute: typeof ProbordereauxBordereauxRouteRoute
+    }
+    '/pro/(bordereaux)/bordereaux/$bordereauId': {
+      id: '/pro/(bordereaux)/bordereaux/$bordereauId'
+      path: '/$bordereauId'
+      fullPath: '/pro/bordereaux/$bordereauId'
+      preLoaderRoute: typeof ProbordereauxBordereauxBordereauIdRouteImport
+      parentRoute: typeof ProbordereauxBordereauxRouteRoute
+    }
   }
 }
+
+interface ProbordereauxBordereauxRouteRouteChildren {
+  ProbordereauxBordereauxBordereauIdRoute: typeof ProbordereauxBordereauxBordereauIdRoute
+  ProbordereauxBordereauxNouveauRoute: typeof ProbordereauxBordereauxNouveauRoute
+  ProbordereauxBordereauxIndexRoute: typeof ProbordereauxBordereauxIndexRoute
+}
+
+const ProbordereauxBordereauxRouteRouteChildren: ProbordereauxBordereauxRouteRouteChildren =
+  {
+    ProbordereauxBordereauxBordereauIdRoute:
+      ProbordereauxBordereauxBordereauIdRoute,
+    ProbordereauxBordereauxNouveauRoute: ProbordereauxBordereauxNouveauRoute,
+    ProbordereauxBordereauxIndexRoute: ProbordereauxBordereauxIndexRoute,
+  }
+
+const ProbordereauxBordereauxRouteRouteWithChildren =
+  ProbordereauxBordereauxRouteRoute._addFileChildren(
+    ProbordereauxBordereauxRouteRouteChildren,
+  )
 
 interface ProsinistresSinistresRouteRouteChildren {
   ProsinistresSinistresClaimIdRoute: typeof ProsinistresSinistresClaimIdRoute
@@ -216,6 +314,8 @@ const rootRouteChildren: RootRouteChildren = {
   AdminIndexRoute: AdminIndexRoute,
   HousingIndexRoute: HousingIndexRoute,
   ProIndexRoute: ProIndexRoute,
+  ProbordereauxBordereauxRouteRoute:
+    ProbordereauxBordereauxRouteRouteWithChildren,
   ProsinistresSinistresRouteRoute: ProsinistresSinistresRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport

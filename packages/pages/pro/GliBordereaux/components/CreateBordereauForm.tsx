@@ -8,13 +8,16 @@ import { selectSubscriptionId } from "@features/common/globalIds/globalIds.selec
 import { BordereauPeriodType } from "@features/pro/gli/Bordereaux/model/Bordereau";
 
 const createBordereauSchema = z.object({
-  period: z.string().min(1, "La période est requise").superRefine(
-    fieldConfig({
-      label: "Période",
-      description: "Format: YYYY-MM (ex: 2024-01)",
-      inputProps: { placeholder: "2024-01" },
-    })
-  ),
+  period: z
+    .string()
+    .min(1, "La période est requise")
+    .superRefine(
+      fieldConfig({
+        label: "Période",
+        description: "Format: YYYY-MM (ex: 2024-01)",
+        inputProps: { placeholder: "2024-01" },
+      }),
+    ),
   periodType: z.coerce.number().superRefine(
     fieldConfig({
       label: "Type de période",
@@ -26,43 +29,58 @@ const createBordereauSchema = z.object({
           { label: "Annuel", value: BordereauPeriodType.ANNUAL.toString() },
         ],
       },
-    })
+    }),
   ),
-  totalAmount: z.coerce.number().min(0, "Le montant doit être positif").superRefine(
-    fieldConfig({
-      label: "Montant total (€)",
-      fieldType: "currency",
-      description: "Montant en euros",
-    })
-  ),
-  commissionsAmount: z.coerce.number().min(0, "Le montant doit être positif").superRefine(
-    fieldConfig({
-      label: "Montant des commissions (€)",
-      fieldType: "currency",
-      description: "Montant en euros",
-    })
-  ),
-  claimsAmount: z.coerce.number().min(0, "Le montant doit être positif").superRefine(
-    fieldConfig({
-      label: "Montant des sinistres (€)",
-      fieldType: "currency",
-      description: "Montant en euros",
-    })
-  ),
-  rentalCount: z.coerce.number().min(1, "Le nombre doit être supérieur à 0").superRefine(
-    fieldConfig({
-      label: "Nombre de locations",
-      fieldType: "number",
-      inputProps: { min: 1 },
-    })
-  ),
-  comment: z.string().optional().superRefine(
-    fieldConfig({
-      label: "Commentaire",
-      description: "Optionnel",
-      inputProps: { placeholder: "Ajouter un commentaire..." },
-    })
-  ),
+  totalAmount: z.coerce
+    .number()
+    .min(0, "Le montant doit être positif")
+    .superRefine(
+      fieldConfig({
+        label: "Montant total (€)",
+        fieldType: "currency",
+        description: "Montant en euros",
+      }),
+    ),
+  commissionsAmount: z.coerce
+    .number()
+    .min(0, "Le montant doit être positif")
+    .superRefine(
+      fieldConfig({
+        label: "Montant des commissions (€)",
+        fieldType: "currency",
+        description: "Montant en euros",
+      }),
+    ),
+  claimsAmount: z.coerce
+    .number()
+    .min(0, "Le montant doit être positif")
+    .superRefine(
+      fieldConfig({
+        label: "Montant des sinistres (€)",
+        fieldType: "currency",
+        description: "Montant en euros",
+      }),
+    ),
+  rentalCount: z.coerce
+    .number()
+    .min(1, "Le nombre doit être supérieur à 0")
+    .superRefine(
+      fieldConfig({
+        label: "Nombre de locations",
+        fieldType: "number",
+        inputProps: { min: 1 },
+      }),
+    ),
+  comment: z
+    .string()
+    .optional()
+    .superRefine(
+      fieldConfig({
+        label: "Commentaire",
+        description: "Optionnel",
+        inputProps: { placeholder: "Ajouter un commentaire..." },
+      }),
+    ),
 });
 
 type CreateBordereauFormData = z.infer<typeof createBordereauSchema>;
@@ -81,7 +99,7 @@ export function CreateBordereauForm() {
       data: {
         subscriptionId,
         period: values.period,
-        periodType: values.periodType,
+        periodType: Number(values.periodType),
         totalAmount: Math.round(values.totalAmount * 100),
         commissionsAmount: Math.round(values.commissionsAmount * 100),
         claimsAmount: Math.round(values.claimsAmount * 100),
@@ -97,10 +115,6 @@ export function CreateBordereauForm() {
       schema={new ZodProvider(createBordereauSchema)}
       onSubmit={handleSubmit}
       withSubmit
-      submitButtonProps={{
-        children: isCreating ? "Création en cours..." : "Créer le bordereau",
-        disabled: isCreating,
-      }}
     />
   );
 }

@@ -57,7 +57,7 @@ Nous travaillons sur un projet en monorepo. L’objectif est que les apps Admin 
 ### Données mock & presenters (`packages/mock`)
 
 - Le dossier mock contient les fausses API et données utilisées par l’app Lovable. Elles sont injectées par inversion de dépendances via Redux. Respectez la convention suivante : `nomApp/data` et `nomApp/gateway`. ici pour chaque ajout tu devras bien mettre l'exportation dans les index.ts qui ce trouve dans les dossier
-- Conservez les identifiants et clés métiers fournis par les mocks ou les modèles du domaine. N’introduisez pas d’IDs aléatoires ou temporaires : définissez-les explicitement et réutilisez-les d’un bout à l’autre de la feature.
+- Conservez les identifiants et clés métiers fournis par les mocks ou les modèles du domaine. N’introduisez pas d’IDs aléatoires ou temporaires : définissez-les explicitement, respectez leur casse et leur format initial, et réutilisez-les d’un bout à l’autre de la feature.
 
 ### Configuration (`packages/config`)
 
@@ -106,6 +106,7 @@ Nous travaillons sur un projet en monorepo. L’objectif est que les apps Admin 
 - **TOUJOURS** Utilisez toujours AutoForm pour les formulaires
 - **TOUJOURS** Utilisez toujours multi-step pour tout formulaire multi-step.
 - **TOUJOURS** Utilisez tanstack-table pour les tabeau.
+- **TOUJOURS** Récupérez les paramètres de route via `useParamsGenric` (`packages/lib/tanstack-start/useParamsGenric.tsx`) plutôt que `useParams` de TanStack Router.
 - **TOUJOURS** Chaque ajout de page tu doit le plug à l'app lovable. **NE JAMAIS** toucher au autres apps autre que lovable.
 
 ## Workflow nouvelle feature

@@ -2,12 +2,16 @@ import { useBordereau } from "@pages/pro/GliBordereaux/hooks/useBordereau";
 import { BordereauDetail } from "@pages/pro/GliBordereaux/components/BordereauDetail";
 import { Button } from "@ui/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { useNavigate, useParams } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
+import { useParamsGenric } from "@lib/tanstack-start/useParamsGenric";
 
 export default function BordereauDetailPage() {
   const navigate = useNavigate();
-  const { bordereauId } = useParams({ from: "/pro/bordereaux/$bordereauId" });
-  const { bordereau, isLoading } = useBordereau(bordereauId);
+  const params = useParamsGenric<{
+    bordereauId: string;
+  }>();
+
+  const { bordereau, isLoading } = useBordereau(params.bordereauId);
 
   if (isLoading) {
     return (
@@ -32,11 +36,7 @@ export default function BordereauDetailPage() {
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
       <div className="flex items-center space-x-4">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => navigate({ to: "/pro/bordereaux" })}
-        >
+        <Button variant="ghost" size="sm" onClick={() => navigate({ to: "/pro/bordereaux" })}>
           <ArrowLeft className="mr-2 h-4 w-4" />
           Retour
         </Button>

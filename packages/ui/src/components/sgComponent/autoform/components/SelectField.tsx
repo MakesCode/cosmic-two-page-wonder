@@ -1,33 +1,43 @@
+import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/components/ui/select';
 import { AutoFormFieldProps } from '@ui/components/sgComponent/autoform/react/types';
-import React from 'react';
+
+type SelectOption = {
+  label: string;
+  value?: string | number;
+  key?: string | number;
+  [extra: string]: unknown;
+};
 
 export const SelectField: React.FC<AutoFormFieldProps> = ({ field, inputProps, error, id, value }) => {
-  const { key, ...props } = inputProps;
-  const options = field?.fieldConfig?.customData?.data as { label: string; key: string }[];
+  const { key: _key, onChange, ...props } = inputProps ?? {};
+  const options = field?.fieldConfig?.customData?.data as SelectOption[] | undefined;
 
-  const [selectedValue, setSelectedValue] = React.useState<string | null>(value || null);
-  const handleButtonClick = (value: string) => {
-    setSelectedValue(String(value));
+  const selectedValue = value === null || value === undefined ? '' : String(value);
+
+  const triggerOnChange = (nextValue: string) => {
     const syntheticEvent = {
       target: {
-        value: String(value),
+        value: nextValue,
         name: field.key,
       },
     } as React.ChangeEvent<HTMLInputElement>;
-    inputProps.onChange(syntheticEvent);
+    onChange?.(syntheticEvent);
   };
 
-  if (options?.length > 0) {
+  if (options?.length) {
     return (
-      <Select onValueChange={handleButtonClick} value={selectedValue ?? ''}>
+      <Select onValueChange={triggerOnChange} value={selectedValue}>
         <SelectTrigger className="w-full">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {options?.map((option) => {
+          {options.map((option) => {
+            const optionValue = option.value ?? option.key ?? option.label;
+            const optionValueAsString = String(optionValue);
+
             return (
-              <SelectItem key={option.key} value={String(option.key)}>
+              <SelectItem key={optionValueAsString} value={optionValueAsString}>
                 {option.label}
               </SelectItem>
             );
@@ -36,17 +46,18 @@ export const SelectField: React.FC<AutoFormFieldProps> = ({ field, inputProps, e
       </Select>
     );
   }
+
   return (
     <Select
       {...props}
-      onValueChange={(value) => {
+      onValueChange={(nextValue) => {
         const syntheticEvent = {
           target: {
-            value,
+            value: nextValue,
             name: field.key,
           },
         } as React.ChangeEvent<HTMLInputElement>;
-        props.onChange(syntheticEvent);
+        onChange?.(syntheticEvent);
       }}
       defaultValue={field.default || value}
     >

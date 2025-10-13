@@ -1,9 +1,13 @@
-import { Bordereau, BordereauStatus, BordereauPeriodType } from "@features/pro/gli/Bordereaux/model/Bordereau";
+import {
+  Bordereau,
+  BordereauStatus,
+  BordereauPeriodType,
+} from "@features/pro/gli/Bordereaux/model/Bordereau";
 
 export const mockBordereaux: Bordereau[] = [
   {
     id: "BOR-2024-001",
-    subscriptionId: "SUB-001",
+    subscriptionId: "sub-001",
     reference: "BOR-2024-001",
     period: "2024-01",
     periodType: BordereauPeriodType.MONTHLY,
@@ -19,7 +23,7 @@ export const mockBordereaux: Bordereau[] = [
   },
   {
     id: "BOR-2024-002",
-    subscriptionId: "SUB-001",
+    subscriptionId: "sub-001",
     reference: "BOR-2024-002",
     period: "2024-02",
     periodType: BordereauPeriodType.MONTHLY,
@@ -34,7 +38,7 @@ export const mockBordereaux: Bordereau[] = [
   },
   {
     id: "BOR-2024-003",
-    subscriptionId: "SUB-001",
+    subscriptionId: "sub-001",
     reference: "BOR-2024-003",
     period: "2024-03",
     periodType: BordereauPeriodType.MONTHLY,
@@ -49,7 +53,7 @@ export const mockBordereaux: Bordereau[] = [
   },
   {
     id: "BOR-2024-004",
-    subscriptionId: "SUB-001",
+    subscriptionId: "sub-001",
     reference: "BOR-2024-004",
     period: "2024-04",
     periodType: BordereauPeriodType.MONTHLY,

@@ -8,7 +8,11 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { useNavigate } from "@tanstack/react-router";
-import { Bordereau, BordereauStatusLabels, BordereauPeriodTypeLabels } from "@features/pro/gli/Bordereaux/model/Bordereau";
+import {
+  Bordereau,
+  BordereauStatusLabels,
+  BordereauPeriodTypeLabels,
+} from "@features/pro/gli/Bordereaux/model/Bordereau";
 import { Button } from "@ui/components/ui/button";
 import { Badge } from "@ui/components/ui/badge";
 import {
@@ -29,11 +33,16 @@ interface BordereauxTableProps {
 
 const getStatusVariant = (status: number): "default" | "secondary" | "destructive" | "outline" => {
   switch (status) {
-    case 0: return "secondary";
-    case 1: return "outline";
-    case 2: return "default";
-    case 3: return "destructive";
-    default: return "default";
+    case 0:
+      return "secondary";
+    case 1:
+      return "outline";
+    case 2:
+      return "default";
+    case 3:
+      return "destructive";
+    default:
+      return "default";
   }
 };
 
@@ -45,9 +54,7 @@ export function BordereauxTable({ bordereaux }: BordereauxTableProps) {
       {
         accessorKey: "reference",
         header: "Référence",
-        cell: ({ row }) => (
-          <div className="font-medium">{row.original.reference}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium">{row.original.reference}</div>,
       },
       {
         accessorKey: "period",
@@ -91,8 +98,7 @@ export function BordereauxTable({ bordereaux }: BordereauxTableProps) {
       {
         accessorKey: "createdAt",
         header: "Date création",
-        cell: ({ row }) =>
-          format(new Date(row.original.createdAt), "dd/MM/yyyy", { locale: fr }),
+        cell: ({ row }) => format(new Date(row.original.createdAt), "dd/MM/yyyy", { locale: fr }),
       },
       {
         id: "actions",
@@ -113,7 +119,7 @@ export function BordereauxTable({ bordereaux }: BordereauxTableProps) {
         ),
       },
     ],
-    [navigate]
+    [navigate],
   );
 
   const table = useReactTable({
@@ -134,10 +140,7 @@ export function BordereauxTable({ bordereaux }: BordereauxTableProps) {
                 <TableHead key={header.id}>
                   {header.isPlaceholder
                     ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                    : flexRender(header.column.columnDef.header, header.getContext())}
                 </TableHead>
               ))}
             </TableRow>
