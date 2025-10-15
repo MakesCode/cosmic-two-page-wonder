@@ -16,11 +16,11 @@ import { NavMain } from "@ui/components/sgComponent/sidebar/NavMain";
 import { NavDocuments } from "@ui/components/sgComponent/sidebar/NavDocument";
 import { NavSecondary } from "@ui/components/sgComponent/sidebar/NavSecondary";
 import logo from "@asset/img/logoMobile.png";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@hooks/useNavigate";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const navigate = useNavigate();
-  
+
   const data = {
     user: {
       name: "shadcn",

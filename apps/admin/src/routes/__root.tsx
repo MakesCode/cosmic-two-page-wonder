@@ -1,10 +1,5 @@
 /// <reference types="vite/client" />
-import {
-  Outlet,
-  createRootRoute,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
+import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { Toaster } from "@ui/components/ui/toaster";
 import { Toaster as Sonner } from "@ui/components/ui/sonner";
@@ -13,7 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import appCssPath from "@admin/styles/app.css?url";
 import milaThemePath from "@admin/styles/mila-theme.css?url";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
-import { DependenciesProvider } from "@lovable/lib/DI/DependenciesProvider";
+import { DependenciesProvider } from "@admin/lib/DependenciesProvider";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +19,10 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Admin" },
     ],
-    links: [{ rel: "stylesheet", href: appCssPath }, { rel: "stylesheet", href: milaThemePath }],
+    links: [
+      { rel: "stylesheet", href: appCssPath },
+      { rel: "stylesheet", href: milaThemePath },
+    ],
   }),
   component: RootComponent,
 });

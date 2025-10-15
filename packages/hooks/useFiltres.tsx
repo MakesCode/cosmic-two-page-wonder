@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
-import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useSearch } from "@tanstack/react-router";
+import { useNavigate } from "@hooks/useNavigate";
 import { useDebounce } from "@hooks/useDebounce";
 
 export enum RentalApprovalStatusFilter {

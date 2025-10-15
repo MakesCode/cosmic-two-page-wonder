@@ -5,7 +5,8 @@ import { useClaim } from "./hooks/useClaim";
 import { ClaimDetail } from "./components/ClaimDetail";
 import { Button } from "@ui/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { useNavigate, useParams } from "@tanstack/react-router";
+import { useParams } from "@tanstack/react-router";
+import { useNavigate } from "@hooks/useNavigate";
 
 export default function ClaimDetailPage() {
   const navigate = useNavigate();

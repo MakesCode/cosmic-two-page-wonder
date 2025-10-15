@@ -2,7 +2,7 @@ import { CreateBordereauForm } from "@pages/pro/GliBordereaux/components/CreateB
 import { Button } from "@ui/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/components/ui/card";
 import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@hooks/useNavigate";
 
 export default function CreateBordereauPage() {
   const navigate = useNavigate();

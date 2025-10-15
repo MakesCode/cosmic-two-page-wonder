@@ -2,7 +2,7 @@ import { useBordereaux } from "@pages/pro/GliBordereaux/hooks/useBordereaux";
 import { BordereauxTable } from "@pages/pro/GliBordereaux/components/BordereauxTable";
 import { Button } from "@ui/components/ui/button";
 import { Plus } from "lucide-react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@hooks/useNavigate";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/components/ui/card";
 
 export default function GliBordereauxPage() {

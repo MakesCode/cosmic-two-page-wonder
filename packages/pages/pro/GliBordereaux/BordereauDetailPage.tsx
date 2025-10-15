@@ -2,7 +2,7 @@ import { useBordereau } from "@pages/pro/GliBordereaux/hooks/useBordereau";
 import { BordereauDetail } from "@pages/pro/GliBordereaux/components/BordereauDetail";
 import { Button } from "@ui/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@hooks/useNavigate";
 import { useParamsGenric } from "@lib/tanstack-start/useParamsGenric";
 
 export default function BordereauDetailPage() {

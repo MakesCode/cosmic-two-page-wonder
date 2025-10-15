@@ -1,7 +1,7 @@
 import { createBordereauMutationOption } from "@features/pro/gli/Bordereaux/createBordereau/createBordereauMutationOption";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@hooks/useNavigate";
 import { useToast } from "@hooks/use-toast";
 
 export const useCreateBordereau = () => {

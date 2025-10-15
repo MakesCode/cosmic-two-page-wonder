@@ -7,7 +7,7 @@ import {
   ColumnDef,
   flexRender,
 } from "@tanstack/react-table";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@hooks/useNavigate";
 import {
   Bordereau,
   BordereauStatusLabels,
@@ -26,7 +26,8 @@ import {
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Eye } from "lucide-react";
-
+import { useDI } from "@dependencies/depencieProvider";
+import { Dependencies } from "@lib/tanstack-start/routerType";
 interface BordereauxTableProps {
   bordereaux: Bordereau[];
 }
@@ -48,6 +49,9 @@ const getStatusVariant = (status: number): "default" | "secondary" | "destructiv
 
 export function BordereauxTable({ bordereaux }: BordereauxTableProps) {
   const navigate = useNavigate();
+  const { routes } = useDI<any>();
+  console.log(routes);
+  console.log("coucou");
 
   const columns = useMemo<ColumnDef<Bordereau>[]>(
     () => [

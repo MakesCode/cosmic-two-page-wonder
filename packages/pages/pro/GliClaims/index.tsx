@@ -5,12 +5,15 @@ import { useClaims } from "./hooks/useClaims";
 import { ClaimsTable } from "./components/ClaimsTable";
 import { Button } from "@ui/components/ui/button";
 import { Plus } from "lucide-react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@hooks/useNavigate";
 import { Card, CardContent, CardHeader, CardTitle } from "@ui/components/ui/card";
+import { useDI } from "@dependencies/depencieProvider";
 
 export default function GliClaimsPage() {
   const navigate = useNavigate();
   const { claims, isLoading } = useClaims();
+  const { routes } = useDI<any>();
+  console.log(routes, "routes");
 
   return (
     <div className="p-6 space-y-6">
@@ -19,7 +22,7 @@ export default function GliClaimsPage() {
           <h1 className="text-3xl font-bold">Gestion des sinistres</h1>
           <p className="text-muted-foreground">Suivez et gérez vos déclarations de sinistres GLI</p>
         </div>
-        <Button onClick={() => navigate({ to: "/pro/sinistres/new" })}>
+        <Button onClick={() => navigate({ to: routes.BORDEREAUX_NEW })}>
           <Plus className="mr-2 h-4 w-4" />
           Déclarer un sinistre
         </Button>

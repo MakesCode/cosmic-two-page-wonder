@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { Toaster } from "@ui/components/ui/toaster";
 import { Toaster as Sonner } from "@ui/components/ui/sonner";
 import { TooltipProvider } from "@ui/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import appCssPath from "@pro/styles/app.css?url";
 import milaThemePath from "@pro/styles/mila-theme.css?url";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
@@ -13,11 +13,7 @@ import { getSetting } from "@lib/tanstack-start/getSetting";
 import { isPublicPath } from "@lib/tanstack-start/publicRoutes";
 import { authGuard } from "@features/common/auth/authGuard";
 import { isProRoleFromToken } from "@features/common/auth/roles";
-import {
-  createDependencies,
-  createStoreWithDependencies,
-  Dependencies,
-} from "@pro/lib/dependencies";
+import { createStoreWithDependencies, Dependencies } from "@pro/lib/dependencies";
 import { Settings } from "@lib/tanstack-start/settings";
 import { Provider } from "react-redux";
 import { DependenciesProvider } from "@pro/lib/DependenciesProvider";
