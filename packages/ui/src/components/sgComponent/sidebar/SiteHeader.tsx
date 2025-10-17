@@ -27,7 +27,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Button variant="secondary" size="sm" className="flex">
-            <span className="hidden md:block">Une question</span>
+            <span className="hidden md:block font-semibold">Une question</span>
             <svg xmlns="http://www.w3.org/2000/svg" width={48} height={48} viewBox="0 0 1024 1024">
               <path
                 fill="currentColor"

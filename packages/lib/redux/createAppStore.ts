@@ -14,3 +14,6 @@ export const createAppStore = (dependencies: Dependencies, preloadedState = unde
       }),
   });
 };
+
+export type AppStore = ReturnType<typeof createAppStore>;
+export type AppDispatch = AppStore["dispatch"];

@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Users, CheckCircle, Home, AlertTriangle, Euro } from "lucide-react";
 import { useStats } from "@pages/pro/Gli/components/stats/useStats";
+import { Card, CardContent } from "@ui/components/ui/card";
 
 export const StatsContainer = () => {
   const { averageRent, guaranteedTenants, openClaims, totalCandidates, validatedFiles } =
     useStats();
-  console.log(averageRent, guaranteedTenants, openClaims, totalCandidates, validatedFiles);
 
   return (
     <>
@@ -34,7 +34,7 @@ function DashboardStats({
   };
 }) {
   return (
-    <div className="p-4 bg-white">
+    <div className="p-4">
       <div className="flex flex-wrap gap-3">
         <StatCard
           icon={<Users size={16} className="text-[#8B5CF6]" />}
@@ -83,16 +83,20 @@ function StatCard({
   color: string;
 }) {
   return (
-    <div className="flex-1 min-w-[150px] bg-white border border-gray-100 rounded-md shadow-sm p-3">
-      <div className="flex items-center space-x-3">
-        <div style={{ backgroundColor: `${color}10` }} className="p-2 rounded-md">
+    <Card className="flex-1 min-w-[150px]">
+      <CardContent className="flex items-center gap-3 p-4 pt-4">
+        <div
+          style={{ backgroundColor: `${color}10` }}
+          className="flex h-10 w-10 items-center justify-center rounded-md"
+        >
           {icon}
         </div>
         <div>
-          <div className="text-xl font-semibold text-gray-800">{value}</div>
-          <div className="text-xs text-gray-500">{title}</div>
+          {/* font-bold  font-['Raleway',Georgia,serif] */}
+          <div className="text-xl font-semibold text-foreground ">{value}</div>
+          <div className="text-xs text-muted-foreground">{title}</div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

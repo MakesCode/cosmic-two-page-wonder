@@ -28,6 +28,7 @@
       "@pages/*": ["packages/pages/*"],
       "@sgComponent/*": ["packages/ui/src/components/sgComponent/*"],
       "@ui/*": ["packages/ui/src/*"],
+      "@themes/*": ["packages/themes/*"],
       "@utils/*": ["packages/utils/*"],
       "@lovable/*": ["apps/lovable/*"],
       "@lovable-lib/*": ["apps/lovable/lib/*"],

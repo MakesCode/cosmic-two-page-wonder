@@ -13,7 +13,6 @@ export default function GliClaimsPage() {
   const navigate = useNavigate();
   const { claims, isLoading } = useClaims();
   const { routes } = useDI<any>();
-  console.log(routes, "routes");
 
   return (
     <div className="p-6 space-y-6">

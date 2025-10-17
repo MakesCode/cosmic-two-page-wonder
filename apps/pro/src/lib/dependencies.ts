@@ -10,6 +10,7 @@ import {
   ApiOrganizationGateway,
   OrganizationGateway,
 } from "@features/pro/organization/api-organization";
+import { buildThemePreloadedState, initializeThemePersistence } from "@themes/store";
 
 export type Dependencies = {
   subscriptionApi: ApiSubscriptionGateway;
@@ -34,5 +35,17 @@ export function createDependencies(queryClient: QueryClient): Dependencies {
 }
 
 export function createStoreWithDependencies(dependencies: Dependencies, preloadedState: any) {
-  return createAppStore(dependencies, preloadedState);
+  const themePreloadedState = buildThemePreloadedState();
+  const combinedPreloadedState =
+    preloadedState || themePreloadedState
+      ? {
+          ...(preloadedState ?? {}),
+          ...(themePreloadedState ?? {}),
+        }
+      : undefined;
+
+  const store = createAppStore(dependencies, combinedPreloadedState);
+  initializeThemePersistence(store);
+
+  return store;
 }

@@ -1,7 +1,13 @@
-'use client';
+"use client";
 
-import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@ui/components/ui/sidebar';
-import { IconNode, LucideIcon, X } from 'lucide-react';
+import {
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@ui/components/ui/sidebar";
+import { IconNode, LucideIcon, X } from "lucide-react";
 
 export function NavMain({
   items,
@@ -20,7 +26,7 @@ export function NavMain({
             <SidebarMenuItem key={item.title} onClick={() => item.url()}>
               <SidebarMenuButton tooltip={item.title}>
                 {item.icon && <item.icon />}
-                <span>{item.title}</span>
+                <span className="font-semibold">{item.title}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

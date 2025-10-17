@@ -5,8 +5,6 @@ import { Toaster } from "@ui/components/ui/toaster";
 import { Toaster as Sonner } from "@ui/components/ui/sonner";
 import { TooltipProvider } from "@ui/components/ui/tooltip";
 import { QueryClient } from "@tanstack/react-query";
-import appCssPath from "@pro/styles/app.css?url";
-import milaThemePath from "@pro/styles/mila-theme.css?url";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
 import { BootstrapQueries } from "@lib/loader/BootstrapQueries";
 import { getSetting } from "@lib/tanstack-start/getSetting";
@@ -18,6 +16,11 @@ import { Settings } from "@lib/tanstack-start/settings";
 import { Provider } from "react-redux";
 import { DependenciesProvider } from "@pro/lib/DependenciesProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import themeCssPath from "@themes/globals.css?url";
+import { ThemeScript } from "@themes/components/theme-script";
+import { ThemeProvider } from "@themes/components/theme-provider";
+import { DynamicFontLoader } from "@themes/components/dynamic-font-loader";
+import { ThemeSwitcher } from "@pro/lib/theme/ThemeSwitcher";
 
 export const Route = createRootRoute<{
   queryClient: QueryClient;
@@ -37,8 +40,7 @@ export const Route = createRootRoute<{
       { title: "Admin" },
     ],
     links: [
-      { rel: "stylesheet", href: appCssPath },
-      { rel: "stylesheet", href: milaThemePath },
+      { rel: "stylesheet", href: themeCssPath },
     ],
   }),
   notFoundComponent: () => (
@@ -107,6 +109,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
     <html>
       <head>
         <HeadContent />
+        <ThemeScript />
       </head>
       <body>{children}</body>
     </html>
@@ -129,11 +132,15 @@ function Providers({ children }: Readonly<{ children: ReactNode }>) {
       <DependenciesProvider>
         <TooltipProvider>
           <Provider store={store}>
-            <Toaster />
-            <Sonner />
-            <ReactQueryDevtools buttonPosition="bottom-right" />
-            <BootstrapQueries />
-            {children}
+            <ThemeProvider>
+              <DynamicFontLoader />
+              <Toaster />
+              <Sonner />
+              <ThemeSwitcher />
+              <ReactQueryDevtools buttonPosition="bottom-right" />
+              <BootstrapQueries />
+              {children}
+            </ThemeProvider>
           </Provider>
         </TooltipProvider>
       </DependenciesProvider>

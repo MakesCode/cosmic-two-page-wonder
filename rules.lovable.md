@@ -131,7 +131,6 @@ import { useStats } from "@pages/pro/Gli/components/stats/useStats";
 export const StatsContainer = () => {
   const { averageRent, guaranteedTenants, openClaims, totalCandidates, validatedFiles } =
     useStats();
-  console.log(averageRent, guaranteedTenants, openClaims, totalCandidates, validatedFiles);
 
   return (
     <>

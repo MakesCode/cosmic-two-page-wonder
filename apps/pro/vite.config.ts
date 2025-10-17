@@ -65,7 +65,6 @@ export default defineConfig({
     alias: {
       ...sharedAliases,
       "@": path.resolve(__dirname, "./src"),
-      "@styles": path.resolve(__dirname, "./src/styles"),
     },
   },
 });

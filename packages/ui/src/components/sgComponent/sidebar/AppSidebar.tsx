@@ -9,7 +9,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@ui/components/ui/sidebar";
-import { BookmarkCheck, Gift, HeartHandshake, House, PersonStanding, AlertTriangle } from "lucide-react";
+import {
+  BookmarkCheck,
+  Gift,
+  HeartHandshake,
+  House,
+  PersonStanding,
+  AlertTriangle,
+} from "lucide-react";
 import * as React from "react";
 import { NavUser } from "@ui/components/sgComponent/sidebar/NavUser";
 import { NavMain } from "@ui/components/sgComponent/sidebar/NavMain";
@@ -39,7 +46,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         icon: () => <PersonStanding className="text-violet-500" />,
       },
       {
-        title: "Mes GLI",
+        title: "Suivi des garanties GLI",
         url: () => navigate({ to: "/" }),
         icon: () => <HeartHandshake className="text-green-500" />,
       },

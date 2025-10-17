@@ -17,8 +17,6 @@ export const globalIdsReducer = createReducer(globalIdsInitialState, (builder) =
     state.organizationId = action.payload.id;
   });
   builder.addCase(subscriptionLoaded, (state, action) => {
-    console.log("subscriptionLoaded in reducer", action, state);
-
     state.subscriptionId = action.payload?.id ?? state.subscriptionId;
   });
 });

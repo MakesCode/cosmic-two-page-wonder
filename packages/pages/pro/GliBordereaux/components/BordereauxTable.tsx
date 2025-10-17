@@ -50,8 +50,6 @@ const getStatusVariant = (status: number): "default" | "secondary" | "destructiv
 export function BordereauxTable({ bordereaux }: BordereauxTableProps) {
   const navigate = useNavigate();
   const { routes } = useDI<any>();
-  console.log(routes);
-  console.log("coucou");
 
   const columns = useMemo<ColumnDef<Bordereau>[]>(
     () => [
