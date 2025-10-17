@@ -18,6 +18,14 @@ const updateThemeClass = (root: HTMLElement, mode: Theme) => {
   }
 };
 
+const updatePresetAttribute = (root: HTMLElement, preset?: string) => {
+  if (preset) {
+    root.setAttribute("data-theme-preset", preset);
+  } else {
+    root.removeAttribute("data-theme-preset");
+  }
+};
+
 const applyCommonStyles = (root: HTMLElement, themeStyles: ThemeStyleProps) => {
   Object.entries(themeStyles)
     .filter(([key]) =>
@@ -55,11 +63,12 @@ export const applyThemeToElement = (
   themeState: ThemeEditorState,
   rootElement: HTMLElement
 ) => {
-  const { currentMode: mode, styles: themeStyles } = themeState;
+  const { currentMode: mode, styles: themeStyles, preset } = themeState;
 
   if (!rootElement) return;
 
   updateThemeClass(rootElement, mode);
+  updatePresetAttribute(rootElement, preset);
   // Apply common styles (like border-radius) based on the 'light' mode definition
   applyCommonStyles(rootElement, themeStyles.light);
   // Apply mode-specific colors

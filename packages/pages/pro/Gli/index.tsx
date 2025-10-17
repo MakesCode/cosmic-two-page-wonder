@@ -18,7 +18,7 @@ export function GliPage() {
                   <div>
                     {/* font-bold  font-['Raleway',Georgia,serif] */}
 
-                    <h1 className="text-2xl font-bold text-foreground">Garanties GLI</h1>
+                    <h1 className="text-2xl font-bold text-foreground ">Garanties GLI</h1>
                     <p className="text-sm text-muted-foreground mt-1">Gérez vos demandes de GLI</p>
                   </div>
                   <div className="flex items-center gap-3"></div>
