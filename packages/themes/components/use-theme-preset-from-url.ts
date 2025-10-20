@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../store/hooks";
 import { applyThemePreset } from "../store/actions";
+import { markUserThemeOverride } from "../utils/user-theme-preference";
 
 const getPresetFromUrl = () => {
   if (typeof window === "undefined") {
@@ -25,6 +26,7 @@ export const useThemePresetFromUrl = () => {
   useEffect(() => {
     const preset = getPresetFromUrl();
     if (preset) {
+      markUserThemeOverride();
       dispatch(applyThemePreset(preset));
       clearPresetFromUrl();
     }
@@ -32,6 +34,7 @@ export const useThemePresetFromUrl = () => {
     const handlePopState = () => {
       const nextPreset = getPresetFromUrl();
       if (nextPreset) {
+        markUserThemeOverride();
         dispatch(applyThemePreset(nextPreset));
         clearPresetFromUrl();
       }

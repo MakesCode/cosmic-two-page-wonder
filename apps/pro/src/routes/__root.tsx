@@ -20,6 +20,7 @@ import themeCssPath from "@themes/globals.css?url";
 import { ThemeScript } from "@themes/components/theme-script";
 import { ThemeProvider } from "@themes/components/theme-provider";
 import { DynamicFontLoader } from "@themes/components/dynamic-font-loader";
+import { ThemeDefaultsInitializer } from "@themes/components/theme-defaults-initializer";
 import { ThemeSwitcher } from "@pro/lib/theme/ThemeSwitcher";
 
 export const Route = createRootRoute<{
@@ -133,6 +134,7 @@ function Providers({ children }: Readonly<{ children: ReactNode }>) {
         <TooltipProvider>
           <Provider store={store}>
             <ThemeProvider>
+              <ThemeDefaultsInitializer appId="pro" />
               <DynamicFontLoader />
               <Toaster />
               <Sonner />

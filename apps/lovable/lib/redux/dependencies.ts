@@ -1,6 +1,7 @@
 import { QueryClient } from "@tanstack/react-query";
 import { createAppStore } from "@lovable/lib/redux/createAppStore";
 import { MockSubscriptionGateway, MockClaimsGateway, MockBordereauxGateway } from "@mock/index";
+import { buildThemePreloadedState, initializeThemePersistence } from "@themes/store";
 
 export type Dependencies = {
   subscriptionApi: MockSubscriptionGateway;
@@ -22,5 +23,17 @@ export function createDependencies(queryClient: QueryClient): Dependencies {
 }
 
 export function createStoreWithDependencies(dependencies: Dependencies, preloadedState) {
-  return createAppStore(dependencies, preloadedState);
+  const themePreloadedState = buildThemePreloadedState();
+  const combinedPreloadedState =
+    preloadedState || themePreloadedState
+      ? {
+          ...(preloadedState ?? {}),
+          ...(themePreloadedState ?? {}),
+        }
+      : undefined;
+
+  const store = createAppStore(dependencies, combinedPreloadedState);
+  initializeThemePersistence(store);
+
+  return store;
 }

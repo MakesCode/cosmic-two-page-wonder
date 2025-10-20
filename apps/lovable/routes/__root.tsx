@@ -6,8 +6,7 @@ import { Toaster } from "@ui/components/ui/toaster";
 import { Toaster as Sonner } from "@ui/components/ui/sonner";
 import { TooltipProvider } from "@ui/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import appCssPath from "@lovable/index.css?url";
-import milaThemePath from "@lovable/mila-theme.css?url";
+import themeCssPath from "@themes/globals.css?url";
 import { DependenciesProvider } from "@lovable/lib/DI/DependenciesProvider";
 import { SidebarProvider } from "@ui/components/ui/sidebar";
 import { DevtoolsProvider } from "@lovable/lib/DevtoolsProvider";
@@ -15,6 +14,12 @@ import { Provider } from "react-redux";
 import { BootstrapQueries } from "@lib/loader/BootstrapQueries";
 import { routeTree } from "@lovable/routeTree.gen";
 import { deriveProductPanels } from "@lovable/routes";
+import { ThemeScript } from "@themes/components/theme-script";
+import { ThemeProvider } from "@themes/components/theme-provider";
+import { DynamicFontLoader } from "@themes/components/dynamic-font-loader";
+import { ThemeDefaultsInitializer } from "@themes/components/theme-defaults-initializer";
+import { ThemeSwitcher } from "@lovable/lib/theme/ThemeSwitcher";
+import { createStoreWithDependencies } from "@lovable/lib/redux/dependencies";
 
 const queryClient = new QueryClient();
 
@@ -26,10 +31,7 @@ export const Route = createRootRoute({
       { title: "cosmic-two-page-wonder" },
       { name: "description", content: "Lovable Generated Project" },
     ],
-    links: [
-      { rel: "stylesheet", href: appCssPath },
-      { rel: "stylesheet", href: milaThemePath },
-    ],
+    links: [{ rel: "stylesheet", href: themeCssPath }],
   }),
   component: RootComponent,
   notFoundComponent: () => (
@@ -58,12 +60,12 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
     <html>
       <head>
         <HeadContent />
+        <ThemeScript />
       </head>
       <body>{children}</body>
     </html>
   );
 }
-import { createStoreWithDependencies } from "@lovable/lib/redux/dependencies";
 
 function Providers({ children }: Readonly<{ children: ReactNode }>) {
   const productPanels = useMemo(() => deriveProductPanels(routeTree), []);
@@ -84,10 +86,15 @@ function Providers({ children }: Readonly<{ children: ReactNode }>) {
           <DevtoolsProvider productPanels={productPanels}>
             <TooltipProvider>
               <Provider store={store}>
-                <BootstrapQueries />
-                <Toaster />
-                <Sonner />
-                {children}
+                <ThemeProvider>
+                  <ThemeDefaultsInitializer appId="lovable" />
+                  <DynamicFontLoader />
+                  <BootstrapQueries />
+                  <Toaster />
+                  <Sonner />
+                  <ThemeSwitcher />
+                  {children}
+                </ThemeProvider>
               </Provider>
             </TooltipProvider>
           </DevtoolsProvider>

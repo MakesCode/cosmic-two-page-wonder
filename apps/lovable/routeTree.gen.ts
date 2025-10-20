@@ -14,6 +14,7 @@ import { Route as ProIndexRouteImport } from './routes/pro/index'
 import { Route as HousingIndexRouteImport } from './routes/housing/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as ProGliRouteImport } from './routes/pro/gli'
+import { Route as AdminTotoRouteImport } from './routes/admin/toto'
 import { Route as ProsinistresSinistresRouteRouteImport } from './routes/pro/(sinistres)/sinistres.route'
 import { Route as ProbordereauxBordereauxRouteRouteImport } from './routes/pro/(bordereaux)/bordereaux.route'
 import { Route as ProsinistresSinistresIndexRouteImport } from './routes/pro/(sinistres)/sinistres.index'
@@ -45,6 +46,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const ProGliRoute = ProGliRouteImport.update({
   id: '/pro/gli',
   path: '/pro/gli',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminTotoRoute = AdminTotoRouteImport.update({
+  id: '/admin/toto',
+  path: '/admin/toto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProsinistresSinistresRouteRoute =
@@ -92,6 +98,7 @@ const ProbordereauxBordereauxBordereauIdRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/toto': typeof AdminTotoRoute
   '/pro/gli': typeof ProGliRoute
   '/admin': typeof AdminIndexRoute
   '/housing': typeof HousingIndexRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/toto': typeof AdminTotoRoute
   '/pro/gli': typeof ProGliRoute
   '/admin': typeof AdminIndexRoute
   '/housing': typeof HousingIndexRoute
@@ -119,6 +127,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/toto': typeof AdminTotoRoute
   '/pro/gli': typeof ProGliRoute
   '/admin/': typeof AdminIndexRoute
   '/housing/': typeof HousingIndexRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin/toto'
     | '/pro/gli'
     | '/admin'
     | '/housing'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin/toto'
     | '/pro/gli'
     | '/admin'
     | '/housing'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin/toto'
     | '/pro/gli'
     | '/admin/'
     | '/housing/'
@@ -176,6 +188,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminTotoRoute: typeof AdminTotoRoute
   ProGliRoute: typeof ProGliRoute
   AdminIndexRoute: typeof AdminIndexRoute
   HousingIndexRoute: typeof HousingIndexRoute
@@ -219,6 +232,13 @@ declare module '@tanstack/react-router' {
       path: '/pro/gli'
       fullPath: '/pro/gli'
       preLoaderRoute: typeof ProGliRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/toto': {
+      id: '/admin/toto'
+      path: '/admin/toto'
+      fullPath: '/admin/toto'
+      preLoaderRoute: typeof AdminTotoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pro/(sinistres)/sinistres': {
@@ -310,6 +330,7 @@ const ProsinistresSinistresRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminTotoRoute: AdminTotoRoute,
   ProGliRoute: ProGliRoute,
   AdminIndexRoute: AdminIndexRoute,
   HousingIndexRoute: HousingIndexRoute,

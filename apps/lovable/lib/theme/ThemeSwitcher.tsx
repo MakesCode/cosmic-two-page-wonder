@@ -21,7 +21,7 @@ export function ThemeSwitcher() {
   const isMounted = useMounted();
   const presetMap = useAppSelector((state) => state.themePresets.presets);
   const activePreset = useAppSelector((state) => state.themeEditor.themeState.preset);
-  const defaultPreset = useRouteDefaultPreset("pro");
+  const defaultPreset = useRouteDefaultPreset("lovable");
 
   const presetOptions = useMemo(() => {
     return Object.entries(presetMap)

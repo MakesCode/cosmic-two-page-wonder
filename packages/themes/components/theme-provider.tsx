@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { applyThemeToElement } from "../utils/apply-theme";
 import { useThemePresetFromUrl } from "./use-theme-preset-from-url";
 import { updateThemeMode } from "../store/actions";
+import { markUserThemeOverride } from "../utils/user-theme-preference";
 
 type Theme = "dark" | "light";
 
@@ -42,6 +43,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   }, [themeState]);
 
   const handleThemeChange = (newMode: Theme) => {
+    markUserThemeOverride();
     dispatch(updateThemeMode(newMode));
   };
 
